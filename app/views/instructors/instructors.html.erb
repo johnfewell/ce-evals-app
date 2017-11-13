@@ -1,0 +1,33 @@
+  <div id="main">
+      <h1>Instructors</h1>
+      <div id="table-wrapper">
+        <table class="pure-table pure-table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th># of Courses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Instructor.all.each do |i|  %>
+              <tr>
+                <td>
+                  <a href="/instructors/<%= i.slug %>"><%= i.name %></a>
+                </td>
+                <td>
+                  <%= i.email %>
+                </td>
+                <td align="center">
+                  <%= i.courses.count %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br />
+        <% if is_admin? %>
+            <a class="pure-button" href="/instructors/new">New Instructor</a>
+          <% end %>
+    </div>
+  </div>

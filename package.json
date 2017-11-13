@@ -1,5 +1,7 @@
 {
   "name": "ce-evals-app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "primer-css": "^9.6.0"
+  }
 }

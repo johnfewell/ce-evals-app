@@ -31,7 +31,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker', '~> 1.8', '>= 1.8.4'
-gem 'primer-rails'
 
 
 # Use Capistrano for deployment

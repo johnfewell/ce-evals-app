@@ -1,0 +1,29 @@
+<h1>attendees</h1>
+  <div id="table-wrapper">
+    <table class="pure-table pure-table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th># of Courses</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Student.all.each do |s| %>
+        <% if s.id != admin_id %>
+          <tr>
+            <td>
+              <a href="/attendees/<%= s.slug %>"><%= s.name %></a>
+            </td>
+            <td>
+              <%= s.courses.count %>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <br />
+    <% if is_admin? %>
+      <a class="pure-button" href="/attendees/new">New Student</a>
+    <% end %>
+</div>
