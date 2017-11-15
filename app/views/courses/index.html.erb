@@ -1,0 +1,53 @@
+  <div id="main">
+
+    <form action="/courses" method="POST">
+      <h1>Register for Courses</h1>
+        if !is_admin?
+          <h4> current_user.name %>, you can register for courses or change your registration by selecting the checkboxes below.</h4>
+          <% else %>
+          <h4> current_user.name %>, you can't register for courses here because you are the admin.</h4>
+       end
+      <div id="table-wrapper">
+        <table class="pure-table pure-table-bordered">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Instructor</th>
+              <th>Start Date</th>
+              <th>Semester</th>
+              <th>Weeks</th>
+              <th>Year</th>
+              <th>Registered</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Course.all.each do |c|  %>
+              <tr>
+                <td>
+                  href="/courses/ c.slug %>"><%= c.title %></a>
+                </td>
+                <td>
+                    <a href="/instructors/c.inst_slug %>"><%= c.instructor.first_name %></a>
+
+                </td>
+                <td>
+                  <%= c.start_date %>
+                </td>
+                <td>
+                  <%= c.location %>
+                </td>
+                <td>
+                  <%= c.learning_objective_3 %>
+                </td>
+                <td>
+                  <%= c.learning_objective_2 %>
+                </td>
+                <td >
+  <% end %>
+          </tbody>
+        </table>
+        <br />
+
+      </form>
+    </div>
+  </div>

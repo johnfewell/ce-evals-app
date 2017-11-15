@@ -1,18 +1,25 @@
+
+<%= render "nav" %>
 <div class="container">
-  <div class="columns">
-    <div class="one-fifth column">
-      <span class="tooltipped tooltipped-n border p-2 mb-2 mr-2 left" aria-label="This is the tooltip.">
-        Tooltip North
-      </span>
-    </div>
-    <div class="four-fifths column">
-      <span class="tooltipped tooltipped-ne border p-2 mb-2 mr-2 left" aria-label="This is the tooltip.">
-        Tooltip North East
-      </span>
-    </div>
-  </div>
-<h1>School Registration</h1>
-<h2>Hello, you</h2>
+  <h3>Courses:</h3>
+  <ul>
+  <% Course.all.each do |c| %>
+    <li>
+      <%=   c.title %>
+    </li>
+  <% end %>
+  <h3>Instructors:</h3>
+  <% Instructor.all.each do |i| %>
+  <li>
+    <%= i.first_name %> <%= i.last_name %>
+  </li>
+  <% end %>
+  <h3>Attendees:</h3>
+  <% Attendee.all.each do |a| %>
+  <li>
+    <%= a.first_name %> <%= a.last_name %>
+  </li>
 
-
-  
+  <% end %>
+  </ul>
+</div>
