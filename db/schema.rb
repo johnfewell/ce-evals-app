@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107211404) do
+ActiveRecord::Schema.define(version: 20171115220347) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "attendee_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendee_id"], name: "index_answers_on_attendee_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
 
   create_table "attendees", force: :cascade do |t|
     t.string "first_name"
@@ -41,6 +51,12 @@ ActiveRecord::Schema.define(version: 20171107211404) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "evaluations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "instructors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -48,6 +64,14 @@ ActiveRecord::Schema.define(version: 20171107211404) do
     t.string "suffix"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "content"
+    t.integer "evaluation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evaluation_id"], name: "index_questions_on_evaluation_id"
   end
 
 end

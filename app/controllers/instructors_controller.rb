@@ -7,7 +7,6 @@ class InstructorsController < ApplicationController
   def show
   end
 
-
 private
 
   def set_instructor
