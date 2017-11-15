@@ -1,0 +1,34 @@
+<h1><%= @evaluation.name %> Answers</h1>
+
+<%= form_for(@evaluation) do |f| %>
+  <% @attendees.each do |attendee| -%>
+  <h3><%= attendee.first_name %></h3>
+  <table>
+    <thead>
+      <tr>
+        <td>Questions</td>
+        <td>Answer</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @questions.each do |question| -%>
+      <tr>
+        <td><%= question.content %></td>
+        <td>
+        <%= f.fields_for :questions, question do |q| -%>
+          <%= q.fields_for :answers, question.answers.find_or_initialize_by(attendee: attendee) do |a| -%>
+            <%= a.text_area :content %>
+            <%= a.hidden_field :attendee_id, value: attendee.id %>
+            
+          <% end -%>
+        <% end -%>
+        </td>
+      </tr>
+      <% end -%>
+    </tbody>
+  </table>
+  <% end -%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end -%>

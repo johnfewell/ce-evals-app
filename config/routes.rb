@@ -5,4 +5,8 @@ Rails.application.routes.draw do
    resources :courses
    resources :instructors
 
+   resources :evaluations do
+     get 'answers', on: :member
+   end
+
 end
