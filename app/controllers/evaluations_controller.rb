@@ -10,7 +10,6 @@ class EvaluationsController < ApplicationController
   def answers
     @attendees = Attendee.all
     @questions = @evaluation.questions
-    render :answers 
   end
 
   private
