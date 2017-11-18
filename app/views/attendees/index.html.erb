@@ -1,29 +1,15 @@
-<h1>attendees</h1>
-  <div id="table-wrapper">
-    <table class="pure-table pure-table-bordered">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th># of Courses</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% Student.all.each do |s| %>
-        <% if s.id != admin_id %>
-          <tr>
-            <td>
-              <a href="/attendees/<%= s.slug %>"><%= s.name %></a>
-            </td>
-            <td>
-              <%= s.courses.count %>
-            </td>
-          </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-    <br />
-    <% if is_admin? %>
-      <a class="pure-button" href="/attendees/new">New Student</a>
+<%= render "nav" %>
+
+<div class="container">
+  <ul>
+    <% @attendees.each do |a| %>
+    <li class="col-12 d-block width-full py-4 border-bottom public source" itemprop="owns" itemscope="" itemtype="http://schema.org/Code">
+        <div class="d-inline-block mb-1">
+          <h4>
+            <%= link_to a.fullname, attendee_path(a), itemprop: "name codeRepository" %>
+          </h4>
+      </li>
     <% end %>
+  </ul>
+<!--  end container -->
 </div>

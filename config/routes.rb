@@ -9,4 +9,6 @@ Rails.application.routes.draw do
      get 'answers', on: :member
    end
 
+   get '/attendees/:id/courses/edit', to: 'attendees#registration'
+
 end

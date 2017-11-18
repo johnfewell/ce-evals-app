@@ -1,0 +1,17 @@
+Hello world
+<ul>
+  <% @courses.each do |c| %>
+    <li>
+      <%= c.title %> - <%= c.end_date %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= form_for :attendee do |f| %>
+  First name: <%= f.text_field :first_name %><br />
+  Last name : <%= f.text_field :last_name %><br />
+  Course: <%= f.collection_select :course_ids, @coures, :id, :title %><br />
+
+  <%= f.submit %>
+<% end %>

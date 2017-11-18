@@ -1,14 +1,19 @@
-<div id="main">
-  <h1>Tite: <%= @course.title %></h1>
-  <h3>Instructor: <% if !@course.instructor_id? %>
-        <%= "Instructor Unassigned" %>
-      <% else %>
-        <a href="/instructors/ @course.inst_slug %>"><%= @course.instructor.first_name %></a></h3>
-      <% end %>
-  <h4>Location: <%= @course.location %></h4>
-  <h4>Start Date: <%= @course.start_date %></h4>
-  <h4>Description: <%= @course.learning_objective_1 %></h4>
-  <h4>Students:</h4>
+<%= render "nav" %>
+
+<div class="container">
+  <h2><%= @course.title %></h2>
+  <ul>
+    <li>Instructor: <%= @course.instructor.fullname %></a></li>
+    <li>Location: <%= @course.location %></li>
+    <li>Credits: <%= @course.credits %></li>
+    <li>Start Date: <%= @course.start_date %></li>
+    <li>End Date: <%= @course.end_date %></li>
+    <li>Learning Objective 1: <%= @course.learning_objective_1 %></li>
+    <li>Learning Objective 2: <%= @course.learning_objective_2 %></li>
+    <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
+  </ul>
+
+  <li>Attendees:</li>
   <ul>
       <% @course.attendees.each do |s| %>
       <li>
@@ -17,10 +22,6 @@
       <% end %>
   </ul>
   <br />
-  if is_admin?
-      <a class="pure-button" href="/courses/ @course.slug %>/edit">Edit Course</a>
-    <a class="pure-button" href="/courses/new">New Course</a>
-    <a class="pure-button" href="/courses/ @course.slug %>/delete">Delete Course</a>
-   end
+
   </div>
 </div>

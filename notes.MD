@@ -13,6 +13,7 @@ fe.save
 
 # Notes
 
+
 ## define what I want all of the routes to do
 
 /
@@ -59,6 +60,8 @@ fe.save
 /attendees/new
 
 /attendees/:id/edit
+
+/attendees/1/courses/edit
 
 /attendees/csv
 - Instructor and admin only.

@@ -36,8 +36,8 @@
       learning_objective_1: Faker::Hipster.sentence,
       learning_objective_3: Faker::Hipster.sentence,
       learning_objective_2: Faker::Hipster.sentence,
-      start_date: Faker::Date.between(50.days.ago, 40.days.ago),
-      end_date: Faker::Date.between(39.days.ago, 2.days.ago),
+      start_date: Faker::Date.between(50.days.from_now, 80.days.from_now),
+      end_date: Faker::Date.between(90.days.from_now, 100.days.from_now),
       published: Faker::Boolean.boolean,
       instructor_id: Faker::Number.between(1, 10)
       )

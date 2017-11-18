@@ -2,6 +2,7 @@ class InstructorsController < ApplicationController
   before_action :set_instructor, only: [:show, :edit, :update, :destroy]
 
   def index
+    @instructors = Instructor.all
   end
 
   def show
@@ -10,6 +11,6 @@ class InstructorsController < ApplicationController
 private
 
   def set_instructor
-    @course = Course.find(params[:id])
+    @instructor = Instructor.find(params[:id])
   end
 end

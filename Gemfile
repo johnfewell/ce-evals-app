@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'faker', '~> 1.8', '>= 1.8.4'
 
+gem 'baby_squeel'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

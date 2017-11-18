@@ -2,6 +2,7 @@
   "name": "ce-evals-app",
   "private": true,
   "dependencies": {
-    "primer-css": "^9.6.0"
+    "primer-css": "^9.6.0",
+    "primer-navigation": "^1.5.1"
   }
 }

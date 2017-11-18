@@ -1,53 +1,23 @@
-  <div id="main">
+<%= render "nav" %>
 
-    <form action="/courses" method="POST">
-      <h1>Register for Courses</h1>
-        if !is_admin?
-          <h4> current_user.name %>, you can register for courses or change your registration by selecting the checkboxes below.</h4>
-          <% else %>
-          <h4> current_user.name %>, you can't register for courses here because you are the admin.</h4>
-       end
-      <div id="table-wrapper">
-        <table class="pure-table pure-table-bordered">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Instructor</th>
-              <th>Start Date</th>
-              <th>Semester</th>
-              <th>Weeks</th>
-              <th>Year</th>
-              <th>Registered</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% Course.all.each do |c|  %>
-              <tr>
-                <td>
-                  href="/courses/ c.slug %>"><%= c.title %></a>
-                </td>
-                <td>
-                    <a href="/instructors/c.inst_slug %>"><%= c.instructor.first_name %></a>
-
-                </td>
-                <td>
-                  <%= c.start_date %>
-                </td>
-                <td>
-                  <%= c.location %>
-                </td>
-                <td>
-                  <%= c.learning_objective_3 %>
-                </td>
-                <td>
-                  <%= c.learning_objective_2 %>
-                </td>
-                <td >
-  <% end %>
-          </tbody>
-        </table>
-        <br />
-
-      </form>
-    </div>
-  </div>
+<div class="container">
+  <ul>
+    <% @courses.each do |c| %>
+    <li class="col-12 d-block width-full py-4 border-bottom public source" itemprop="owns" itemscope="" itemtype="http://schema.org/Code">
+        <div class="d-inline-block mb-1">
+          <h3>
+            <%= link_to c.title, course_path(c), itemprop: "name codeRepository" %>
+          </h3>
+        </div>
+        <div class="f6 text-gray mt-2">
+              <span class="repo-language-color ml-0" style="background-color:#701516;"></span>
+              <span class="mr-3" itemprop="programmingLanguage">
+                Instructor: <%= c.instructor.first_name %> <%= c.instructor.last_name  %>
+              </span>
+            Date: <%= c.start_date %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<!--  end container -->
+</div>
