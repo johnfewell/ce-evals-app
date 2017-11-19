@@ -1,0 +1,45 @@
+<%= form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.label :location %><br>
+    <%= f.text_area :location %><br>
+    <%= f.label :credits %><br>
+    <%= f.number_field :credits %><br>
+    <%= f.label :learning_objective_1 %><br>
+    <%= f.text_area :learning_objective_1 %><br>
+    <%= f.label :learning_objective_2 %><br>
+    <%= f.text_area :learning_objective_2 %><br>
+    <%= f.label :learning_objective_3 %><br>
+    <%= f.text_area :learning_objective_3 %><br>
+    <%= f.label :start_date %><br>
+    <%= f.date_field :start_date %><br>
+    <%= f.label :end_date %><br>
+    <%= f.date_field :end_date %><br>
+    <%= f.label :published %><br>
+    <%= f.check_box :published %><br>
+  </div>
+  <div class="field">
+    <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname) do |b| %>
+      <%= b.label class:"form-checkbox" do%>
+        <%=b.radio_button + b.text%> </br>
+      <%end%>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+  </div>
+<% end %>
