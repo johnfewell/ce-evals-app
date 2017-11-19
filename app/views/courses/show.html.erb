@@ -1,6 +1,3 @@
-<%= render "nav" %>
-
-<div class="container">
   <h2><%= @course.title %></h2>
   <ul>
     <li>Instructor: <%= @course.instructor.fullname %></a></li>
@@ -13,15 +10,12 @@
     <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
   </ul>
 
-  <li>Attendees:</li>
+  <h3>Attendees:</h3>
   <ul>
       <% @course.attendees.each do |s| %>
       <li>
-        <a href="/students/ s.slug %>"><%= s.first_name %></a>
+        <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
       </li>
       <% end %>
   </ul>
   <br />
-
-  </div>
-</div>

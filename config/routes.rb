@@ -10,5 +10,6 @@ Rails.application.routes.draw do
    end
 
    get '/attendees/:id/courses/edit', to: 'attendees#registration'
+   #post '/attendees/:id/courses/edit' to: 'attendees#update'
 
 end

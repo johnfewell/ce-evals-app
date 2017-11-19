@@ -106,7 +106,7 @@ fe.save
 ## build controllers and views for school registration
 
 Complete the views so that the admin (no login) can
-- register attendees for classes
+x register attendees for classes
 - CRUD courses
 - CRUD attendees
 - CRUD Instructors

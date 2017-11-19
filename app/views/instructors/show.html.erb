@@ -1,16 +1,10 @@
-<%= render "nav" %>
-
-<div class="container">
-  <h2><%= @instructor.fullname %></h2>
-  <h4>Courses:</h4>
-  <ul>
-      <% @instructor.courses.each do |c| %>
-      <li>
-        <%= link_to c.title, course_path(c), itemprop: "name codeRepository" %>
-      </li>
-      <% end %>
-  </ul>
+  <h2> <%= @instructor.title %> <%= @instructor.fullname %>, <%= @instructor.suffix %> </h2>
+    <h4>Courses:</h4>
+    <ul>
+        <% @instructor.courses.each do |c| %>
+        <li>
+          <%= link_to c.title, course_path(c), itemprop: "name codeRepository" %>
+        </li>
+        <% end %>
+    </ul>
   <br />
-
-  </div>
-</div>
