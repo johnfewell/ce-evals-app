@@ -1,21 +1,25 @@
-  <h2><%= @course.title %></h2>
-  <ul>
-    <li>Instructor: <%= @course.instructor.fullname %></a></li>
-    <li>Location: <%= @course.location %></li>
-    <li>Credits: <%= @course.credits %></li>
-    <li>Start Date: <%= @course.start_date %></li>
-    <li>End Date: <%= @course.end_date %></li>
-    <li>Learning Objective 1: <%= @course.learning_objective_1 %></li>
-    <li>Learning Objective 2: <%= @course.learning_objective_2 %></li>
-    <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
-  </ul>
+<h2><%= @course.title %></h2>
+<ul>
+  <li>Instructor: <%= @course.instructor.fullname %></a></li>
+  <li>Location: <%= @course.location %></li>
+  <li>Credits: <%= @course.credits %></li>
+  <li>Start Date: <%= @course.start_date %></li>
+  <li>End Date: <%= @course.end_date %></li>
+  <li>Learning Objective 1: <%= @course.learning_objective_1 %></li>
+  <li>Learning Objective 2: <%= @course.learning_objective_2 %></li>
+  <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
+</ul>
 
-  <h3>Attendees:</h3>
-  <ul>
-      <% @course.attendees.each do |s| %>
-      <li>
-        <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
-      </li>
-      <% end %>
-  </ul>
-  <br />
+<h3>Attendees:</h3>
+<ul>
+    <% @course.attendees.each do |s| %>
+    <li>
+      <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
+    </li>
+    <% end %>
+</ul>
+<br />
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>
+<%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %>

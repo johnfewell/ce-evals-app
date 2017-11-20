@@ -107,7 +107,7 @@ fe.save
 
 Complete the views so that the admin (no login) can
 x register attendees for classes
-- CRUD courses
+x CRUD courses
 - CRUD attendees
 - CRUD Instructors
 

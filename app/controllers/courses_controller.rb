@@ -16,6 +16,9 @@ class CoursesController < ApplicationController
   def edit
   end
 
+  def update
+  end
+
   def create
     #binding.pry
     @course = Course.new(course_params)
@@ -31,10 +34,23 @@ class CoursesController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @course.update(course_params)
+        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.json { render :show, status: :ok, location: @course }
+      else
+        format.html { render :edit }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url }
+      format.html { redirect_to courses_url, notice: 'Course was successfully deleted.'}
       format.json { head :no_content }
     end
   end
@@ -47,5 +63,7 @@ private
   def course_params
     params.require(:course).permit(:title, :location, :credits, :learning_objective_1, :learning_objective_2, :learning_objective_3, :start_date, :end_date, :published, :instructor_id)
   end
+
+
 
 end

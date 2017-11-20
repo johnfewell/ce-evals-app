@@ -11,6 +11,13 @@
   <body>
     <%= render "nav" %>
     <div class="container pt-3">
+      <% if !notice.nil? %>
+        <div class="flash-messages">
+          <div class="flash">
+            <p id="notice"><%= notice %></p>
+          </div>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>

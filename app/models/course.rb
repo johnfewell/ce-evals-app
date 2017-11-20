@@ -4,4 +4,11 @@ class Course < ApplicationRecord
   has_many :attendees, :through => :course_attendees
   has_one :evaluation
   has_many :finished_evaluations
+
+  before_save :propercase_title
+
+  def propercase_title
+    self.title = self.title.titlecase
+  end
+
 end
