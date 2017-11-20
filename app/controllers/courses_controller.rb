@@ -1,3 +1,4 @@
+require 'pry'
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
@@ -16,12 +17,12 @@ class CoursesController < ApplicationController
   end
 
   def create
-    #raise params.inspect
+    #binding.pry
     @course = Course.new(course_params)
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Coure was successfully created.' }
+        format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render action: 'show', status: :created, location: @course }
       else
         format.html { render action: 'new' }
@@ -44,7 +45,7 @@ private
   end
 
   def course_params
-    params.require(:course).permit(:title, :location, :credits, :learning_objective_1, :learning_objective_2, :learning_objective_3, :start_date, :end_date, :published, :instructor_id => [])
+    params.require(:course).permit(:title, :location, :credits, :learning_objective_1, :learning_objective_2, :learning_objective_3, :start_date, :end_date, :published, :instructor_id)
   end
 
 end
