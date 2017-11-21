@@ -16,11 +16,7 @@ class CoursesController < ApplicationController
   def edit
   end
 
-  def update
-  end
-
   def create
-    #binding.pry
     @course = Course.new(course_params)
 
     respond_to do |format|

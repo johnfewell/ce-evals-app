@@ -9,4 +9,8 @@
   </ul>
   <br />
 
+
+  <%= link_to 'Edit', edit_attendee_path(@attendee) %> |
+  <%= link_to 'Back', attendees_path %>
+  <%= link_to 'Destroy', @attendee, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
