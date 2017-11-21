@@ -22,6 +22,23 @@
     <%= f.text_area :suffix %><br>
   </div>
 
+
+    <div class="field">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name %><br>
+      <%= f.label :last_name %><br>
+      <%= f.text_area :last_name %>
+    </div>
+
+    <div class="field">
+      <%= f.collection_check_boxes(:course_ids, Course.all, :id, :title) do |b| %>
+        <%= b.label class:"form-checkbox" do%>
+          <%=b.check_box + b.text%> </br>
+        <%end%>
+      <% end %>
+
+    </div>
+
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
   </div>

@@ -1,3 +1,4 @@
+
 <h2><%= @course.title %></h2>
 <ul>
   <li>Instructor: <%= @course.instructor.fullname %></a></li>
@@ -19,6 +20,12 @@
     <% end %>
 </ul>
 <br />
+
+<h2>Import Attendees</h2>
+<%= form_tag import_courses_path, id: "id", multipart: true do %>
+<%= file_field_tag :file %>
+<%= submit_tag "Import CSV" %>
+<% end %>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

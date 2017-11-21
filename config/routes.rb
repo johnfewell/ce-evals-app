@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
    root 'application#index'
-   resources :attendees do
+  #  resources :attendees do
+  #    collection {post :import}
+  #  end
+   resources :attendees
+   resources :courses do
      collection {post :import}
    end
 
-   resources :courses
    resources :instructors
 
    resources :evaluations do
      get 'answers', on: :member
    end
 
-   get '/attendees/:id/courses/edit', to: 'attendees#registration'
+  #  get '/attendees/:id/courses/edit', to: 'attendees#registration'
    #post '/attendees/:id/courses/edit' to: 'attendees#update'
 
 end

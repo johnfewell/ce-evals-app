@@ -13,6 +13,15 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
+  def import
+    binding.pry
+    @course = Course.find(params[:id])
+
+    Attendee.import(params[:file])
+    redirect_to root_url, notice: "Attendee data imported!"
+  end
+
+
   def edit
   end
 
@@ -53,6 +62,7 @@ class CoursesController < ApplicationController
 
 private
   def set_course
+  #  binding.pry
     @course = Course.find(params[:id])
   end
 

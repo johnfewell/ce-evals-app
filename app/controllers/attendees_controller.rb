@@ -33,9 +33,8 @@ class AttendeesController < ApplicationController
   def edit
   end
 
-  def
-
   def update
+    binding.pry
     respond_to do |format|
       if @attendee.update(attendee_params)
         format.html { redirect_to @attendee, notice: 'Attendee was successfully updated.' }
@@ -67,7 +66,7 @@ private
   end
 
   def attendee_params
-    params.require(:attendee).permit(:first_name, :last_name, :title, :suffix, :attendee_ids => [])
+    params.require(:attendee).permit(:first_name, :last_name, :title, :suffix, :course_ids => [])
   end
 
 end
