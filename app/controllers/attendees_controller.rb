@@ -55,6 +55,10 @@ class AttendeesController < ApplicationController
     end
   end
 
+  def import
+    Attendee.import(params[:file])
+    redirect_to root_url, notice: "Attendee data imported!"
+  end
 
 private
 

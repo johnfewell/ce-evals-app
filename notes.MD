@@ -106,10 +106,10 @@ fe.save
 ## build controllers and views for school registration
 
 Complete the views so that the admin (no login) can
-x register attendees for classes
+- register attendees for classes
 x CRUD courses
-- CRUD attendees
-- CRUD Instructors
+x CRUD attendees
+x CRUD Instructors
 
 ## Build out the CSV upload for attendees
 
@@ -120,16 +120,13 @@ Figure this out to automate the creation process
 Build the forms for evaluations
 Build the model for storing the evaluations
 
-## Build User views
-
-Build simple logins for
-Instructors
-attendees
-admin
-
 ## Add devise
 
 Make it so the devise handles the logins
+
+## Add user roles
+
+So no one fucks with shit they arent supposed to.
 
 ## Style it
 
