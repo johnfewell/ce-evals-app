@@ -33,6 +33,8 @@ class AttendeesController < ApplicationController
   def edit
   end
 
+  def
+
   def update
     respond_to do |format|
       if @attendee.update(attendee_params)
