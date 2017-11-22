@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-  before_action :set_attendee, only: [:show, :edit, :update, :destroy, :registration]
+  before_action :set_attendee, only: [:show, :edit, :update, :destroy]
 
   def index
     @attendees = Attendee.all
@@ -26,11 +26,9 @@ class AttendeesController < ApplicationController
     end
   end
 
-  def registration
-    @courses = Course.where.has { end_date > Date.today }
-  end
 
   def edit
+    @courses = Course.where.has { end_date > Date.today }
   end
 
   def update

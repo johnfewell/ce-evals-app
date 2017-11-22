@@ -1,3 +1,25 @@
+Start here:
+https://www.youtube.com/watch?time_continue=2374&v=zZn0xWry6TE
+
+
+def equipment=(eq)
+  eq.each do |i|
+if !item[:name].empty?
+  if new_item = Eq.find_by(name: item[:name])
+  self.eq << new_item
+else
+self.eq.build(name: item[:name])
+end
+end
+end
+
+Fields_for
+
+def new
+@ex
+
+belongs_to :optional
+-----------------
 person = Attendee.last
 c = Course.last
 e = Evaluation.last
