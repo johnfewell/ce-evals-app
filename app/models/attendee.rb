@@ -8,7 +8,7 @@ class Attendee < ApplicationRecord
   def fullname
     "#{first_name} #{last_name}"
   end
-  # 
+  #
   # def self.import(course, file)
   #   CSV.foreach(file.path, headers: true) do |row|
   #     course.attendee.create! row.to_hash
