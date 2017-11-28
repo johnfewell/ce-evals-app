@@ -1,5 +1,7 @@
   <h2> <%= @instructor.title %> <%= @instructor.fullname %>, <%= @instructor.suffix %> </h2>
-    <h4>Courses:</h4>
+    <h4>Courses</h4>
+    <div class="mx-5">
+
     <ul>
         <% @instructor.courses.each do |c| %>
         <li>
@@ -7,6 +9,7 @@
         </li>
         <% end %>
     </ul>
+  </div>
   <br />
 
 

@@ -1,24 +1,28 @@
 
 <h2><%= @course.title %></h2>
-<ul>
-  <li>Instructor: <%= @course.instructor.fullname %></a></li>
-  <li>Location: <%= @course.location %></li>
-  <li>Credits: <%= @course.credits %></li>
-  <li>Start Date: <%= @course.start_date %></li>
-  <li>End Date: <%= @course.end_date %></li>
-  <li>Learning Objective 1: <%= @course.learning_objective_1 %></li>
-  <li>Learning Objective 2: <%= @course.learning_objective_2 %></li>
-  <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
-</ul>
+<div class="mx-5">
 
-<h3>Attendees:</h3>
-<ul>
-    <% @course.attendees.each do |s| %>
-    <li>
-      <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
-    </li>
-    <% end %>
-</ul>
+  <ul>
+    <li>Instructor: <%= @course.instructor.fullname %></a></li>
+    <li>Location: <%= @course.location %></li>
+    <li>Credits: <%= @course.credits %></li>
+    <li>Start Date: <%= @course.start_date %></li>
+    <li>End Date: <%= @course.end_date %></li>
+    <li>Learning Objective 1: <%= @course.learning_objective_1 %></li>
+    <li>Learning Objective 2: <%= @course.learning_objective_2 %></li>
+    <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
+  </ul>
+</div>
+<h3>Attendees</h3>
+<div class="mx-5">
+  <ul>
+      <% @course.attendees.each do |s| %>
+      <li>
+        <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
+      </li>
+      <% end %>
+  </ul>
+</div>
 <br />
 
 <h2>Import Attendees</h2>
