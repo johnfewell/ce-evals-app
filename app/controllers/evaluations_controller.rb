@@ -26,7 +26,7 @@ class EvaluationsController < ApplicationController
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'evaluation was successfully created.' }
+        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @evaluation }
       else
         format.html { render action: 'new' }
@@ -36,7 +36,6 @@ class EvaluationsController < ApplicationController
   end
 
   def update
-    binding.pry
     respond_to do |format|
       if @evaluation.update(evaluation_params)
         format.html { redirect_to @evaluation, notice: 'evaluation was successfully updated.' }
@@ -64,9 +63,10 @@ class EvaluationsController < ApplicationController
   end
 
   def evaluation_params
-    params.require(:evaluation).permit(:name,
-      :questions_attributes => [:id, :content,
-        :answers_attributes => [:id, :content, :attendee_id]
-      ])
+    params.require(:evaluation).permit(:name, :question_ids => [], :questions_attributes => [:content])
   end
+#:answers_attributes => [:content, :attendee_id])
+
+
+
 end

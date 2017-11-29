@@ -16,13 +16,22 @@
     <%= f.text_field :name %><br>
   </div>
 
+
+
+  <div class="field">
+        <span>Questions:</span>
+    <%= f.collection_check_boxes :question_ids, Question.all, :id, :content %><br>
+  </div>
+
+
   <div class="field">
     <span>Questions:</span>
-    <%= f.fields_for(:questions) do |question_form| %>
+    <%= f.fields_for :questions, Question.new do |question_form| %>
       <%= question_form.label :content %>
       <%= question_form.text_field :content %>
       <% end %>
   </div>
+
 
     <div class="actions">
       <%= f.submit :class => 'btn btn-primary' %>

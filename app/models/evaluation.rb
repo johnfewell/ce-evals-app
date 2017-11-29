@@ -1,9 +1,12 @@
 class Evaluation < ApplicationRecord
-  has_many :questions
+  has_many :evaluation_questions
+  has_many :questions, :through => :evaluation_questions
   belongs_to :course, optional: true
   has_many :finished_evaluations
-  accepts_nested_attributes_for :questions, reject_if: lambda {|attributes| attributes['content'].blank?}
-  validates_presence_of :content
+  accepts_nested_attributes_for :questions
+  #, reject_if: lambda {|attributes| attributes['content'].blank?}
+  ##  validates_presence_of :content
+
 
   # def questions=(question)
   #   question.each do |q|
@@ -16,5 +19,4 @@ class Evaluation < ApplicationRecord
   #     end
   #   end
   # end
-
 end
