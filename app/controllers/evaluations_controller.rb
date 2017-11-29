@@ -38,7 +38,7 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'evaluation was successfully updated.' }
+        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -51,7 +51,7 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'evaluation was successfully deleted.'}
+      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully deleted.'}
       format.json { head :no_content }
     end
   end

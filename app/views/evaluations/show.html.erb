@@ -2,13 +2,15 @@
 <h2><%= @evaluation.name %></h2>
 
 <h3>Questions:</h3>
-<ul>
-    <% @questions.each do |q| %>
-    <li>
-      <%= q.content %>
-    </li>
-    <% end %>
-</ul>
+<div class="mx-5">
+  <ul>
+      <% @questions.each do |q| %>
+      <li>
+        <%= q.content %>
+      </li>
+      <% end %>
+  </ul>
+</div>
 <br />
 
 <%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    end
 
    resources :instructors
+   resources :questions
 
   #  resources :evaluations do
   #    get 'answers', on: :member

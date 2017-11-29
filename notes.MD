@@ -1,5 +1,3 @@
-Start here:
-https://www.youtube.com/watch?time_continue=2374&v=zZn0xWry6TE
 
 
 def equipment=(eq)
