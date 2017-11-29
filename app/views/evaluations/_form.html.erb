@@ -22,8 +22,9 @@
 
     <%= f.collection_check_boxes(:question_ids, Question.all, :id, :content) do |q| %>
       <%= q.label class:"form-checkbox" do%>
-        <%=q.check_box + q.text%> </br>
+        <%=q.check_box + q.text%>
       <% end %>
+      | <%=  link_to 'Edit Question', edit_question_path(q.object.id) %></br>
     <% end %>
     <br>
   </div>
