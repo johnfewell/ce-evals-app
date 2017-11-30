@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_evaluation, only: [:update]
 
   def index
     @questions = Question.all
@@ -40,7 +41,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(course_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to edit_evaluation_path(@evaluation), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -64,8 +65,11 @@ private
   end
 
   def course_params
-    params.require(:question).permit(:content, :evaluation_id)
+    params.require(:question).permit(:content, :evaluation_id, :refer_id)
   end
 
+  def set_evaluation
+    @evaluation = Evaluation.find(params[:ref_id])
+  end
 
 end
