@@ -63,7 +63,7 @@ class EvaluationsController < ApplicationController
   end
 
   def evaluation_params
-    params.require(:evaluation).permit(:name, :question_ids => [], :questions_attributes => [:content])
+    params.require(:evaluation).permit(:name, :course_id, :question_ids => [], :questions_attributes => [:content])
   end
 #:answers_attributes => [:content, :attendee_id])
 
