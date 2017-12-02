@@ -1,32 +1,31 @@
-class EvaluationsController < ApplicationController
+class FinishedEvaluationsController < ApplicationController
    before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :answers]
 
-  def index
-    @evaluations = Evaluation.all
-  end
+  # def index
+  #   @evaluations = Evaluation.all
+  # end
+  #
+  # def show
+  #   @questions = @evaluation.questions
+  # end
 
-  def show
-    @questions = @evaluation.questions
-  end
+  # def answers
+  #   @questions = @evaluation.questions
+  # end
 
-  def answers
-    @attendee = Attendee.find(params[:attendee_id])
-    @finished_evaluation = FinishedEvaluation.new
-    @questions = @evaluation.questions
-  end
-
-  def new
-    @evaluation = Evaluation.new
-  end
+  # def new
+  #   @finished_evaluation = FinishedEvaluation.new
+  # end
 
   def edit
   end
 
+
   def create
-    @evaluation = Evaluation.new(evaluation_params)
+    @finished_evaluation = FinishedEvaluation.new(finished_evaluation_params)
 
     respond_to do |format|
-      if @evaluation.save
+      if @finished_evaluation.save
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @evaluation }
       else
@@ -63,8 +62,8 @@ class EvaluationsController < ApplicationController
     @evaluation = Evaluation.find(params[:id])
   end
 
-  def evaluation_params
-    params.require(:evaluation).permit(:name, :course_id, :question_ids => [], :questions_attributes => [:content])
+  def finished_evaluation_params
+    params.require(:finished_evaluation).permit(:name, :course_id, :question_ids => [], :questions_attributes => [:content])
   end
 #:answers_attributes => [:content, :attendee_id])
 

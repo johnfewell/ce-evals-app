@@ -16,7 +16,6 @@ class CoursesController < ApplicationController
   def import
     binding.pry
     @course = Course.find(params[:id])
-
     Attendee.import(params[:file])
     redirect_to root_url, notice: "Attendee data imported!"
   end
@@ -27,7 +26,6 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
-
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -40,7 +38,6 @@ class CoursesController < ApplicationController
   end
 
   def update
-
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -51,7 +48,6 @@ class CoursesController < ApplicationController
       end
     end
   end
-
 
   def destroy
     @course.destroy
@@ -69,7 +65,5 @@ private
   def course_params
     params.require(:course).permit(:title, :location, :credits, :learning_objective_1, :learning_objective_2, :learning_objective_3, :start_date, :end_date, :published, :instructor_id, :evaluation_id)
   end
-
-
 
 end

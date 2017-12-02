@@ -1,5 +1,6 @@
 class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
+  before_action :set_courses, only: [:new, :edit]
 
   def index
     @attendees = Attendee.all
@@ -28,7 +29,6 @@ class AttendeesController < ApplicationController
 
 
   def edit
-    @courses = Course.where.has { end_date > Date.today }
   end
 
   def update
@@ -60,6 +60,10 @@ private
 
   def set_attendee
     @attendee = Attendee.find(params[:id])
+  end
+
+  def set_courses
+    @courses = Course.where.has { end_date > Date.today }
   end
 
   def attendee_params

@@ -4,6 +4,14 @@ Rails.application.routes.draw do
    resources :attendees do
      collection {post :import}
    end
+
+
+   resources :attendees do
+     resources :evaluations do
+       get 'answers', on: :member
+     end
+   end
+
   #  resources :attendees
    resources :courses do
      collection {post :import}
@@ -12,10 +20,13 @@ Rails.application.routes.draw do
    resources :instructors
    resources :questions
 
-  #  resources :evaluations do
-  #    get 'answers', on: :member
-  #  end
+   resources :evaluations do
+     get 'answers', on: :member
+   end
 
+   resources :finished_evaluations do
+     get 'answers', on: :member
+   end
 resources :evaluations
   #  get '/attendees/:id/courses/edit', to: 'attendees#registration'
    #post '/attendees/:id/courses/edit' to: 'attendees#update'
