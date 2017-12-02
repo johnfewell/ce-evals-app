@@ -14,16 +14,25 @@
   </ul>
 </div>
 <h3>Attendees</h3>
-<div class="mx-5">
-  <ul>
-      <% @course.attendees.each do |s| %>
-      <li>
-        <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
-      </li>
-      <% end %>
-  </ul>
-</div>
+  <div class="mx-5">
+    <ul>
+        <% @course.attendees.each do |s| %>
+        <li>
+          <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
 <br />
+
+<h3>Evalution</h3>
+<div class="mx-5">
+    <% if !@course.evaluation.nil?  %>
+      <h4><%= @course.evaluation.name %></h4>
+    <% else %>
+      <h4>Not assigned</h4>
+    <% end %>
+  </div>
 
 <h2>Import Attendees</h2>
 <%= form_tag import_courses_path, id: "id", multipart: true do %>

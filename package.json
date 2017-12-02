@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "primer-css": "^9.6.0",
+    "primer-forms": "^2.0.1",
     "primer-navigation": "^1.5.1"
   }
 }

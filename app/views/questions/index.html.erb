@@ -1,6 +1,21 @@
 <%= link_to "New Question", new_question_path, id: "news", class: "btn btn-primary" %>
 
-<ul>
+<table class="data-table">
+  <tr>
+    <th>Content</th>
+  </tr>
+
+<% @questions.each do |q| %>
+  <tr>
+    <td>
+      <%= link_to q.content, edit_question_path(q)%>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<!-- <ul>
+
   <% @questions.each do |q| %>
   <li class="col-12 d-block width-full py-4 border-bottom public source" itemprop="owns" itemscope="" itemtype="http://schema.org/Code">
       <div class="d-inline-block mb-1">
@@ -9,4 +24,4 @@
         </h4>
     </li>
   <% end %>
-</ul>
+</ul> -->

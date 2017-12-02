@@ -40,6 +40,7 @@ class CoursesController < ApplicationController
   end
 
   def update
+
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -62,12 +63,11 @@ class CoursesController < ApplicationController
 
 private
   def set_course
-  #  binding.pry
     @course = Course.find(params[:id])
   end
 
   def course_params
-    params.require(:course).permit(:title, :location, :credits, :learning_objective_1, :learning_objective_2, :learning_objective_3, :start_date, :end_date, :published, :instructor_id)
+    params.require(:course).permit(:title, :location, :credits, :learning_objective_1, :learning_objective_2, :learning_objective_3, :start_date, :end_date, :published, :instructor_id, :evaluation_id)
   end
 
 

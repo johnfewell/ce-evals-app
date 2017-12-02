@@ -4,5 +4,4 @@ class Evaluation < ApplicationRecord
   belongs_to :course, optional: true
   has_many :finished_evaluations
   accepts_nested_attributes_for :questions, reject_if: lambda {|attributes| attributes['content'].blank?}
-
 end

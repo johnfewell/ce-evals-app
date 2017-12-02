@@ -40,7 +40,7 @@
 
 <h3>Select course that this evaluation belongs to</h3>
   <div class="field mx-5">
-    <%= f.collection_radio_buttons(:course, Course.all, :id, :title) do |b| %>
+    <%= f.collection_radio_buttons(:course_id, Course.all, :id, :title) do |b| %>
       <%= b.label class:"form-checkbox" do%>
         <%=b.radio_button + b.text%> </br>
       <%end%>

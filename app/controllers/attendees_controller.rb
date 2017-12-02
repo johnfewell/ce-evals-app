@@ -32,7 +32,6 @@ class AttendeesController < ApplicationController
   end
 
   def update
-    binding.pry
     respond_to do |format|
       if @attendee.update(attendee_params)
         format.html { redirect_to @attendee, notice: 'Attendee was successfully updated.' }
