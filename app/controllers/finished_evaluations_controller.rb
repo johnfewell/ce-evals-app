@@ -24,11 +24,9 @@ class FinishedEvaluationsController < ApplicationController
     binding.pry
 
     @finished_evaluation = FinishedEvaluation.new(finished_evaluation_params)
-    binding.pry
 
     respond_to do |format|
       if @finished_evaluation.save
-        binding.pry
 
         format.html { redirect_to @finished_evaluation, notice: 'Evaluation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @evaluation }

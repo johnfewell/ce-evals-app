@@ -11,8 +11,18 @@ class EvaluationsController < ApplicationController
 
   def answers
     @attendee = Attendee.find(params[:attendee_id])
-    @finished_evaluation = FinishedEvaluation.new
-    @questions = @evaluation.questions
+    @course = Course.find(params[:id])
+    binding.pry
+
+    respond_to do |format|
+      if !@attendee.courses.include?(@course)
+        format.html { redirect_to @attendee, notice: "#{@attendee.fullname} was not registered for this course." }
+        format.json { render action: 'show', status: :created, location: @attendee }
+      else
+        @finished_evaluation = FinishedEvaluation.new
+        @questions = @evaluation.questions
+      end
+    end
   end
 
   def new
