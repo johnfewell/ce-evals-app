@@ -27,7 +27,8 @@ Rails.application.routes.draw do
    resources :finished_evaluations do
      get 'answers', on: :member
    end
-resources :evaluations
+
+   resources :evaluations
   #  get '/attendees/:id/courses/edit', to: 'attendees#registration'
    #post '/attendees/:id/courses/edit' to: 'attendees#update'
 

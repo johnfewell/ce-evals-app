@@ -1,0 +1,23 @@
+
+<h2>Evalution for <%= @finished_evaluation.course.title %> by <%= @finished_evaluation.attendee.fullname %></h2>
+
+<h3>Questions</h3>
+<div class="mx-5">
+  <ul>
+      <% @finished_evaluation.evaluation.questions.each do |q| %>
+      <li>
+        <%= q.content %>:
+        <% @finished_evaluation.answers.each do |a| %>
+          <%= a.content %>
+        <% end %>
+      </li>
+      <% end %>
+  </ul>
+</div>
+<br />
+
+
+
+<%= link_to 'Edit', edit_finished_evaluation_path(@finished_evaluation) %> |
+<%= link_to 'Back', finished_evaluations_path %>
+<%= link_to 'Destroy', @finished_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %>

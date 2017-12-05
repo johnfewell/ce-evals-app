@@ -1,6 +1,5 @@
 <h1>Answers for <%= @attendee.fullname %></h1>
-
-<%= form_for(@finished_evaluation,  :html => { :class => "", :id => "" }, url: {controller: "finished_evaluations", action: "create"}, method: :post) do |f| %>.
+<%= form_for(@finished_evaluation, url: {controller: "finished_evaluations", action: "create"}, method: :post) do |f| %>.
   <table>
     <thead>
       <tr>
@@ -13,18 +12,19 @@
       <tr>
         <td><%= question.content %></td>
         <td>
-        <%= f.fields_for :questions, question do |q| %>
-            <%= q.fields_for :answers, question.answers.find_or_initialize_by(attendee: @attendee) do |a| -%>
-              <%= a.text_area :content %>
-              <%= a.hidden_field :attendee_id, :value => @attendee.id %>
-              <%= a.hidden_field :evaluation_id, :value => params[:id] %>
-            <% end -%>
-        <% end %>
+          <%= f.fields_for :answers, question.answers.find_or_initialize_by(attendee: @attendee) do |a| %>
+            <%= a.text_area :content %>
+            <%= a.hidden_field :question_id, :value => question.id %>
+            <%= a.hidden_field :attendee_id, :value => @attendee.id %>
+          <% end %>
       </td>
     </tr>
     </tbody>
   </table>
   <% end -%>
+  <%= f.hidden_field :evaluation_id, :value => params[:id] %>
+  <%= f.hidden_field :course_id, :value => @evaluation.course.id %>
+  <%= f.hidden_field :attendee_id, :value => @attendee.id %>
   <div class="actions">
     <%= f.submit %>
   </div>
