@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="columns">
+    <% @finished_evaluations.each_slice(10) do |finished_evaluation| %>
+        <div class="one-fifth column">
+          <table class="data-table">
+            <tr>
+              <th>Name</th>
+            </tr>
+              <% finished_evaluation.each do |fe| %>
+                <tr>
+                  <td>
+                      <%= link_to fe.attendee.fullname, finished_evaluation_path(fe) %>
+                  </td>
+                </tr>
+              <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br />
+<br />

@@ -2,10 +2,10 @@ class FinishedEvaluationsController < ApplicationController
    before_action :set_evaluation, only: [:answers]
    before_action :set_finished_evaluation, only: [:show, :edit, :update, :destroy]
 
-  # def index
-  #   @evaluations = Evaluation.all
-  # end
-  #
+  def index
+    @finished_evaluations = FinishedEvaluation.all
+  end
+
   def show
   end
 

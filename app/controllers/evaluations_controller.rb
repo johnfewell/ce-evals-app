@@ -17,12 +17,15 @@ class EvaluationsController < ApplicationController
     respond_to do |format|
       if !@attendee.courses.include?(@course)
         format.html { redirect_to @attendee, notice: "#{@attendee.fullname} was not registered for this course." }
-        format.json { render action: 'show', status: :created, location: @attendee }
-      else
-        @finished_evaluation = FinishedEvaluation.new
-        @questions = @evaluation.questions
       end
     end
+
+    if !@course.complete?
+      redirect_to @attendee, notice: "#{@course.title} is not over yet."
+    end
+    
+    @finished_evaluation = FinishedEvaluation.new
+    @questions = @evaluation.questions
   end
 
   def new

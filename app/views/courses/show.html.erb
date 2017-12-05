@@ -34,6 +34,18 @@
     <% end %>
   </div>
 
+<% if @course.complete? %>
+  <h3>Finished Evaluations</h3>
+  <div class="mx-5">
+      <% if !@course.finished_evaluations.nil?  %>
+        <h4><%= @course.finished_evaluations.count %></h4>
+      <% else %>
+        <h4>None completed</h4>
+      <% end %>
+    </div>
+
+<% end %>
+
 <h2>Import Attendees</h2>
 <%= form_tag import_courses_path, id: "id", multipart: true do %>
 <%= file_field_tag :file %>

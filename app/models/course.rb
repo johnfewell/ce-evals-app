@@ -11,4 +11,8 @@ class Course < ApplicationRecord
     self.title = self.title.titlecase
   end
 
+  def complete?
+    self.end_date < Date.today 
+  end
+
 end
