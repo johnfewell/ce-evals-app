@@ -11,19 +11,18 @@ class EvaluationsController < ApplicationController
 
   def answers
     @attendee = Attendee.find(params[:attendee_id])
-    @course = Course.find(params[:id])
+    evaluation = Evaluation.find(params[:id])
+    @course = Course.find(evaluation.course.id)
     binding.pry
 
-    respond_to do |format|
-      if !@attendee.courses.include?(@course)
-        format.html { redirect_to @attendee, notice: "#{@attendee.fullname} was not registered for this course." }
-      end
+    if !@attendee.courses.include?(@course)
+      redirect_to @attendee, notice: "#{@attendee.fullname} was not registered for this course."
     end
 
     if !@course.complete?
       redirect_to @attendee, notice: "#{@course.title} is not over yet."
     end
-    
+
     @finished_evaluation = FinishedEvaluation.new
     @questions = @evaluation.questions
   end

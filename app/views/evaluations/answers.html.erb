@@ -1,5 +1,18 @@
 <h1>Answers for <%= @attendee.fullname %></h1>
 <%= form_for(@finished_evaluation, url: {controller: "finished_evaluations", action: "create"}, method: :post) do |f| %>.
+  <h5>The learning objectives for this course were:</h5>
+  <ul>
+    <li>
+      <%= @course.learning_objective_1 %>
+    </li>
+    <li>
+      <%= @course.learning_objective_2 %>
+    </li>
+    <li>
+      <%= @course.learning_objective_3 %>
+    </li>
+  </ul>
+
   <table>
     <thead>
       <tr>
@@ -19,12 +32,13 @@
           <% end %>
       </td>
     </tr>
-    </tbody>
-  </table>
-  <% end -%>
-  <%= f.hidden_field :evaluation_id, :value => params[:id] %>
-  <%= f.hidden_field :course_id, :value => @evaluation.course.id %>
-  <%= f.hidden_field :attendee_id, :value => @attendee.id %>
+
+      <% end %>
+        <%= f.hidden_field :evaluation_id, :value => params[:id] %>
+        <%= f.hidden_field :course_id, :value => @evaluation.course.id %>
+        <%= f.hidden_field :attendee_id, :value => @attendee.id %>
+      </tbody>
+    </table>
   <div class="actions">
     <%= f.submit %>
   </div>

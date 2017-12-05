@@ -4,12 +4,9 @@
 <h3>Questions</h3>
 <div class="mx-5">
   <ul>
-      <% @finished_evaluation.evaluation.questions.each do |q| %>
+      <% @questions_answers_hash.each do |q, a| %>
       <li>
-        <%= q.content %>:
-        <% @finished_evaluation.answers.each do |a| %>
-          <%= a.content %>
-        <% end %>
+        <%= q %>: <%= a %>
       </li>
       <% end %>
   </ul>

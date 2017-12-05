@@ -7,6 +7,15 @@ class FinishedEvaluationsController < ApplicationController
   end
 
   def show
+    keys = []
+    values = []
+    @finished_evaluation.evaluation.questions.each do |q|
+      keys << q.content
+    end
+    @finished_evaluation.answers.each do |a|
+      values << a.content
+    end
+    @questions_answers_hash = Hash[keys.zip(values)]
   end
 
   # def answers
