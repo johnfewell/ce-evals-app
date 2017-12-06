@@ -3,7 +3,7 @@
 
 You need to complete the folliwing evaluations:
   <% @attendee.incomplete_evaluations.each do |c| %>
-    <%= c.title %>
+    <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
   <% end %>
 
   <div class="mx-5">
