@@ -1,9 +1,18 @@
   <h2><%= @attendee.fullname %></h2>
   <h3>Courses</h3>
 
-You need to complete the folliwing evaluations:
-  <% @attendee.incomplete_evaluations.each do |c| %>
-    <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
+  <% if !@attendee.incomplete_evaluations.empty? %>
+
+    You need to complete the folliwing evaluations:
+    <% @attendee.incomplete_evaluations.each do |c| %>
+      <% if !c.evaluation.id.nil? %>
+        <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
+        <% else %>
+          <p>
+            No evaluation template assinged, please contact your instructor.
+          </p>
+        <% end %>
+      <% end %>
   <% end %>
 
   <div class="mx-5">

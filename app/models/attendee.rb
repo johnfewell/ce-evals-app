@@ -12,14 +12,21 @@ class Attendee < ApplicationRecord
   def incomplete_evaluations
     completed_courses = []
     incomplete_evaluations_array =[]
-    self.courses.each do |c|
-      if c.complete?
-        completed_courses << c
+    self.courses.each do |course|
+      if course.complete?
+        completed_courses << course
       end
     end
-    completed_courses.each do |cc|
-      if cc.attendees.find(self.id)
-        incomplete_evaluations_array << cc
+
+    completed_courses.each do |completed_course|
+      if completed_course.finished_evaluations.empty?
+        incomplete_evaluations_array << completed_course
+      else
+        completed_course.finished_evaluations do |completed_course_finished_evaluation|
+          if !completed_course_finished_evaluation.attendee_id.find(self.id)
+            incomplete_evaluations_array <<  completed_course
+          end
+        end
       end
     end
     incomplete_evaluations_array
