@@ -14,7 +14,6 @@ class CoursesController < ApplicationController
   end
 
   def import
-    binding.pry
     @course = Course.find(params[:id])
     Attendee.import(params[:file])
     redirect_to root_url, notice: "Attendee data imported!"

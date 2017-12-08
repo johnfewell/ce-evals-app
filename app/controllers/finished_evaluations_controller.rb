@@ -30,8 +30,6 @@ class FinishedEvaluationsController < ApplicationController
   end
 
   def create
-    binding.pry
-
     @finished_evaluation = FinishedEvaluation.new(finished_evaluation_params)
 
     respond_to do |format|

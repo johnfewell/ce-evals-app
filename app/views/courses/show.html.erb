@@ -25,12 +25,12 @@
   </div>
 <br />
 
-<h3>Evalution</h3>
+<h3>Evaluation</h3>
 <div class="mx-5">
     <% if !@course.evaluation.nil?  %>
       <h4><%= @course.evaluation.name %></h4>
     <% else %>
-      <h4>Not assigned</h4>
+      <%= link_to "Not assigned - Create one", evaluations_url%>      
     <% end %>
   </div>
 

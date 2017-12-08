@@ -1,6 +1,7 @@
 <h1>Answers for <%= @attendee.fullname %></h1>
-<%= form_for(@finished_evaluation, url: {controller: "finished_evaluations", action: "create"}, method: :post) do |f| %>.
+<%= form_for(@finished_evaluation, url: {controller: "finished_evaluations", action: "create"}, method: :post) do |f| %>
   <h5>The learning objectives for this course were:</h5>
+  <div class="mx-5"
   <ul>
     <li>
       <%= @course.learning_objective_1 %>
@@ -12,7 +13,8 @@
       <%= @course.learning_objective_3 %>
     </li>
   </ul>
-
+</div>
+<br />
   <table>
     <thead>
       <tr>

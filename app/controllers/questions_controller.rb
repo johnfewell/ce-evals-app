@@ -14,7 +14,6 @@ class QuestionsController < ApplicationController
   end
 
   def import
-    binding.pry
     @question = Question.find(params[:id])
 
     Attendee.import(params[:file])

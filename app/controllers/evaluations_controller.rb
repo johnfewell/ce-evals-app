@@ -13,7 +13,6 @@ class EvaluationsController < ApplicationController
     @attendee = Attendee.find(params[:attendee_id])
     evaluation = Evaluation.find(params[:id])
     @course = Course.find(evaluation.course.id)
-    binding.pry
 
     if !@attendee.courses.include?(@course)
       redirect_to @attendee, notice: "#{@attendee.fullname} was not registered for this course."

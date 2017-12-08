@@ -1,16 +1,19 @@
-  <h2><%= @attendee.fullname %></h2>
-
+  <h2><%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
+<%#= raise params.inspect %>
   <% if !@attendee.incomplete_evaluations.empty? %>
-    You need to complete the folliwing evaluations:
-    <% @attendee.incomplete_evaluations.each do |c| %>
-      <% if !c.evaluation.id.nil? %>
-        <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
-        <% else %>
-          <p>
-            No evaluation template assinged, please contact your instructor.
-          </p>
+      <div class="flash flash-with-icon">
+        <%= octicon "alert" %>
+          You need to complete course evaluations:
+        <p>
+        <% @attendee.incomplete_evaluations.each do |c| %>
+          <% if !c.evaluation.nil? %>
+            <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
+            <% else %>
+                <%= c.title %> - No evaluation template assinged, please contact your instructor.
+            <% end %>
+            </p>
+          </div>
         <% end %>
-      <% end %>
   <% end %>
 
   <h3>Courses</h3>
