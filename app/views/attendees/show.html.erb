@@ -1,8 +1,6 @@
   <h2><%= @attendee.fullname %></h2>
-  <h3>Courses</h3>
 
   <% if !@attendee.incomplete_evaluations.empty? %>
-
     You need to complete the folliwing evaluations:
     <% @attendee.incomplete_evaluations.each do |c| %>
       <% if !c.evaluation.id.nil? %>
@@ -15,6 +13,7 @@
       <% end %>
   <% end %>
 
+  <h3>Courses</h3>
   <div class="mx-5">
     <ul>
         <% @attendee.courses.each do |c| %>

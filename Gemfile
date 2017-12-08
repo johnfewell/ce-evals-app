@@ -34,6 +34,9 @@ gem 'faker', '~> 1.8', '>= 1.8.4'
 
 gem 'baby_squeel'
 
+gem 'octicons_helper'
+
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
