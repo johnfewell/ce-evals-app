@@ -1,20 +1,5 @@
 
 
-def equipment=(eq)
-  eq.each do |i|
-if !item[:name].empty?
-  if new_item = Eq.find_by(name: item[:name])
-  self.eq << new_item
-else
-self.eq.build(name: item[:name])
-end
-end
-end
-
-Fields_for
-
-def new
-@ex
 
 belongs_to :optional
 -----------------
@@ -126,7 +111,7 @@ fe.save
 ## build controllers and views for school registration
 
 Complete the views so that the admin (no login) can
-- register attendees for classes
+X register attendees for classes
 x CRUD courses
 x CRUD attendees
 x CRUD Instructors
@@ -137,8 +122,8 @@ Figure this out to automate the creation process
 
 ## Build Evaluations
 
-Build the forms for evaluations
-Build the model for storing the evaluations
+x Build the forms for evaluations
+x Build the model for storing the evaluations
 
 ## Add devise
 

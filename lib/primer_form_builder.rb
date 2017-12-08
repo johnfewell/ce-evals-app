@@ -8,4 +8,13 @@ class PrimerFormBuilder < ActionView::Helpers::FormBuilder
     super(attribute, options.reverse_merge(class: "form-control"))
   end
 
+  def password_field(attribute, options={})
+    super(attribute, options.reverse_merge(class: "form-control"))
+  end
+
+  def email_field(attribute, options={})
+    super(attribute, options.reverse_merge(class: "form-control"))
+  end
+
+
 end
