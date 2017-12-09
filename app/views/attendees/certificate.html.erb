@@ -5,7 +5,9 @@
        <br><br>
        <span style="font-size:25px"><i>This is to certify that</i></span>
        <br><br>
-       <span style="font-size:30px"><b><%= @attendee.fullname %></b></span><br/><br/>
+       <span style="font-size:30px"><b><%= @attendee.title %> <%= @attendee.fullname %><% if !@attendee.suffix.empty? %>, <%= @attendee.suffix %>
+         <% end %>
+       </b></span><br/><br/>
        <span style="font-size:25px"><i>has completed the course</i></span> <br/><br/>
        <span style="font-size:30px"><%= @course.title %></span> <br/><br/>
        <span style="font-size:20px">for <b><%= @course.credits %></b> credits.</span>

@@ -13,7 +13,8 @@ class AttendeesController < ApplicationController
   def certificate
     if !@attendee.courses.find_by(id: params[:course_id])
       redirect_to @attendee, notice: "#{@attendee.fullname} not registered for #{@course.title}."
-    elsif !@attendee.finished_evaluations.find_by(id: params[:course_id])
+    elsif !@attendee.finished_evaluations.find_by(course_id: params[:course_id])
+      
       redirect_to @attendee, notice: "#{@attendee.fullname} as not completed the evaluation for #{@course.title}."
     end
   end
