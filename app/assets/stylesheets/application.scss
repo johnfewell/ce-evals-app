@@ -29,3 +29,11 @@
      height:40px;
      overflow:hidden;
  }
+
+ #certificate
+  {
+   background-image: url(asset-path('certbackground.png'));
+   background-color: #fff;
+   background-size: contain;
+   background-repeat: no-repeat;
+}

@@ -9,6 +9,9 @@ class AttendeesController < ApplicationController
   def show
   end
 
+  def certificate
+  end
+
   def new
     @attendee = Attendee.new
   end

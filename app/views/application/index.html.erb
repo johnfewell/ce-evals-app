@@ -2,5 +2,5 @@
 <% if current_user.nil? %>
 	<%= link_to new_user_session_path, class: 'btn btn-primary btn-large f4 btn-block' do %>Sign in<% end %>
 <% else %>
-	<%= link_to app_dashboard_index_path, class: 'btn btn-primary btn-large f4 btn-block' do %>Go to App<% end %>
+	<%= link_to attendees_url, class: 'btn btn-primary btn-large f4 btn-block' do %>Go to App<% end %>
 <% end %>

@@ -18,10 +18,16 @@ Rails.application.routes.draw do
      end
    end
 
-  #  resources :attendees
    resources :courses do
      collection {post :import}
    end
+
+   resources :courses do
+     resources :attendees do
+       get 'certificate', on: :member
+     end
+   end
+
 
    resources :instructors
    resources :questions
