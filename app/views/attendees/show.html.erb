@@ -1,4 +1,6 @@
   <h2><%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
+
+
   <% if !@attendee.incomplete_evaluations.empty? %>
       <div class="flash flash-with-icon">
         <%= octicon "alert" %>
@@ -15,13 +17,17 @@
         <% end %>
   <% end %>
 
+
   <% if !@attendee.finished_evaluations.empty? %>
     <h4>CE Certificates</h4>
     <div class="mx-5"
     <ul>
       <% @attendee.finished_evaluations.each do |c| %>
         <li>
-          <a href="/courses/<%= c.course_id %>/attendees/<%= params[:id] %>/certificate"><%= c.course.title %></a>
+          <%= link_to "Download PDF",
+          course_attendee_download_path(@attendee, c.course_id, format: "pdf"),
+          target: "_blank",
+          class: "download" %>
         </li>
       <% end %>
     </ul>

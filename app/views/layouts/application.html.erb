@@ -9,9 +9,9 @@
   </head>
 
   <body>
-    <% unless action_name == "certificate" %>
+    <%#unless action_name == "index" %>
       <%= render "nav" %>
-    <% end %>
+    <%# end %>
     <div class="container pt-3">
       <% if !notice.nil? %>
         <div class="flash-messages">

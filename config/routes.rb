@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   #     }
 
 
+
+
    resources :attendees do
      resources :evaluations do
        get 'answers', on: :member
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
 
    resources :courses do
      resources :attendees do
-       get 'certificate', on: :member
+       resource :download, only: [:show]
      end
    end
 

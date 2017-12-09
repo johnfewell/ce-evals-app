@@ -5,9 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'cancancan'
-
-gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
 # Use sqlite3 as the database for Active Record
@@ -32,13 +29,20 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+
+gem 'cancancan'
+
+gem 'devise'
+
 gem 'faker', '~> 1.8', '>= 1.8.4'
 
 gem 'baby_squeel'
 
 gem 'octicons_helper'
 
+gem 'pdfkit'
 
+gem 'render_anywhere', :require => false
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -52,6 +56,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'unicorn'
   gem "rails-erd"
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
