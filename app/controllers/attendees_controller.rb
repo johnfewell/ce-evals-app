@@ -1,6 +1,7 @@
 class AttendeesController < ApplicationController
-  before_action :set_attendee, only: [:show, :edit, :update, :destroy]
+  before_action :set_attendee, only: [:show, :edit, :update, :destroy, :certificate]
   before_action :set_courses, only: [:new, :edit]
+  before_action :set_course, only: [:certificate]
 
   def index
     @attendees = Attendee.all
@@ -10,6 +11,11 @@ class AttendeesController < ApplicationController
   end
 
   def certificate
+    if !@attendee.courses.find_by(id: params[:course_id])
+      redirect_to @attendee, notice: "#{@attendee.fullname} not registered for #{@course.title}."
+    elsif !@attendee.finished_evaluations.find_by(id: params[:course_id])
+      redirect_to @attendee, notice: "#{@attendee.fullname} as not completed the evaluation for #{@course.title}."
+    end
   end
 
   def new
@@ -67,6 +73,10 @@ private
 
   def set_courses
     @courses = Course.where.has { end_date > Date.today }
+  end
+
+  def set_course
+    @course = Course.find(params[:course_id])
   end
 
   def attendee_params
