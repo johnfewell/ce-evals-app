@@ -1,7 +1,13 @@
 class DownloadsController < ApplicationController
+
   def show
-    # @attendee = Attendee.find(params[:attendee_id])
-    # @course = Course.find(params[:course_id])
+    @attendee = Attendee.find(params[:attendee_id])
+    @course = Course.find(params[:course_id])
+    if !@attendee.courses.find_by(id: params[:course_id])
+      redirect_to @attendee, notice: "#{@attendee.fullname} not registered for #{@course.title}." and return
+    elsif !@attendee.finished_evaluations.find_by(course_id: params[:course_id])
+      redirect_to @attendee, notice: "#{@attendee.fullname} as not completed the evaluation for #{@course.title}." and return
+    end
     respond_to do |format|
       format.pdf { send_certificate_pdf }
     end
@@ -29,7 +35,7 @@ class DownloadsController < ApplicationController
     {
       filename: download.filename,
       type: "application/pdf",
-      disposition: "inline"
+      disposition: "attachment"
     }
   end
 end
