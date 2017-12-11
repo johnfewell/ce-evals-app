@@ -11,7 +11,7 @@ class Attendee < ApplicationRecord
 
   def incomplete_evaluations
     completed_courses = []
-    incomplete_evaluations_array =[]
+    incomplete_evaluations_array = []
     self.courses.each do |course|
       if course.complete?
         completed_courses << course
@@ -24,7 +24,7 @@ class Attendee < ApplicationRecord
       else
         completed_course.finished_evaluations do |completed_course_finished_evaluation|
           if !completed_course_finished_evaluation.attendee_id.find(self.id)
-            incomplete_evaluations_array <<  completed_course
+            incomplete_evaluations_array << completed_course
           end
         end
       end

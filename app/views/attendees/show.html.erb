@@ -1,6 +1,5 @@
   <h2><%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
 
-
   <% if !@attendee.incomplete_evaluations.empty? %>
       <div class="flash flash-with-icon">
         <%= octicon "alert" %>
@@ -17,33 +16,53 @@
         <% end %>
   <% end %>
 
-
-  <% if !@attendee.finished_evaluations.empty? %>
-    <h4>CE Certificates</h4>
-    <div class="mx-5"
-    <ul>
-      <% @attendee.finished_evaluations.each do |c| %>
-        <li>
-          <%= link_to "Download PDF",
-          course_attendee_download_path(@attendee, c.course_id, format: "pdf"),
-          target: "_blank",
-          class: "download" %>
-        </li>
+    <h4>Registered Courses</h4>
+    <table class="data-table">
+      <col width="130">
+      <col width="80">
+      <tr>
+        <th>Course Title</th>
+        <th>End Date</th>
+        <th>Credits</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+      <% @attendee.courses.each do |c| %>
+      <tr>
+          <td>
+              <%= c.title %>
+          </td>
+          <td>
+            <%= c.end_date.strftime("%A, %b %d") %>
+          </td>
+          <td>
+            <%= c.credits %>
+          </td>
+          <td>
+            <%= c.location %>
+          </td>
+          <td>
+          <% if c.end_date > Date.today() %>
+              Course not yet finished
+          <% elsif @attendee.finished_evaluations.find {|evaluation| evaluation.course.id == c.id} %>
+            <%= octicon "file-pdf" %>
+            <%= link_to "Download Certificate",
+                course_attendee_download_path(c.id,
+                @attendee, format: "pdf"),
+                {class: 'btn btn btn-sm'} %>
+            <% elsif @attendee.incomplete_evaluations {|incomplete_evaluation| incomplete_evaluation.course.id == c.id} && c.evaluation.nil? %>
+              Eval not assigned.
+            <% elsif @attendee.incomplete_evaluations {|incomplete_evaluation| incomplete_evaluation.course.id == c.id} %>
+              <%= link_to "Complete Evaluation",
+              answers_attendee_evaluation_path(@attendee, c.evaluation.id),
+              {class: 'btn btn-primary'} %>
+            <% else %>
+                Course not yet finished
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </ul>
-  </div>
-  <% end %>
-
-  <h3>Courses</h3>
-  <div class="mx-5">
-    <ul>
-        <% @attendee.courses.each do |c| %>
-          <li>
-            <%= link_to c.title, course_path(c), itemprop: "name codeRepository" %>
-          </li>
-        <% end %>
-    </ul>
-  </div>
+    </table>
   <br />
 
 

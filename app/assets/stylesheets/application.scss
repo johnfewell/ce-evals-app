@@ -21,6 +21,7 @@
  @import "primer-forms/index.scss";
 
 
+
  #logo{
      position:absolute;
      top:10px;
@@ -29,3 +30,8 @@
      height:40px;
      overflow:hidden;
  }
+
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+th {font-weight: bold;}
