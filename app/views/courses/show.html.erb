@@ -13,45 +13,51 @@
     <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
   </ul>
 </div>
-<h3>Attendees</h3>
-  <div class="mx-5">
-    <ul>
-        <% @course.attendees.each do |s| %>
-        <li>
-          <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
-        </li>
-        <% end %>
-    </ul>
-  </div>
-<br />
 
-<h3>Evaluation</h3>
-<div class="mx-5">
-    <% if !@course.evaluation.nil?  %>
-      <h4><%= @course.evaluation.name %></h4>
-    <% else %>
-      <%= link_to "Not assigned - Create one", evaluations_url%>      
-    <% end %>
-  </div>
+<% if current_user.superadmin_role? || current_user.instructor_role? %>
 
-<% if @course.complete? %>
-  <h3>Finished Evaluations</h3>
+
+  <h3>Attendees</h3>
+    <div class="mx-5">
+      <ul>
+          <% @course.attendees.each do |s| %>
+          <li>
+            <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+  <br />
+
+  <h3>Evaluation</h3>
   <div class="mx-5">
-      <% if !@course.finished_evaluations.nil?  %>
-        <h4><%= @course.finished_evaluations.count %></h4>
+      <% if !@course.evaluation.nil?  %>
+        <h4><%= @course.evaluation.name %></h4>
       <% else %>
-        <h4>None completed</h4>
+        <%= link_to "Not assigned - Create one", evaluations_url%>
       <% end %>
     </div>
 
-<% end %>
+  <% if @course.complete? %>
+    <h3>Finished Evaluations</h3>
+    <div class="mx-5">
+        <% if !@course.finished_evaluations.nil?  %>
+          <h4><%= @course.finished_evaluations.count %></h4>
+        <% else %>
+          <h4>None completed</h4>
+        <% end %>
+      </div>
 
-<h2>Import Attendees</h2>
-<%= form_tag import_courses_path, id: "id", multipart: true do %>
-<%= file_field_tag :file %>
-<%= submit_tag "Import CSV" %>
-<% end %>
+  <% end %>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
-<%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <h2>Import Attendees</h2>
+  <%= form_tag import_courses_path, id: "id", multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV" %>
+  <% end %>
+
+  <%= link_to 'Edit', edit_course_path(@course) %> |
+  <%= link_to 'Back', courses_path %>
+  <%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<% end %>

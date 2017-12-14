@@ -1,16 +1,40 @@
   <h2> <%= @instructor.title %> <%= @instructor.fullname %>, <%= @instructor.suffix %> </h2>
-    <h4>Courses</h4>
-    <div class="mx-5">
 
-    <ul>
-        <% @instructor.courses.each do |c| %>
-        <li>
-          <%= link_to c.title, course_path(c), itemprop: "name codeRepository" %>
-        </li>
-        <% end %>
-    </ul>
-  </div>
+    <h4><%= @instructor.fullname %>'s Courses</h4>
+    <table class="data-table">
+        <tr>
+        <th>Course Title</th>
+        <th>End Date</th>
+        <th>Credits</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+      <% @instructor.courses.each do |c| %>
+      <tr>
+          <td>
+              <%= c.title %>
+          </td>
+          <td>
+            <%= c.end_date.strftime("%A, %b %d") %>
+          </td>
+          <td>
+            <%= c.credits %>
+          </td>
+          <td>
+            <%= c.location %>
+          </td>
+          <td>
+          <% if c.evaluation.nil? %>
+              Assign Eval
+          <% else %>
+              <%= c.evaluation.name %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   <br />
+
 
 
     <%= link_to 'Edit', edit_instructor_path(@instructor) %> |

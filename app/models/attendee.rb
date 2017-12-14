@@ -4,6 +4,7 @@ class Attendee < ApplicationRecord
   has_many :courses, :through => :course_attendees
   has_many :instructors, :through => :courses
   has_many :finished_evaluations
+  belongs_to :user, optional: true
 
   def fullname
     "#{first_name} #{last_name}"

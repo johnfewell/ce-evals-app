@@ -1,4 +1,4 @@
-<h1>Answers for <%= @attendee.fullname %></h1>
+<h1>Evaluation for <%= @course.title %></h1>
 <%= form_for(@finished_evaluation, url: {controller: "finished_evaluations", action: "create"}, method: :post) do |f| %>
   <h5>The learning objectives for this course were:</h5>
   <div class="mx-5"
