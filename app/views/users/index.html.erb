@@ -1,0 +1,27 @@
+<div class="container">
+
+  <% if current_user.superadmin_role? %>
+    <%= link_to "New User", new_user_path, id: "news", class: "btn btn-primary" %>
+  <% end %>
+
+  <div class="columns">
+    <% @users.each_slice(10) do |users| %>
+        <div class="one-fifth column">
+          <table class="data-table">
+            <tr>
+              <th>Name</th>
+            </tr>
+              <% users.each do |u| %>
+                <tr>
+                  <td>
+                      <%= link_to u.fullname, user_path(u) %>
+                  </td>
+                </tr>
+              <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br />
+<br />

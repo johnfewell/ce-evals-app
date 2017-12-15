@@ -9,6 +9,15 @@ Rails.application.routes.draw do
      collection {post :import}
    end
 
+   resources :users do
+     get 'assign_role', on: :member
+   end
+
+   resources :users do
+     patch 'update_role', on: :member
+   end
+
+
    devise_for :users, controllers: {
         registrations: 'users/registrations'
       }

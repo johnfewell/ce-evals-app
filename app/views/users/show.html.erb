@@ -1,0 +1,15 @@
+<h2> <%= @user.title %> <%= @user.first_name %> <%= @user.last_name %>, <%= @user.suffix %> </h2>
+<br />
+They are
+<% if @user.superadmin_role? %>
+  a Superadmin
+<% elsif @user.instructor_role? %>
+  an Instructor
+<% elsif @user.attendee_role? %>
+  an Attendee
+<% else %>
+  Unassigned
+<% end %>
+<br />
+
+<%= link_to 'Edit', edit_user_path(@user) %>

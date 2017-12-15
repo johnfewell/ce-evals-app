@@ -1,0 +1,47 @@
+Assigning <%= @user.fullname %>
+
+<%= form_for @user, url: update_role_user_path(@user) do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %><br>
+    <%= f.label :last_name %><br>
+    <%= f.text_area :last_name %><br>
+    <%= f.label :title %><br>
+    <%= f.text_area :title %><br>
+    <%= f.label :suffix %><br>
+    <%= f.text_area :suffix %><br>
+  </div>
+
+  <h3>Attendee</h3>
+  <div class="field mx-5">
+    <%= f.collection_radio_buttons(:attendee_id, Attendee.all, :id, :fullname) do |b| %>
+      <%= b.label class:"form-checkbox" do%>
+        <%=b.radio_button + b.text%> </br>
+      <%end%>
+    <% end %>
+  </div>
+  <h3>Instructor</h3>
+  <div class="field mx-5">
+    <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname) do |b| %>
+      <%= b.label class:"form-checkbox" do%>
+        <%=b.radio_button + b.text%> </br>
+      <%end%>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+  </div>
+<% end %>
