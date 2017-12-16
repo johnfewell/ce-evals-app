@@ -1,25 +1,4 @@
 
-https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
-
-https://www.facebook.com/v2.6/dialog/oauth?
-client_id=800878260096758&
-redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fusers%2Fauth%2Ffacebook%2F
-callback&response_type=code&scope=email&state=cc6c6118cc3db235b9212a672b69e3ccb0b1476021387d2e
-belongs_to :optional
------------------
-person = Attendee.last
-c = Course.last
-e = Evaluation.last
-a = Answer.last
-a2 = a
-a2.content = "Little cuite"
-
-fe = FinishedEvaluation.new
-fe.attendee = person
-fe.course = c
-fe.evaluation = e
-fe.save
-
 # Notes
 
 
@@ -112,33 +91,16 @@ fe.save
 - Admin and attendee only.
 - Shows a specific certificate
 
-## build controllers and views for school registration
 
-Complete the views so that the admin (no login) can
-X register attendees for classes
-x CRUD courses
-x CRUD attendees
-x CRUD Instructors
+#TODO:
 
-## Build out the CSV upload for attendees
-
-Figure this out to automate the creation process
-
-## Build Evaluations
-
-x Build the forms for evaluations
-x Build the model for storing the evaluations
-
-## Add devise
-
-Make it so the devise handles the logins
-
-## Add user roles
-
-So no one fucks with shit they arent supposed to.
-
-## Style it
-
-With Primer CSS
-
-## Push to Heroku
+- [] Make rating scale questions for evaluations
+- [] Make it so that you can't reassign evaluations once there are associated finished_evaluations
+- [] Make a report for classes so that instructors can see data for their class in a view, eg courses/2/report
+- [] Finish the CanCanCan auth stuff
+- [] Eliminate unneeded routes
+- [] Add some page for new users who aren't assigned yet
+- [] make an assignment page for admin
+- [] DRY it
+- [] Partial it
+- [] Style
