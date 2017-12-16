@@ -13,6 +13,8 @@
       <%= render "nav" %>
     <%# end %>
     <div class="container pt-3">
+      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+
       <% if !notice.nil? %>
         <div class="flash-messages">
           <div class="flash">

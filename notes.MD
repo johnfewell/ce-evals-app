@@ -1,6 +1,10 @@
 
+https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
 
-
+https://www.facebook.com/v2.6/dialog/oauth?
+client_id=800878260096758&
+redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fusers%2Fauth%2Ffacebook%2F
+callback&response_type=code&scope=email&state=cc6c6118cc3db235b9212a672b69e3ccb0b1476021387d2e
 belongs_to :optional
 -----------------
 person = Attendee.last

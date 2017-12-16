@@ -1,34 +1,27 @@
 Rails.application.routes.draw do
 
-#  devise_for :users
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "application#index"
 
-   resources :attendees do
-     collection {post :import}
-   end
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-   resources :users do
-     get 'assign_role', on: :member
-   end
 
    resources :users do
      patch 'update_role', on: :member
+     get 'assign_role', on: :member
    end
 
 
-   devise_for :users, controllers: {
-        registrations: 'users/registrations'
-      }
+  #  devise_for :users, controllers: {
+  #       registrations: 'users/registrations'
+   #
+  #     }
 
-
-#  devise_for :users, :controllers => { registrations: 'registrations' }
-
-
-
+  #  resources :attendees do
+  #    collection {post :import}
+  #  end
 
    resources :attendees do
+     collection {post :import}
      resources :evaluations do
        get 'answers', on: :member
      end
@@ -36,14 +29,16 @@ Rails.application.routes.draw do
 
    resources :courses do
      collection {post :import}
-   end
-
-   resources :courses do
      resources :attendees do
        resource :download, only: [:show]
      end
    end
 
+  #  resources :courses do
+  #    resources :attendees do
+  #      resource :download, only: [:show]
+  #    end
+  #  end
 
    resources :instructors
    resources :questions
@@ -56,8 +51,6 @@ Rails.application.routes.draw do
      get 'answers', on: :member
    end
 
-   resources :evaluations
-  #  get '/attendees/:id/courses/edit', to: 'attendees#registration'
-   #post '/attendees/:id/courses/edit' to: 'attendees#update'
+   #resources :evaluations
 
 end
