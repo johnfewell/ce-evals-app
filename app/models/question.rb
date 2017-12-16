@@ -5,5 +5,7 @@ class Question < ApplicationRecord
   has_many :attendees, :through => :answers
   accepts_nested_attributes_for :answers
   validates_uniqueness_of :content
+  validates :content, presence: true, length: { minimum: 2 }
+
 
 end

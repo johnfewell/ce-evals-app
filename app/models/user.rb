@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_one :instructor
   attr_accessor :attendee_id, :instructor_id
   alias_attribute :user_id, :attendee_id
+  validates :first_name, presence: true, length: { minimum: 2 }
+  validates :last_name, presence: true, length: { minimum: 2 }
+  validates_uniqueness_of :email
 
 
   def fullname
