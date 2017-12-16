@@ -51,6 +51,4 @@ Rails.application.routes.draw do
      get 'answers', on: :member
    end
 
-   #resources :evaluations
-
 end
