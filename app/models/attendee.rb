@@ -6,6 +6,9 @@ class Attendee < ApplicationRecord
   has_many :finished_evaluations
   belongs_to :user, optional: true
 
+  rating as: :author
+
+
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
 

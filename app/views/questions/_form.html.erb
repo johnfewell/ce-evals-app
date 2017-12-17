@@ -16,6 +16,11 @@
     <%= f.text_field :content %><br>
   </div>
 
+  <div class="field">
+    <%= f.label "Check if this is a text question, leave it blank for a 1-5 rating scale" %>:
+    <%= f.check_box :text %><br>
+  </div>
+
 
   <%= hidden_field_tag(:ref_id, params[:ref_id]) %>
 

@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'rating'
+
 gem 'omniauth-facebook'
 
 gem 'cancancan'
@@ -57,7 +59,7 @@ group :development, :test do
 end
 
 group :development do
-  
+
   gem 'figaro'
 
   gem 'unicorn'
