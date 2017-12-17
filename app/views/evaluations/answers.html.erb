@@ -27,13 +27,48 @@
       <tr>
         <td><%= question.content %></td>
         <td>
-          <%= f.fields_for :answers, question.answers.create(attendee: @attendee) do |a| %>
-            <%= a.text_area :content %>
-            <%= a.hidden_field :question_id, :value => question.id %>
-            <%= a.hidden_field :attendee_id, :value => @attendee.id %>
+
+            <%= f.fields_for :answers, question.answers.create(attendee: @attendee) do |a| %>
+              <% if question.text? %>
+
+                <%= a.text_area :content %>
+                <%= a.hidden_field :question_id, :value => question.id %>
+                <%= a.hidden_field :attendee_id, :value => @attendee.id %>
+              <% else %>
+                <ul class='likert'>
+                  <li>
+                    <%= radio_button_tag 'rating', "5", false %>
+                    <label>Strongly agree</label>
+                  </li>
+                  <li>
+                    <%= radio_button_tag 'rating', "4", false %>
+                    <label>Agree</label>
+                  </li>
+                  <li>
+                    <%= radio_button_tag 'rating', "3", false %>
+                    <label>Neutral</label>
+                  </li>
+                  <li>
+                    <%= radio_button_tag 'rating', "2", false %>
+                    <label>Disagree</label>
+                  </li>
+                  <li>
+                    <%= radio_button_tag 'rating', "1", false %>
+                    <label>Strongly disagree</label>
+                  </li>
+                </ul>
+                <%#= a.select :rating, [["Strongly Disagree", 1], ["Disagree", 2], ["Neutral", 3], ["Agree", 4], ["Strongly Agree", 5]] %>
+            <% end %>
+
+
+
+
+
+
           <% end %>
-      </td>
-    </tr>
+
+        </td>
+      </tr>
 
 
 

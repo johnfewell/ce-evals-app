@@ -64,11 +64,13 @@ private
   end
 
   def course_params
-    params.require(:question).permit(:content, :evaluation_id, :refer_id)
+    params.require(:question).permit(:content, :evaluation_id, :refer_id, :text)
   end
 
   def set_evaluation
-    @evaluation = Evaluation.find(params[:ref_id])
+    if !params[:ref_id].empty?
+      @evaluation = Evaluation.find(params[:ref_id])
+    end
   end
 
 end
