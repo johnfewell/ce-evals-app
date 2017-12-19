@@ -94,9 +94,10 @@
 
 #TODO:
 
-- [] Make rating scale questions for evaluations
+- [x] Make rating scale questions for evaluations
 - [] Make it so that you can't reassign evaluations once there are associated finished_evaluations
 - [] Make a report for classes so that instructors can see data for their class in a view, eg courses/2/report
+- [] make it so you can't fill out an evaluation for the same course twice as the same user
 - [] Finish the CanCanCan auth stuff
 - [] Eliminate unneeded routes
 - [] Add some page for new users who aren't assigned yet

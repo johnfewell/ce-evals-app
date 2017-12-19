@@ -6,6 +6,5 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :answers
   validates_uniqueness_of :content
   validates :content, presence: true, length: { minimum: 2 }
-  
 
 end
