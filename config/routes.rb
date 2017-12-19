@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-
    resources :users do
      patch 'update_role', on: :member
      get 'assign_role', on: :member
@@ -28,6 +27,7 @@ Rails.application.routes.draw do
    end
 
    resources :courses do
+     get 'report', on: :member
      collection {post :import}
      resources :attendees do
        resource :download, only: [:show]
