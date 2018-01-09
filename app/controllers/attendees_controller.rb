@@ -11,7 +11,6 @@ class AttendeesController < ApplicationController
   end
 
   def certificate
-
   end
 
   def new
@@ -20,15 +19,10 @@ class AttendeesController < ApplicationController
 
   def create
     @attendee = Attendee.new(attendee_params)
-
-    respond_to do |format|
-      if @attendee.save
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @attendee }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @attendee.errors, status: :unprocessable_entity }
-      end
+    if @attendee.save
+      redirect_to @attendee, notice: 'Attendee was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
@@ -37,23 +31,16 @@ class AttendeesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @attendee.update(attendee_params)
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @attendee.errors, status: :unprocessable_entity }
-      end
+    if @attendee.update(attendee_params)
+      redirect_to @attendee, notice: 'Attendee was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @attendee.destroy
-    respond_to do |format|
-      format.html { redirect_to attendees_url, notice: 'Attendee was successfully deleted.'}
-      format.json { head :no_content }
-    end
+    redirect_to attendees_url, notice: 'Attendee was successfully deleted.'
   end
 
   def import

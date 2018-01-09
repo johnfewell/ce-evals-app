@@ -15,7 +15,6 @@ class QuestionsController < ApplicationController
 
   def import
     @question = Question.find(params[:id])
-
     Attendee.import(params[:file])
     redirect_to root_url, notice: "Attendee data imported!"
   end
@@ -25,37 +24,24 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(course_params)
-
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to questions_path, notice: 'Question was successfully created.' }
-        format.json { render action: 'show', status: :created, location: questions_path }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    if @question.save
+      redirect_to questions_path, notice: 'Question was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @question.update(course_params)
-        format.html { redirect_to edit_evaluation_path(@evaluation), notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
-      else
-        format.html { render :edit }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    if @question.update(course_params)
+      redirect_to edit_evaluation_path(@evaluation), notice: 'Question was successfully updated.'
+    else
+      render :edit
     end
   end
 
-
   def destroy
     @question.destroy
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Question was successfully deleted.'}
-      format.json { head :no_content }
-    end
+    redirect_to courses_url, notice: 'Question was successfully deleted.'
   end
 
 private

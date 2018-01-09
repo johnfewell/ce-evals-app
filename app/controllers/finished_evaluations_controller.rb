@@ -3,7 +3,6 @@ class FinishedEvaluationsController < ApplicationController
    before_action :set_finished_evaluation, only: [:show, :edit, :update, :destroy]
    before_action :set_attendee, only: [:show]
 
-
   def index
     @finished_evaluations = FinishedEvaluation.all
   end
@@ -39,37 +38,24 @@ class FinishedEvaluationsController < ApplicationController
 
   def create
     @finished_evaluation = FinishedEvaluation.new(finished_evaluation_params)
-
-    respond_to do |format|
-      if @finished_evaluation.save
-
-        format.html { redirect_to @finished_evaluation, notice: 'Evaluation was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @evaluation }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @finished_evaluation.errors, status: :unprocessable_entity }
-      end
+    if @finished_evaluation.save
+      redirect_to @finished_evaluation, notice: 'Evaluation was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @finished_evaluation.update(evaluation_params)
-        format.html { redirect_to @finished_evaluation, notice: 'Evaluation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @finished_evaluation }
-      else
-        format.html { render :edit }
-        format.json { render json: @finished_evaluation.errors, status: :unprocessable_entity }
-      end
+    if @finished_evaluation.update(evaluation_params)
+      redirect_to @finished_evaluation, notice: 'Evaluation was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @finished_evaluation.destroy
-    respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully deleted.'}
-      format.json { head :no_content }
-    end
+    format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully deleted.'
   end
 
   private

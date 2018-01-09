@@ -44,13 +44,10 @@ class CoursesController < ApplicationController
         end
       end
     end
-
     pairs = keys.zip(values)
     @questions_answers_hash = pairs.group_by(&:first)
     @questions_answers_hash.keys.each {
       |k| @questions_answers_hash[k] = @questions_answers_hash[k].map(&:last) }
-      binding.pry
-
   end
 
   def import
@@ -63,39 +60,30 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(course_params)
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @course }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+  @course = Course.new(course_params)
+    if @course.save
+      redirect_to @course, notice: 'Course was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    if @course.update(course_params)
+      redirect_to @course, notice: 'Course was successfully updated.'
+    else
+      format.html { render :edit }
     end
+
   end
 
   def destroy
     @course.destroy
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully deleted.'}
-      format.json { head :no_content }
-    end
+    redirect_to courses_url, notice: 'Course was successfully deleted.'
   end
 
 private
+
   def set_course
     @course = Course.find(params[:id])
   end

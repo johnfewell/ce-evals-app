@@ -14,15 +14,10 @@ class InstructorsController < ApplicationController
 
   def create
     @instructor = Instructor.new(instructor_params)
-
-    respond_to do |format|
-      if @instructor.save
-        format.html { redirect_to @instructor, notice: 'Instructor was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @instructor }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @instructor.errors, status: :unprocessable_entity }
-      end
+    if @instructor.save
+      redirect_to @instructor, notice: 'Instructor was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
@@ -34,23 +29,16 @@ class InstructorsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @instructor.update(instructor_params)
-        format.html { redirect_to @instructor, notice: 'Instructor was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @instructor.errors, status: :unprocessable_entity }
-      end
+    if @instructor.update(instructor_params)
+      redirect_to @instructor, notice: 'Instructor was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @instructor.destroy
-    respond_to do |format|
-      format.html { redirect_to instructors_url, notice: 'Instructor was successfully deleted.'}
-      format.json { head :no_content }
-    end
+    redirect_to instructors_url, notice: 'Instructor was successfully deleted.'
   end
 
 private
