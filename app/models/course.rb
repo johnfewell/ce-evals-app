@@ -9,6 +9,10 @@ class Course < ApplicationRecord
     where('end_date < ?', Date.today)
   }
 
+  scope :not_complete, -> {
+    where('end_date > ?', Date.today)
+  }
+
   scope :published, -> {
     where('published == ?', true )
   }

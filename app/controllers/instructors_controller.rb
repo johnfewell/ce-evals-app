@@ -22,7 +22,7 @@ class InstructorsController < ApplicationController
   end
 
   def registration
-    @courses = Course.where.has { end_date > Date.today }
+    @courses = Course.not_complete
   end
 
   def edit
