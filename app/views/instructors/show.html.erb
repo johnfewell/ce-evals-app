@@ -1,6 +1,5 @@
-  <h2> <%= @instructor.title %> <%= @instructor.fullname %>, <%= @instructor.suffix %> </h2>
+  <h2>Courses taught by: <%= @instructor.title %> <%= @instructor.fullname %>, <%= @instructor.suffix %> </h2>
 
-    <h4><%= @instructor.fullname %>'s Courses</h4>
     <table class="data-table">
         <tr>
         <th>Course Title</th>
@@ -34,9 +33,3 @@
       <% end %>
     </table>
   <br />
-
-
-
-    <%= link_to 'Edit', edit_instructor_path(@instructor) %> |
-    <%= link_to 'Back', instructors_path %>
-    <%= link_to 'Destroy', @instructor, method: :delete, data: { confirm: 'Are you sure?' } %>

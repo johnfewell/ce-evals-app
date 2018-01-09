@@ -54,7 +54,7 @@ private
   end
 
   def set_courses
-    @courses = Course.not_complete
+    @courses = Course.not_complete.published
   end
 
   def set_course

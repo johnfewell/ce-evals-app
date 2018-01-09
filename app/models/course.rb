@@ -19,8 +19,6 @@ class Course < ApplicationRecord
 
   scope :most_popular, -> { joins(:user_recipes).group(:recipe_id).order('count(recipe_id) desc') }
 
-
-
   # scope :most_courses, -> {
   #   order('count(instructor_id) desc') }
   # }
