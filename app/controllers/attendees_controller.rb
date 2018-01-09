@@ -26,7 +26,6 @@ class AttendeesController < ApplicationController
     end
   end
 
-
   def edit
   end
 
@@ -55,7 +54,7 @@ private
   end
 
   def set_courses
-    @courses = Course.where.has { end_date > Date.today }
+    @courses = Course.not_complete
   end
 
   def set_course

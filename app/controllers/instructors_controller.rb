@@ -21,10 +21,6 @@ class InstructorsController < ApplicationController
     end
   end
 
-  def registration
-    @courses = Course.not_complete
-  end
-
   def edit
   end
 
