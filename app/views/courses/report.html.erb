@@ -1,0 +1,21 @@
+<h2><%= @course.title %> - Report</h2>
+
+<h4># of attendees: <%= @course.attendees.count  %></h4>
+<h4>% with complete evaluations: <%= @evaluation_completed_percent %>%</h4>
+<br />
+<h4>Quantitative Qs:</h4>
+<br />
+<% @course.finished_evaluations.last.questions_ratings_hash.each do | q, r |%>
+  <%= q %>: <%= r %><br />
+<% end %>
+<br />
+
+<h4>Qualitative Qs:</h4>
+<br />
+
+<% @questions_answers_hash.each do |k, v|%>
+  <%= k %><br /><br />
+  <% v.each do |v| %>
+    <%= v %><br />
+  <% end %>
+<% end %>

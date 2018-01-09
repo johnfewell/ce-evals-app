@@ -1,6 +1,6 @@
 require 'pry'
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :report]
 
   def index
     @courses = Course.all
@@ -13,12 +13,51 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
+  def report
+    if @course.finished_evaluations.count > 0
+      @evaluation_completed_percent = @course.attendees.count / @course.finished_evaluations.count * 100
+    else
+      @evaluation_completed_percent = 0
+    end
+
+    @course.finished_evaluations.last.questions_ratings_hash
+
+    keys = []
+    values = []
+    @course.finished_evaluations.each do |fe|
+      fe.answers.each do |a|
+        if a.content.nil?
+          values << a.rating.average.to_f
+          keys << a.question.content
+        end
+      end
+    end
+    @questions_ratings_hash = Hash[keys.zip(values)]
+
+    keys = []
+    values = []
+    @course.finished_evaluations.each do |fe|
+      fe.answers.each do |a|
+        if !a.content.nil?
+          values << a.content
+          keys << a.question.content
+        end
+      end
+    end
+
+    pairs = keys.zip(values)
+    @questions_answers_hash = pairs.group_by(&:first)
+    @questions_answers_hash.keys.each {
+      |k| @questions_answers_hash[k] = @questions_answers_hash[k].map(&:last) }
+      binding.pry
+
+  end
+
   def import
     @course = Course.find(params[:id])
     Attendee.import(params[:file])
     redirect_to root_url, notice: "Attendee data imported!"
   end
-
 
   def edit
   end

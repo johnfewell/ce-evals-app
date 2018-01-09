@@ -2,6 +2,15 @@
 # Notes
 
 
+## Issues
+
+- Sign up form is giving errors for the first and last name when in fact they are finished_evaluations
+- Why is questions in the top nav? Is it needed?
+- When creating a new eval you should be able to dymanically add questions by clicking a button, but I think i need JS for that
+- Remove the respond_to do |format| stuff
+- Add the assigned evaluation to the course show page
+
+
 ## define what I want all of the routes to do
 
 /

@@ -12,4 +12,33 @@ class FinishedEvaluation < ApplicationRecord
       self.answers << answer
     end
   end
+
+  def questions_ratings_hash
+    keys = []
+    values = []
+    self.answers.each do |a|
+      if a.content.nil?
+        values << a.rating.average.to_f
+        keys << a.question.content
+      end
+    end
+    keys.zip(values)
+  end
+
+  def questions_answers_hash
+    keys = []
+    values = []
+    self.answers.each do |a|
+      if !a.content.nil?
+        values << a.content
+        keys << a.question.content
+      end
+    end
+    pairs = keys.zip(values)
+    pairs
+    # h = pairs.group_by(&:first)
+    # h.keys.each { |k| h[k] = h[k].map(&:last) }
+    # h
+  end
+
 end

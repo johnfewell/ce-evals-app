@@ -5,13 +5,28 @@ class Course < ApplicationRecord
   has_one :evaluation
   has_many :finished_evaluations
 
+  scope :complete, -> {
+    where('end_date < ?', Date.today)
+  }
+
+  scope :published, -> {
+    where('published == ?', true )
+  }
+
+  scope :most_popular, -> { joins(:user_recipes).group(:recipe_id).order('count(recipe_id) desc') }
+
+
+
+  # scope :most_courses, -> {
+  #   order('count(instructor_id) desc') }
+  # }
+
   validates :title, presence: true, length: { minimum: 2 }
   validates :location, presence: true, length: { minimum: 2 }
   validates :credits, presence: true
   validates :learning_objective_1, presence: true, length: { minimum: 10 }
   validates :start_date, presence: true
   validates :end_date, presence: true
-
 
   before_save :propercase_title
 
