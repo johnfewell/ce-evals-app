@@ -8,6 +8,7 @@
      <%= link_to "Evaluations", evaluations_url, class: "UnderlineNav-item"  %>
      <%= octicon "person", class: "UnderlineNav-item" %>
      <%= link_to "Profile", edit_profile(current_user), class: "UnderlineNav-item"  %>
+     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "UnderlineNav-item"  %>
    </div>
  </div>
 </nav>
