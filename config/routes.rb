@@ -2,13 +2,14 @@ Rails.application.routes.draw do
 
   root to: "application#index"
 
-  devise_for :users, controllers: { sessions: 'sessions', omniauth_callbacks: 'users/omniauth_callbacks' }, skip: [:sessions]
-  as :user do
-    get 'users/sign_in' => 'sessions#new', :as => :new_user_session
-    post 'users/sign_in' => 'sessions#create', :as => :user_session
-    get 'users/sign_out' => 'sessions#destroy', :as => :destroy_user_session
-  end
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  # as :user do
+  #   get 'users/sign_in' => 'sessions#new', :as => :new_user_session
+  #   post 'users/sign_in' => 'sessions#create', :as => :user_session
+  # end
 
+
+#sessions: 'sessions', , skip: [:sessions]
    resources :users do
      patch 'update_role', on: :member
      get 'assign_role', on: :member

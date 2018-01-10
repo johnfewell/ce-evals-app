@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
         attendees_url
       # else, redirect them to a page that tells them to sit tight until they are assigned a role
       else
-        root #I need to create a page for users who are not yet assigned
+        root_url #I need to create a page for users who are not yet assigned
       end
     end
 
