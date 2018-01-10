@@ -6,6 +6,8 @@
      <%= link_to "Attendees", attendees_url, class: "UnderlineNav-item"  %>
      <%= link_to "Instructors", instructors_url, class: "UnderlineNav-item"  %>
      <%= link_to "Evaluations", evaluations_url, class: "UnderlineNav-item"  %>
+     <%= octicon "person", class: "UnderlineNav-item" %>
+     <%= link_to "Profile", edit_profile(current_user), class: "UnderlineNav-item"  %>
    </div>
  </div>
 </nav>
