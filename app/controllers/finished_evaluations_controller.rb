@@ -55,7 +55,7 @@ class FinishedEvaluationsController < ApplicationController
 
   def destroy
     @finished_evaluation.destroy
-    format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully deleted.'
+    redirect_to evaluations_url, notice: 'Evaluation was successfully deleted.'
   end
 
   private

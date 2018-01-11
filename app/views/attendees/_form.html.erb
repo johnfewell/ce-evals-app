@@ -23,9 +23,9 @@
 </dl>
 
 
-  <h4>Courses</h4>
+  <h4>Upcoming Courses</h4>
     <div class="field mx-5">
-      <%= f.collection_check_boxes(:course_ids, Course.all, :id, :title) do |b| %>
+      <%= f.collection_check_boxes(:course_ids, Course.not_complete.published, :id, :title) do |b| %>
         <%= b.label class:"form-checkbox" do%>
           <%=b.check_box + b.text%> </br>
         <%end%>

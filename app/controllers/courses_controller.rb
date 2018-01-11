@@ -51,9 +51,9 @@ class CoursesController < ApplicationController
   end
 
   def import
-    @course = Course.find(params[:id])
-    Attendee.import(params[:file])
-    redirect_to root_url, notice: "Attendee data imported!"
+    course = Course.find(params[:id])
+    Attendee.import(params[:file], course)
+    redirect_to course_path(course), notice: "Attendee data imported!"
   end
 
   def edit

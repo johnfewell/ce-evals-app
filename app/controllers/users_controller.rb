@@ -21,9 +21,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def registration
-    @courses = Course.where.has { end_date > Date.today }
-  end
+  # def registration
+  #   @courses = Course.where.has { end_date > Date.today }
+  # end
+  #
+  
+
+
 
   def edit
   end

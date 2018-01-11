@@ -49,9 +49,9 @@
       </div>
 
   <% end %>
-
   <h2>Import Attendees</h2>
-  <%= form_tag import_courses_path, id: "id", multipart: true do %>
+  <%= form_tag import_courses_path, id: params[:id], multipart: true do %>
+  <%= hidden_field_tag :id , params[:id] %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import CSV" %>
   <% end %>

@@ -2,6 +2,7 @@ class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :destroy, :certificate]
   before_action :set_courses, only: [:new, :edit]
   before_action :set_course, only: [:certificate]
+  before_action :admin_or_instructor, only: [:index, :new, :create, :destroy, :import]
 
   def index
     @attendees = Attendee.all
@@ -63,6 +64,10 @@ private
 
   def attendee_params
     params.require(:attendee).permit(:first_name, :last_name, :title, :suffix, :course_ids => [])
+  end
+
+  def admin_or_instructor
+
   end
 
 end

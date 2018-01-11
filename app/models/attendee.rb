@@ -40,10 +40,10 @@ class Attendee < ApplicationRecord
     incomplete_evaluations_array
   end
 
-  def self.import(file, course_id)
+  def self.import(file, course)
     CSV.foreach(file.path, headers: true) do |row|
       attendee = Attendee.new row.to_hash
-      attendee.course_id = course_id
+      attendee.courses << course
       attendee.save!
     end
   end
