@@ -1,4 +1,4 @@
-Assigning <%= @user.fullname %>
+<h2>Assigning Role: <%= @user.fullname %></h2>
 
 <%= form_for @user, url: update_role_user_path(@user) do |f| %>
 
@@ -27,7 +27,7 @@ Assigning <%= @user.fullname %>
 
   <h3>Attendee</h3>
   <div class="field mx-5">
-    <%= f.collection_radio_buttons(:attendee_id, Attendee.all, :id, :fullname) do |b| %>
+    <%= f.collection_radio_buttons(:attendee_id, Attendee.all, :id, :fullname, { checked: @user.attendee.id(&:to_param) }) do |b| %>
       <%= b.label class:"form-checkbox" do%>
         <%=b.radio_button + b.text%> </br>
       <%end%>
@@ -35,7 +35,7 @@ Assigning <%= @user.fullname %>
   </div>
   <h3>Instructor</h3>
   <div class="field mx-5">
-    <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname) do |b| %>
+    <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname, { checked: @user.instructor.id(&:to_param) }) do |b| %>
       <%= b.label class:"form-checkbox" do%>
         <%=b.radio_button + b.text%> </br>
       <%end%>

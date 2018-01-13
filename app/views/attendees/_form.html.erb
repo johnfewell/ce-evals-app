@@ -22,16 +22,26 @@
     <dd><%= f.text_field :suffix %><br></dd>
 </dl>
 
+  <% if is_superadmin? %>
+    <h4>All Courses</h4>
+      <div class="field mx-5">
+        <%= f.collection_check_boxes(:course_ids, Course.all, :id, :title, { checked: @attendee.course_ids.map(&:to_param) }) do |b| %>
+          <%= b.label class:"form-checkbox" do%>
+            <%=b.check_box + b.text%> </br>
+          <%end%>
+        <% end %>
+      </div>
+  <% else %>
+    <h4>Upcoming Courses</h4>
+      <div class="field mx-5">
+        <%= f.collection_check_boxes(:course_ids, Course.not_complete.published, :id, :title, { checked: @attendee.course_ids.map(&:to_param) }) do |b| %>
+          <%= b.label class:"form-checkbox" do%>
+            <%= b.check_box + b.text%> </br>
+          <%end%>
+        <% end %>
+      </div>
+  <% end %>
 
-  <h4>Upcoming Courses</h4>
-    <div class="field mx-5">
-      <%= f.collection_check_boxes(:course_ids, Course.not_complete.published, :id, :title) do |b| %>
-        <%= b.label class:"form-checkbox" do%>
-          <%=b.check_box + b.text%> </br>
-        <%end%>
-      <% end %>
-
-    </div>
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>

@@ -6,17 +6,22 @@
 
   <div class="columns">
     <% @users.each_slice(10) do |users| %>
-        <div class="one-fifth column">
+        <div class="one-third column">
           <table class="data-table">
             <tr>
               <th>Name</th>
+              <th>Assign</th>
             </tr>
               <% users.each do |u| %>
                 <tr>
                   <td>
                       <%= link_to u.fullname, user_path(u) %>
                   </td>
+                  <td>
+                    <%= link_to "Assign Role", assign_role_user_url(u) %>
+                  </td>
                 </tr>
+
               <% end %>
         </table>
       </div>
