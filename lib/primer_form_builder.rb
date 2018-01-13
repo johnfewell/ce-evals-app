@@ -16,5 +16,13 @@ class PrimerFormBuilder < ActionView::Helpers::FormBuilder
     super(attribute, options.reverse_merge(class: "form-control"))
   end
 
+  def text_field(attribute, options={})
+    super(attribute, options.reverse_merge(class: "form-control"))
+  end
+
+  def check_box(attribute, options={})
+    super(attribute, options.reverse_merge(class: "form-checkbox"))
+  end
+
 
 end

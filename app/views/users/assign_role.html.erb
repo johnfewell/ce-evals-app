@@ -27,18 +27,14 @@
 
   <h3>Attendee</h3>
   <div class="field mx-5">
-    <%= f.collection_radio_buttons(:attendee_id, Attendee.all, :id, :fullname, { checked: @user.attendee.id(&:to_param) }) do |b| %>
-      <%= b.label class:"form-checkbox" do%>
-        <%=b.radio_button + b.text%> </br>
-      <%end%>
+    <%= f.collection_radio_buttons(:attendee_id, Attendee.all, :id, :fullname) do |b| %>
+      <%= b.label(:"data-value" => b.value) { b.radio_button + b.text } %><br/>
     <% end %>
   </div>
   <h3>Instructor</h3>
   <div class="field mx-5">
-    <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname, { checked: @user.instructor.id(&:to_param) }) do |b| %>
-      <%= b.label class:"form-checkbox" do%>
-        <%=b.radio_button + b.text%> </br>
-      <%end%>
+    <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname) do |b| %>
+      <%= b.label(:"data-value" => b.value) { b.radio_button + b.text } %><br/>
     <% end %>
   </div>
   <div class="actions">
