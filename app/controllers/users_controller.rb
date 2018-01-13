@@ -21,14 +21,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def registration
-  #   @courses = Course.where.has { end_date > Date.today }
-  # end
-  #
-  
-
-
-
   def edit
   end
 
@@ -74,6 +66,5 @@ private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :title, :suffix, :attendee_id, :instructor_id)
   end
-
 
 end

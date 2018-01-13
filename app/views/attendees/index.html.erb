@@ -25,8 +25,3 @@
   </div>
 <br />
 <br />
-  <h2>Import Attendees</h2>
-  <%= form_tag import_attendees_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV" %>
-  <% end %>
