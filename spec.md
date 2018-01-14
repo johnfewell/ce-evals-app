@@ -24,9 +24,10 @@ Added to models, yes.
 
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 
-
+Yes, scoped courses can be seen at /courses/finished.
 
 - [x] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
+
 - [x] Include signup (how e.g. Devise)
 
 Using Devise
@@ -35,7 +36,7 @@ Using Devise
 
 Using Devise
 
-- [ ] Include logout (how e.g. Devise)
+- [x] Include logout (how e.g. Devise)
 
 Using Devise
 
@@ -43,12 +44,21 @@ Using Devise
 
 Using Devise/OmniAuth/Facebook
 
-- [x] Include nested resource show or index (URL e.g. users/2/recipes)
+- [ ] Include nested resource show or index (URL e.g. users/2/recipes)
 
+!!!! work on this:
 
+/attendees/1/finished_evaluations
+
+Only the attendee's finished evaluations
 
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
+
+Not a new but a custom form use for completing evaluations: /attendees/:id/evaluations/:id/answers
+
 - [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+
+!!!! I need to work on this more
 
 Confirm:
 - [ ] The application is pretty DRY

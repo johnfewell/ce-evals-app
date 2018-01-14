@@ -10,6 +10,7 @@
      <% end %>
      <% if is_superadmin? %>
       <%= link_to "Users", users_url, class: "UnderlineNav-item"  %>
+      <%= link_to "Finished Evals", finished_evaluations_url, class: "UnderlineNav-item"  %>
      <% end %>
      <%= octicon "person", class: "UnderlineNav-item" %>
      <% unless current_user.attendee.nil? %>

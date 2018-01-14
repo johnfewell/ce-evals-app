@@ -3,20 +3,19 @@
 
 ## Issues
 
-- When creating a new eval you should be able to dymanically add questions by clicking a button, but I think i need JS for that
-- Add the assigned evaluation to the course show page
-- When users log in, they should be taken to their personal show page
+- [ ] Add the assigned evaluation to the course show page
+- [ ] fix profile page for Instructors
+- [ ] make dashboard page for superadmin
 
 # TODO:
 
-- [x] Make rating scale questions for evaluations
 - [ ] Make it so that you can't reassign evaluations once there are associated finished_evaluations
-- [ ] Make a report for classes so that instructors can see data for their class in a view, eg courses/2/report
+- [x] Make a report for classes so that instructors can see data for their class in a view, eg courses/2/report
 - [ ] make it so you can't fill out an evaluation for the same course twice as the same user
 - [ ] Finish auth stuff
 - [ ] Eliminate unneeded routes
 - [ ] Add some page for new users who aren't assigned yet
-- [ ] make an assignment page for admin
+- [x] make an assignment page for admin
 - [ ] DRY it
 - [ ] Partial it
 - [ ] Style

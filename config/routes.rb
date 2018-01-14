@@ -17,6 +17,7 @@ Rails.application.routes.draw do
    end
 
    resources :courses do
+     collection {get :finished}
      get 'report', on: :member
      collection {post :import}
      resources :attendees do

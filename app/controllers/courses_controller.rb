@@ -7,6 +7,9 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
+  def finished
+  end
+
   def show
   end
 

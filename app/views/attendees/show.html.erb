@@ -1,69 +1,63 @@
+<% if !@attendee.incomplete_evaluations.empty? %>
+  <div class="flash flash-with-icon">
+    <% @attendee.incomplete_evaluations.each do |c| %>
+      <% if c.evaluation.nil? %>
+          <%= octicon "alert" %>  <%= c.title %> - No evaluation template assinged, please contact your instructor.
+        <% end %>
+      </br>
+    <% end %>
+    </div>
+<% end %>
 
-  <% if !@attendee.incomplete_evaluations.empty? %>
-    <div class="flash flash-with-icon">
-      <%= octicon "alert" %>
-        You need to complete course evaluations:
-      <p>
-      <% @attendee.incomplete_evaluations.each do |c| %>
-        <% if !c.evaluation.nil? %>
-          <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
+<h2>Registered Courses: <%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
+
+  <table class="data-table">
+    <tr>
+      <th>Course Title</th>
+      <th>End Date</th>
+      <th>Credits</th>
+      <th>Location</th>
+      <th>Action</th>
+    </tr>
+    <% @attendee.courses.each do |c| %>
+    <tr>
+        <td>
+            <%= link_to c.title, course_url(c.id) %>
+        </td>
+        <td>
+          <%= c.end_date.strftime("%A, %b %d") %>
+        </td>
+        <td>
+          <%= c.credits %>
+        </td>
+        <td>
+          <%= c.location %>
+        </td>
+        <td>
+        <% if c.end_date > Date.today() %>
+            Course not yet finished
+        <% elsif @attendee.finished_evaluations.find {|evaluation| evaluation.course.id == c.id} %>
+          <%= octicon "file-pdf" %>
+          <%= link_to "Download Certificate",
+              course_attendee_download_path(c.id,
+              @attendee, format: "pdf"),
+              {class: 'btn btn btn-sm'} %>
+          <% elsif @attendee.incomplete_evaluations {|incomplete_evaluation| incomplete_evaluation.course.id == c.id} && c.evaluation.nil? %>
+            Eval not assigned.
+          <% elsif @attendee.incomplete_evaluations {|incomplete_evaluation| incomplete_evaluation.course.id == c.id} %>
+            <%= link_to "Complete Evaluation",
+            answers_attendee_evaluation_path(@attendee, c.evaluation.id),
+            {class: 'btn btn-primary'} %>
           <% else %>
-              <%= c.title %> - No evaluation template assinged, please contact your instructor.
-          <% end %>
-          </p>
-        </div>
-      <% end %>
-  <% end %>
-
-  <h2>Registered Courses: <%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
-
-    <table class="data-table">
-      <tr>
-        <th>Course Title</th>
-        <th>End Date</th>
-        <th>Credits</th>
-        <th>Location</th>
-        <th>Action</th>
-      </tr>
-      <% @attendee.courses.each do |c| %>
-      <tr>
-          <td>
-              <%= link_to c.title, course_url(c.id) %>
-          </td>
-          <td>
-            <%= c.end_date.strftime("%A, %b %d") %>
-          </td>
-          <td>
-            <%= c.credits %>
-          </td>
-          <td>
-            <%= c.location %>
-          </td>
-          <td>
-          <% if c.end_date > Date.today() %>
               Course not yet finished
-          <% elsif @attendee.finished_evaluations.find {|evaluation| evaluation.course.id == c.id} %>
-            <%= octicon "file-pdf" %>
-            <%= link_to "Download Certificate",
-                course_attendee_download_path(c.id,
-                @attendee, format: "pdf"),
-                {class: 'btn btn btn-sm'} %>
-            <% elsif @attendee.incomplete_evaluations {|incomplete_evaluation| incomplete_evaluation.course.id == c.id} && c.evaluation.nil? %>
-              Eval not assigned.
-            <% elsif @attendee.incomplete_evaluations {|incomplete_evaluation| incomplete_evaluation.course.id == c.id} %>
-              <%= link_to "Complete Evaluation",
-              answers_attendee_evaluation_path(@attendee, c.evaluation.id),
-              {class: 'btn btn-primary'} %>
-            <% else %>
-                Course not yet finished
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  <br />
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<br />
 
-  <% if is_superadmin? %>
-    <%= link_to 'Edit', edit_attendee_path(@attendee) %> |
-    <%= link_to 'Destroy', @attendee, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
+<% if is_superadmin? %>
+  <%= link_to 'Edit', edit_attendee_path(@attendee) %> |
+  <%= link_to 'Destroy', @attendee, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
