@@ -1,6 +1,7 @@
 require 'pry'
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy, :report]
+  before_action :is_authorized?, only: [:edit, :new, :update, :destroy, :report]
 
   def index
     @courses = Course.all
@@ -15,7 +16,8 @@ class CoursesController < ApplicationController
 
   def report
     if @course.finished_evaluations.count > 0
-      @evaluation_completed_percent = @course.attendees.count / @course.finished_evaluations.count * 100
+      percent = @course.finished_evaluations.count.to_f / @course.attendees.count.to_f * 100
+      @evaluation_completed_percent = percent.round(2)
     else
       @evaluation_completed_percent = 0
     end
@@ -90,6 +92,22 @@ private
 
   def course_params
     params.require(:course).permit(:title, :location, :credits, :learning_objective_1, :learning_objective_2, :learning_objective_3, :start_date, :end_date, :published, :instructor_id, :evaluation_id)
+  end
+
+  def is_authorized?
+    if current_user.superadmin_role
+      true
+    elsif current_user.instructor_role
+      true
+    elsif @attendee
+      if current_user.id == @attendee.user_id
+        true
+      else
+        redirect_to root_url, alert: "You aren't authorized to see that page."
+      end
+    else
+      redirect_to root_url, alert: "Something weird happened."
+    end
   end
 
 end

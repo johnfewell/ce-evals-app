@@ -1,22 +1,22 @@
 
   <% if !@attendee.incomplete_evaluations.empty? %>
-      <div class="flash flash-with-icon">
-        <%= octicon "alert" %>
-          You need to complete course evaluations:
-        <p>
-        <% @attendee.incomplete_evaluations.each do |c| %>
-          <% if !c.evaluation.nil? %>
-            <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
-            <% else %>
-                <%= c.title %> - No evaluation template assinged, please contact your instructor.
-            <% end %>
-            </p>
-          </div>
-        <% end %>
+    <div class="flash flash-with-icon">
+      <%= octicon "alert" %>
+        You need to complete course evaluations:
+      <p>
+      <% @attendee.incomplete_evaluations.each do |c| %>
+        <% if !c.evaluation.nil? %>
+          <a href="<%= params[:id] %>/evaluations/<%= c.evaluation.id %>/answers"><%= c.title %></a>
+          <% else %>
+              <%= c.title %> - No evaluation template assinged, please contact your instructor.
+          <% end %>
+          </p>
+        </div>
+      <% end %>
   <% end %>
 
-    <h2>Registered Courses: <%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
-    
+  <h2>Registered Courses: <%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
+
     <table class="data-table">
       <tr>
         <th>Course Title</th>

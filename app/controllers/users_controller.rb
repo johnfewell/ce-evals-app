@@ -74,8 +74,8 @@ class UsersController < ApplicationController
         :suffix => user_params[:suffix],
         :user_id => @user.id,
         :superadmin_role => false,
-        :instructor_role => false,
-        :attendee_role => true })
+        :instructor_role => true,
+        :attendee_role => false })
 
       @instructor.update({
         :first_name => user_params[:first_name],

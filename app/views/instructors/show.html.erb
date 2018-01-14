@@ -24,10 +24,14 @@
           </td>
           <td>
           <% if c.evaluation.nil? %>
-              Assign Eval
+              <%= link_to "Assign Eval", evaluations_path %>
           <% else %>
+            <% if c.complete? %>
+              <%= link_to "Report", report_course_path(c) %>
+            <% else %>
               <%= c.evaluation.name %>
             <% end %>
+          <% end %>
           </td>
         </tr>
       <% end %>
