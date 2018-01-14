@@ -2,7 +2,7 @@ class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :destroy, :certificate]
   before_action :set_courses, only: [:new, :edit]
   before_action :set_course, only: [:certificate]
-  before_action :admin_or_instructor, only: [:index, :new, :create, :destroy, :import]
+  before_action :is_authorized?
 
   def index
     @attendees = Attendee.all
@@ -66,8 +66,20 @@ private
     params.require(:attendee).permit(:first_name, :last_name, :title, :suffix, :course_ids => [])
   end
 
-  def admin_or_instructor
-
+  def is_authorized?
+    if current_user.superadmin_role
+      true
+    elsif current_user.instructor_role
+      true
+    elsif @attendee
+      if current_user.id == @attendee.user_id
+        true
+      else
+        redirect_to root_url, alert: "You aren't authorized to see that page."
+      end
+    else
+      redirect_to root_url, alert: "Something weird happened."
+    end
   end
 
 end

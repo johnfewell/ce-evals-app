@@ -12,7 +12,7 @@ module FuntimesHelper
     if current_user.superadmin_role
       true
     elsif current_user.instructor
-      resource.id == current_user.instrucor.id
+      resource.id == current_user.instructor.id
     elsif current_user.attendee
       resource.id == current_user.attendee.id
     else

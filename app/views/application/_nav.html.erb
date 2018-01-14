@@ -13,7 +13,7 @@
      <% end %>
      <%= octicon "person", class: "UnderlineNav-item" %>
      <% unless current_user.attendee.nil? %>
-      <%= link_to "Profile", edit_profile(current_user), class: "UnderlineNav-item"  %>
+      <%= link_to "Profile", profile(current_user), class: "UnderlineNav-item"  %>
     <% end %>
      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "UnderlineNav-item"  %>
    </div>

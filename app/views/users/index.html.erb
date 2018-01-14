@@ -18,10 +18,13 @@
                       <%= link_to u.fullname, user_path(u) %>
                   </td>
                   <td>
-                    <%= link_to "Assign Role", assign_role_user_url(u) %>
+                    <% if Attendee.find_by(:user_id => u.id) %>
+                      <%= link_to "Edit Role", assign_role_user_url(u) %>
+                    <% else %>
+                      <%= link_to "Assign Role", assign_role_user_url(u) %>
+                    <% end %>
                   </td>
                 </tr>
-
               <% end %>
         </table>
       </div>

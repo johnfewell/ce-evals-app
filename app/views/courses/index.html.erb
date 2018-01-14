@@ -1,5 +1,6 @@
-<%= link_to "New Course", new_course_path, class: "btn btn-primary" %>
-
+<% unless is_attendee? %>
+  <%= link_to "New Course", new_course_path, class: "btn btn-primary" %>
+<% end %>
   <ul>
     <% @courses.each do |c| %>
     <li class="col-12 d-block width-full py-4 border-bottom public source" itemprop="owns" itemscope="" itemtype="http://schema.org/Code">

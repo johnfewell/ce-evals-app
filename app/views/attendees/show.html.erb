@@ -1,4 +1,3 @@
-  <h2><%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
 
   <% if !@attendee.incomplete_evaluations.empty? %>
       <div class="flash flash-with-icon">
@@ -16,7 +15,8 @@
         <% end %>
   <% end %>
 
-    <h4>Registered Courses</h4>
+    <h2>Registered Courses: <%= @attendee.title %> <%= @attendee.fullname %>, <%= @attendee.suffix %></h2>
+    
     <table class="data-table">
       <tr>
         <th>Course Title</th>
