@@ -3,12 +3,13 @@
 
 ## Issues
 
-- [ ] Add the assigned evaluation to the course show page
-- [ ] fix profile page for Instructors
+- [x] Add the assigned evaluation to the course show page
+- [x] fix profile page for Instructors
 - [ ] make dashboard page for superadmin
 
 # TODO:
 
+- [ ] Improve report view
 - [ ] Make it so that you can't reassign evaluations once there are associated finished_evaluations
 - [x] Make a report for classes so that instructors can see data for their class in a view, eg courses/2/report
 - [ ] make it so you can't fill out an evaluation for the same course twice as the same user

@@ -5,7 +5,7 @@ module EditProfileHelper
     elsif current_user.instructor_role
       instructor_url(user.instructor)
     elsif current_user.superadmin_role
-      root_url
+      admin_path
     else
       root_url
     end

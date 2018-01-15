@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  get 'admin', to: 'admin#index'
+
    resources :users do
      patch 'update_role', on: :member
      get 'assign_role', on: :member

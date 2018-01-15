@@ -18,7 +18,7 @@
                       <%= link_to u.fullname, user_path(u) %>
                   </td>
                   <td>
-                    <% if Attendee.find_by(:user_id => u.id) %>
+                    <% if user_assigned?(u) %>
                       <%= link_to "Edit Role", assign_role_user_url(u) %>
                     <% else %>
                       <%= link_to "Assign Role", assign_role_user_url(u) %>
