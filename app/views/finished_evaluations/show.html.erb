@@ -15,6 +15,5 @@
 
 
 
-<%= link_to 'Edit', edit_finished_evaluation_path(@finished_evaluation) %> |
-<%= link_to 'Back', finished_evaluations_path %>
-<%= link_to 'Destroy', @finished_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_finished_evaluation_path(@finished_evaluation), class: "btn" %> |
+<%= link_to 'Destroy', @finished_evaluation, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

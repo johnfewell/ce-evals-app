@@ -1,7 +1,7 @@
   <div class="container">
 
     <% if current_user.superadmin_role? %>
-      <%= link_to "New Attendee", new_attendee_path, id: "news", class: "btn btn-primary" %>
+      <%= link_to "New Attendee", new_attendee_path, class: "btn btn-primary" %>
     <% end %>
 
     <div class="columns">

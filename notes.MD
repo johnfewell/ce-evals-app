@@ -6,17 +6,12 @@
 - [x] Add the assigned evaluation to the course show page
 - [x] fix profile page for Instructors
 - [ ] make dashboard page for superadmin
-
-# TODO:
-
-- [ ] Improve report view
+- [ ] Add some page for new users who aren't assigned yet, make it so they can't take many actions on the site
 - [ ] Make it so that you can't reassign evaluations once there are associated finished_evaluations
-- [x] Make a report for classes so that instructors can see data for their class in a view, eg courses/2/report
 - [ ] make it so you can't fill out an evaluation for the same course twice as the same user
 - [ ] Finish auth stuff
+- [ ] Improve report view
 - [ ] Eliminate unneeded routes
-- [ ] Add some page for new users who aren't assigned yet
-- [x] make an assignment page for admin
 - [ ] DRY it
 - [ ] Partial it
 - [ ] Style

@@ -1,7 +1,8 @@
 class FinishedEvaluationsController < ApplicationController
-   before_action :set_evaluation, only: [:answers]
+   #before_action :set_evaluation, only: [:answers]
    before_action :set_finished_evaluation, only: [:show, :edit, :update, :destroy]
    before_action :set_attendee, only: [:show]
+   before_action :is_authorized, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @finished_evaluations = FinishedEvaluation.all
@@ -21,17 +22,8 @@ class FinishedEvaluationsController < ApplicationController
         values << final_rate.value.to_i
       end
     end
-
     @questions_answers_hash = Hash[keys.zip(values)]
   end
-
-  # def answers
-  #   @questions = @evaluation.questions
-  # end
-
-  # def new
-  #   @finished_evaluation = FinishedEvaluation.new
-  # end
 
   def edit
   end
@@ -59,6 +51,14 @@ class FinishedEvaluationsController < ApplicationController
   end
 
   private
+
+  def is_authorized
+    if current_user.superadmin_role
+      true
+    else
+      redirect_to root_url, alert: "You aren't authorized to see that page."
+    end
+  end
 
   def set_evaluation
     @evaluation = Evaluation.find(params[:id])
