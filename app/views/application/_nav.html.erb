@@ -13,10 +13,15 @@
       <%= link_to "Finished Evals", finished_evaluations_url, :class => current_class?(finished_evaluations_path)  %>
      <% end %>
      <% unless !user_assigned?(current_user) %>
-      <%= octicon "person", class: "UnderlineNav-item" %>
-      <%= link_to "Profile", profile(current_user), class: "UnderlineNav-item" %>
+      <%= link_to profile(current_user), class: "UnderlineNav-item" do %>
+      <%= octicon "person" %>
+      Profile
+      <% end %>
      <% end %>
-     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "UnderlineNav-item"  %>
+     <%= link_to destroy_user_session_path, method: :delete, class: "UnderlineNav-item" do %>
+      <%= octicon "sign-out" %>
+      Logout
+     <% end %>
    </div>
  </div>
 </nav>
