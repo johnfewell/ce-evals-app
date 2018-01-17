@@ -13,6 +13,14 @@ class Course < ApplicationRecord
     where('end_date > ?', Date.today)
   }
 
+  scope :upcoming, -> {
+    where('start_date > ?', Date.today)
+  }
+
+  scope :started, -> {
+    where('start_date <= ?', Date.today)
+  }
+
   scope :published, -> {
     where('published == ?', true )
   }

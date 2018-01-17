@@ -8,6 +8,15 @@ class CoursesController < ApplicationController
   end
 
   def finished
+    @courses = Course.complete.published
+  end
+
+  def current
+    @courses = Course.not_complete.started.published
+  end
+
+  def upcoming
+    @courses = Course.upcoming.published
   end
 
   def show
