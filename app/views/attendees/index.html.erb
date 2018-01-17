@@ -1,27 +1,24 @@
-  <div class="container">
+  <% if current_user.superadmin_role? %>
+    <%= link_to "New Attendee", new_attendee_path, class: "btn btn-primary" %>
+  <% end %>
 
-    <% if current_user.superadmin_role? %>
-      <%= link_to "New Attendee", new_attendee_path, class: "btn btn-primary" %>
+  <div class="columns">
+    <% @attendees.each_slice(10) do |attendees| %>
+        <div class="one-fifth column">
+          <table class="data-table">
+            <tr>
+              <th>Name</th>
+            </tr>
+              <% attendees.each do |a| %>
+                <tr>
+                  <td>
+                      <%= link_to a.fullname, attendee_path(a) %>
+                  </td>
+                </tr>
+              <% end %>
+        </table>
+      </div>
     <% end %>
-
-    <div class="columns">
-      <% @attendees.each_slice(10) do |attendees| %>
-          <div class="one-fifth column">
-            <table class="data-table">
-              <tr>
-                <th>Name</th>
-              </tr>
-                <% attendees.each do |a| %>
-                  <tr>
-                    <td>
-                        <%= link_to a.fullname, attendee_path(a) %>
-                    </td>
-                  </tr>
-                <% end %>
-          </table>
-        </div>
-      <% end %>
-    </div>
   </div>
 <br />
 <br />

@@ -1,0 +1,13 @@
+<div class="tabnav">
+  <div class="float-right">
+    <% unless is_attendee? %>
+      <%= link_to "New Course", new_course_path, class: "tabnav-extra" %>
+    <% end %>
+  </div>
+  <nav class="tabnav-tabs" aria-label="All Courses">
+    <%= link_to "All Courses", courses_path, :class => current_page?(courses_path) %>
+    <%= link_to "Finished Courses", finished_courses_path, :class => current_page?(finished_courses_path) %>
+    <%= link_to "Current Courses", current_courses_path, :class => current_page?(current_courses_path) %>
+    <%= link_to "Upcoming Courses", upcoming_courses_path, :class => current_page?(upcoming_courses_path) %>
+  </nav>
+</div>
