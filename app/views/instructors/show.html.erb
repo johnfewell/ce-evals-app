@@ -6,12 +6,14 @@
         <th>End Date</th>
         <th>Credits</th>
         <th>Location</th>
-        <th>Action</th>
+        <% if is_authorized?(@instructor) %>
+          <th>Action</th>
+        <% end %>
       </tr>
       <% @instructor.courses.each do |c| %>
       <tr>
           <td>
-              <%= c.title %>
+              <%= link_to c.title, c %>
           </td>
           <td>
             <%= c.end_date.strftime("%A, %b %d") %>
@@ -22,18 +24,24 @@
           <td>
             <%= c.location %>
           </td>
-          <td>
-          <% if c.evaluation.nil? %>
-              <%= link_to "Assign Eval", evaluations_path %>
-          <% else %>
-            <% if c.complete? %>
-              <%= link_to "Report", report_course_path(c) %>
+          <% if is_authorized?(@instructor) %>
+            <td>
+            <% if c.evaluation.nil? %>
+                <%= link_to "Assign Eval", evaluations_path %>
             <% else %>
-              <%= c.evaluation.name %>
+              <% if c.complete? %>
+                <%= link_to "Report", report_course_path(c) %>
+              <% else %>
+                <%= c.evaluation.name %>
+              <% end %>
             <% end %>
+            </td>
           <% end %>
-          </td>
         </tr>
       <% end %>
     </table>
   <br />
+  <% if is_superadmin? %>
+    <%= link_to 'Edit', edit_instructor_path(@instructor), class: "btn" %> |
+    <%= link_to 'Destroy', @instructor, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>

@@ -6,8 +6,10 @@
 - [x] Add the assigned evaluation to the course show page
 - [x] fix profile page for Instructors
 - [ ] make dashboard page for superadmin
+- [ ] Evaluations show page needs work: http://localhost:3000/evaluations/1
 - [ ] Add some page for new users who aren't assigned yet, make it so they can't take many actions on the site
 - [ ] Make it so that you can't reassign evaluations once there are associated finished_evaluations
+- [ ] Scope the Evaluations page so that you aren't taken to all evals when you are in assign mode.
 - [ ] make it so you can't fill out an evaluation for the same course twice as the same user
 - [ ] Finish auth stuff
 - [ ] Improve report view

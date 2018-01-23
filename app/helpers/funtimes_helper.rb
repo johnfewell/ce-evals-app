@@ -14,6 +14,7 @@ module FuntimesHelper
     elsif current_user.instructor
       resource.id == current_user.instructor.id
     elsif current_user.attendee
+      # !!! This breaks if the resouce id happens to match the attendee id, just by luck
       resource.id == current_user.attendee.id
     else
       false

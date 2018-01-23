@@ -3,7 +3,7 @@
 <div class="mx-5">
 
   <ul>
-    <li>Instructor: <%= @course.instructor.fullname %></a></li>
+    <li>Instructor: <%= link_to @course.instructor.fullname, @course.instructor %></a></li>
     <li>Location: <%= @course.location %></li>
     <li>Credits: <%= @course.credits %></li>
     <li>Start Date: <%= @course.start_date %></li>
@@ -14,8 +14,9 @@
   </ul>
 </div>
 
-<% if current_user.superadmin_role? || current_user.instructor_role? %>
+<% # !!! Replace with is_authorized? %>
 
+<% if current_user.superadmin_role? || current_user.instructor_role? %>
 
   <h3>Attendees</h3>
     <div class="mx-5">
@@ -56,8 +57,17 @@
   <%= submit_tag "Import CSV" %>
   <% end %>
 
-  <%= link_to 'Edit', edit_course_path(@course) %> |
-  <%= link_to 'Back', courses_path %>
-  <%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 
+<%# !!! ayo, finish dis %>
+<% if is_attendee? %>
+  button_to "Register for this course" class="btn btn-primary", controller => attendees, action => update
+<% end %>
+
+<br />
+<br />
+
+<% if is_superadmin? %>
+  <%= link_to 'Edit', edit_course_path(@course), class: "btn" %> |
+  <%= link_to 'Destroy', @course, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

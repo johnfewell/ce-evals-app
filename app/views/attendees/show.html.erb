@@ -58,6 +58,6 @@
 <br />
 
 <% if is_superadmin? %>
-  <%= link_to 'Edit', edit_attendee_path(@attendee) %> |
-  <%= link_to 'Destroy', @attendee, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_attendee_path(@attendee), class: "btn" %> |
+  <%= link_to 'Destroy', @attendee, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

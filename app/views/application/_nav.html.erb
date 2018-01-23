@@ -1,6 +1,8 @@
 <nav class="UnderlineNav UnderlineNav--full" aria-label="Menu">
+
  <div class="container-lg UnderlineNav-container">
    <div class="UnderlineNav-body">
+
      <%= image_tag "ce-cert-logo.png" %>
      <%= link_to "Courses", courses_url, :class => current_class?(courses_path) %>
      <%= link_to "Instructors", instructors_url, :class => current_class?(instructors_path)  %>
@@ -12,16 +14,18 @@
       <%= link_to "Users", users_url, :class => current_class?(users_path)  %>
       <%= link_to "Finished Evals", finished_evaluations_url, :class => current_class?(finished_evaluations_path)  %>
      <% end %>
-     <% unless !user_assigned?(current_user) %>
-      <%= link_to profile(current_user), class: "UnderlineNav-item" do %>
-      <%= octicon "person" %>
-      Profile
-      <% end %>
-     <% end %>
-     <%= link_to destroy_user_session_path, method: :delete, class: "UnderlineNav-item" do %>
-      <%= octicon "sign-out" %>
-      Logout
-     <% end %>
+    </div>
+     <div class="float-right UnderlineNav-body">
+       <% unless !user_assigned?(current_user) %>
+        <%= link_to profile(current_user), class: "UnderlineNav-item" do %>
+        <%= octicon "person" %>
+        Profile
+        <% end %>
+       <% end %>
+       <%= link_to destroy_user_session_path, method: :delete, class: "UnderlineNav-item" do %>
+        <%= octicon "sign-out" %>
+        Logout
+       <% end %>
+     </div>
    </div>
- </div>
 </nav>
