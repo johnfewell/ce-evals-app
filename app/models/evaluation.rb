@@ -10,5 +10,4 @@ class Evaluation < ApplicationRecord
   scope :assigned, -> {where(:course_id => nil)}
   scope :unassigned, -> {where.not(:course_id => nil)}
 
-
 end

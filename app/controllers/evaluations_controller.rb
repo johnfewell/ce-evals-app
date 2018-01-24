@@ -9,6 +9,14 @@ class EvaluationsController < ApplicationController
     @questions = @evaluation.questions
   end
 
+  def assigned
+    @evaluations = Evaluation.assigned
+  end
+
+  def unassigned
+    @evaluations = Evaluation.unassigned
+  end
+
   def answers
     @attendee = Attendee.find(params[:attendee_id])
     evaluation = Evaluation.find(params[:id])

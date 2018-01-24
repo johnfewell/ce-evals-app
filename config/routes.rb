@@ -33,6 +33,8 @@ Rails.application.routes.draw do
    resources :questions
 
    resources :evaluations do
+     collection {get :assigned}
+     collection {get :unassigned}
      get 'answers', on: :member
    end
 
