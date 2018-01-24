@@ -9,15 +9,21 @@ module FuntimesHelper
   end
 
   def is_authorized?(resource)
-    if current_user.superadmin_role
-      true
-    elsif current_user.instructor
-      resource.id == current_user.instructor.id
-    elsif current_user.attendee
-      # !!! This breaks if the resouce id happens to match the attendee id, just by luck
-      resource.id == current_user.attendee.id
-    else
-      false
+    class_type = resource.class.to_s.downcase
+    case
+    when current_user.superadmin_role then true
+    when class_type == "instructor"
+      if current_user.instructor_role && current_user.id == resource.id
+        true
+      end
+    when class_type == "attendee"
+      if current_user.attendee_role && current_user.id == resource.id
+        true
+      end
+    when class_type == "evaluation"
+      if resource.course.instructor.id == current_user.instructor.id && current_user.instructor_role
+        true
+      end
     end
   end
 

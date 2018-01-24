@@ -1,7 +1,7 @@
 
-<h2><%= @evaluation.name %></h2>
-
-<h3>Questions</h3>
+<h2>Evaluation: <%= @evaluation.name %></h2>
+<br />
+<h4>Questions</h4>
 <div class="mx-5">
   <ul>
       <% @questions.each do |q| %>
@@ -13,17 +13,17 @@
 </div>
 <br />
 
-<h3>Assigned to Course</h3>
+<h4>Assigned to Course</h4>
   <div class="mx-5">
-      <% if !@evaluation.course.nil?  %>
-        <h4><%= @evaluation.course.title %></h4>
+      <% if !@evaluation.course.nil? %>
+        <%= link_to @evaluation.course.title, @evaluation %>
       <% else %>
-        <h4>Not assigned</h4>
+        Not assigned
       <% end %>
     </div>
 <br />
 
-
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
-<%= link_to 'Destroy', @evaluation, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if is_authorized?(@evaluation) %>
+  <%= link_to 'Edit', edit_evaluation_path(@evaluation) , class: "btn" %> |
+  <%= link_to 'Destroy', @evaluation, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
