@@ -25,6 +25,10 @@ class Course < ApplicationRecord
     where('published == ?', true )
   }
 
+  scope :unpublished, -> {
+    where('published == ?', false )
+  }
+
   scope :most_popular, -> { joins(:user_recipes).group(:recipe_id).order('count(recipe_id) desc') }
 
   # scope :most_courses, -> {

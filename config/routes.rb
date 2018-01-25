@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
    resources :courses do
      collection {get :finished}
+     collection {get :draft}
      collection {get :current}
      collection {get :upcoming}
      get 'report', on: :member

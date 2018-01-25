@@ -1,7 +1,7 @@
 require 'pry'
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy, :report]
-  before_action :is_authorized?, only: [:edit, :new, :update, :destroy, :report]
+  before_action :is_authorized?, only: [:edit, :new, :update, :destroy, :report, :draft]
 
   def index
     @courses = Course.all
@@ -19,7 +19,23 @@ class CoursesController < ApplicationController
     @courses = Course.upcoming.published
   end
 
+  def draft
+    @courses = []
+    if current_user.instructor_role?
+      Course.unpublished.each do |c|
+        if c.instructor_id == current_user.instructor.id
+          @courses << c
+        end
+      end
+    else
+      @courses = Course.unpublished
+  end
+end
+
   def show
+    if @course.published == false
+      flash[:alert] = "This course is unpublished"
+    end
   end
 
   def new

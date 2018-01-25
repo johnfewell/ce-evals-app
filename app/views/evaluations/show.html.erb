@@ -23,7 +23,7 @@
     </div>
 <br />
 
-<% if is_authorized?(@evaluation) %>
+<% if is_authorized?(@evaluation) && !has_finished_evaluations?(@evaluation) %>
   <%= link_to 'Edit', edit_evaluation_path(@evaluation) , class: "btn" %> |
   <%= link_to 'Destroy', @evaluation, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

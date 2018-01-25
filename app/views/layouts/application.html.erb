@@ -18,14 +18,22 @@
 
     <div class="container pt-3">
 
-      <% if !notice.nil? || !alert.nil? %>
+      <% if !alert.nil? %>
         <div class="flash-messages">
-          <div class="flash">
-            <p id="notice"><%= notice %></p>
-            <p id="alert"><%= alert %></p>
+          <div class="flash flash-warn">
+            <p id="alert"><%= octicon "alert" %> <%= alert %></p>
           </div>
         </div>
       <% end %>
+
+      <% if !notice.nil? %>
+      <div class="flash-messages">
+        <div class="flash flash-success">
+          <p id="notice"><%= octicon "check" %> <%= notice %></p>
+        </div>
+      </div>
+    <% end %>
+
 
       <%= yield %>
 
