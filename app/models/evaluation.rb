@@ -7,7 +7,7 @@ class Evaluation < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 5 }
 
-  scope :assigned, -> {where(:course_id => nil)}
-  scope :unassigned, -> {where.not(:course_id => nil)}
+  scope :unassigned, -> {where(:course_id => nil)}
+  scope :assigned, -> {where.not(:course_id => nil)}
 
 end

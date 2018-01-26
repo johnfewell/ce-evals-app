@@ -35,21 +35,27 @@
         <%= f.check_box :published %>
       </label>
       <p class="note" id="help-text-for-checkbox">
-        Leave this <strong>unchecked</strong> if you don't want students to be able to register for this yet. 
+        Leave this <strong>unchecked</strong> if you don't want students to be able to register for this yet.
       </p>
     </div>
   </dl>
   <h3>Instructor</h3>
-  <div class="field mx-5">
-    <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname) do |b| %>
-      <%= b.label class:"form-checkbox" do%>
-        <%=b.radio_button + b.text%> </br>
-      <%end%>
+    <% if current_user.instructor_role %>
+      <%= f.hidden_field :instructor_id, :value => current_user.instructor.id %>
+      <%= current_user.instructor.fullname %> - You!
+    <% else %>
+      <div class="field mx-5">
+        <%= f.collection_radio_buttons(:instructor_id, Instructor.all, :id, :fullname) do |b| %>
+          <%= b.label class:"form-checkbox" do%>
+            <%=b.radio_button + b.text%> </br>
+          <%end%>
+        <% end %>
+      </div>
     <% end %>
-  </div>
+
   <h3>Evaluation</h3>
   <div class="field mx-5">
-    <%= f.collection_radio_buttons(:evaluation_id, Evaluation.all, :id, :name) do |b| %>
+    <%= f.collection_radio_buttons(:evaluation_id, Evaluation.unassigned, :id, :name) do |b| %>
       <%= b.label class:"form-checkbox" do%>
         <%=b.radio_button + b.text%> </br>
       <%end%>
