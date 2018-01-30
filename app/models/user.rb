@@ -9,9 +9,11 @@ class User < ApplicationRecord
   attr_accessor :attendee_id, :instructor_id
   alias_attribute :user_id, :attendee_id
 
+
   def fullname
     "#{first_name} #{last_name}"
   end
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

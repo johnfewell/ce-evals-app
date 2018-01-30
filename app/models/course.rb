@@ -29,12 +29,6 @@ class Course < ApplicationRecord
     where('published == ?', false )
   }
 
-  scope :most_popular, -> { joins(:user_recipes).group(:recipe_id).order('count(recipe_id) desc') }
-
-  # scope :most_courses, -> {
-  #   order('count(instructor_id) desc') }
-  # }
-
   validates :title, presence: true, length: { minimum: 2 }
   validates :location, presence: true, length: { minimum: 2 }
   validates :credits, presence: true
