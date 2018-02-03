@@ -12,16 +12,22 @@ module FuntimesHelper
     class_type = resource.class.to_s.downcase
     case
     when current_user.superadmin_role then true
+    when class_type == "course"
+      if current_user.instructor_role && current_user.instructor.id == resource.instructor_id
+        true
+      end
     when class_type == "instructor"
-      if current_user.instructor_role && current_user.id == resource.id
+      if current_user.instructor_role && current_user.instructor.id == resource.id
         true
       end
     when class_type == "attendee"
-      if current_user.attendee_role && current_user.id == resource.id
+      if current_user.attendee_role && current_user.attendee.id == resource.id
         true
       end
     when class_type == "evaluation"
-      if resource.course.instructor.id == current_user.instructor.id && current_user.instructor_role
+      if resource.course == nil
+        true
+      elsif resource.course.instructor.id == current_user.instructor.id && current_user.instructor_role
         true
       end
     end

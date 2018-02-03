@@ -6,7 +6,8 @@
 - [x] Add the assigned evaluation to the course show page
 - [x] fix profile page for Instructors
 - [ ] make dashboard page for superadmin
-- [ ] Evaluations show page needs work: http://localhost:3000/evaluations/1
+- [ ] Instructors should be able to edit courses that are unpublished but with dates that are passed.
+- [x] Evaluations show page needs work: http://localhost:3000/evaluations/1
 - [ ] Add some page for new users who aren't assigned yet, make it so they can't take many actions on the site
 - [ ] Make it so that you can't reassign evaluations once there are associated finished_evaluations
 - [ ] Scope the Evaluations page so that you aren't taken to all evals when you are in assign mode.

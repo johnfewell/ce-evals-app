@@ -2,24 +2,23 @@
   <div class="float-right">
     <% unless is_attendee? %>
       <%= link_to "New Evaluation", new_evaluation_path, class: "tabnav-extra btn" %>
-      <%= link_to "Draft Evaluations", new_evaluation_path, class: "tabnav-extra" %>
     <% end %>
   </div>
   <nav class="tabnav-tabs" aria-label="All Evaluations">
 
     <%= link_to evaluations_path, :class => current_page?(evaluations_path) do %>
       All Evaluations
-      <span class="Counter"><%= Evaluation.all.count %></span>
+      <span class="Counter"><%= evaluations_all_count %></span>
     <% end %>
 
     <%= link_to assigned_evaluations_path, :class => current_page?(assigned_evaluations_path) do %>
       Assigned Evaluations
-      <span class="Counter"><%= Evaluation.assigned.count %></span>
+      <span class="Counter"><%= evaluations_assigned_count %></span>
     <% end %>
 
     <%= link_to unassigned_evaluations_path, :class => current_page?(unassigned_evaluations_path) do %>
     Unassigned Evaluations
-      <span class="Counter"><%= Evaluation.unassigned.count %></span>
+      <span class="Counter"><%= evaluations_unassigned_count%></span>
     <% end %>
 
   </nav>
