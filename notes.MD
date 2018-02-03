@@ -5,6 +5,7 @@
 
 - [x] Add the assigned evaluation to the course show page
 - [x] fix profile page for Instructors
+- [ ] questions have many issues. 
 - [ ] make dashboard page for superadmin
 - [ ] Instructors should be able to edit courses that are unpublished but with dates that are passed.
 - [x] Evaluations show page needs work: http://localhost:3000/evaluations/1

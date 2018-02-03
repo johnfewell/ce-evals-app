@@ -1,5 +1,7 @@
-<% if is_authorized?(@course) && @course.complete? %>
+<% if is_authorized?(@course) && @course.finished_evaluations.any? %>
+
   <%= link_to 'View Report', report_course_path(@course), class: "btn btn-primary" %>
+  <br /><br />
 <% end %>
 <h2><%= @course.title %></h2>
 <div class="mx-5">
@@ -19,6 +21,7 @@
 <%# !!! ayo, finish dis %>
 
 <% if is_attendee? %>
+
   button_to "Register for this course" class="btn btn-primary", controller => attendees, action => update
 <% end %>
 
@@ -26,13 +29,17 @@
 
   <h3>Attendees</h3>
     <div class="mx-5">
-      <ul>
-          <% @course.attendees.each do |s| %>
-          <li>
-            <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
-          </li>
-          <% end %>  link_to report_course_path(@course) class="btn btn-primary"
-      </ul>
+      <% if @course.attendees.any? %>
+        <ul>
+            <% @course.attendees.each do |a| %>
+            <li>
+              <%= link_to a.fullname, attendee_path(a) %>
+            </li>
+            <% end %>
+        </ul>
+        <% else %>
+        None
+      <% end %>
     </div>
   <br />
 

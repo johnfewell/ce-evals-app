@@ -29,7 +29,6 @@ class Course < ApplicationRecord
     where('published == ?', false )
   }
 
-
   validates :title, presence: true, length: { minimum: 2 }
   validates :location, presence: true, length: { minimum: 2 }
   validates :credits, presence: true

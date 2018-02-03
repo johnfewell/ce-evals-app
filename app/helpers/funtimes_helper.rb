@@ -21,8 +21,16 @@ module FuntimesHelper
         true
       end
     when class_type == "attendee"
+      #
       if current_user.attendee_role && current_user.attendee.id == resource.id
         true
+      elsif current_user.instructor_role
+        c = resource.courses.find_by(:instructor_id => current_user.instructor.id)
+        unless c.nil?
+          if current_user.instructor.id == c.instructor_id
+            true
+          end
+        end
       end
     when class_type == "evaluation"
       if resource.course == nil

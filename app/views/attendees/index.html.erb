@@ -10,11 +10,13 @@
               <th>Name</th>
             </tr>
               <% attendees.each do |a| %>
+              <% if is_authorized?(a) %>
                 <tr>
                   <td>
                       <%= link_to a.fullname, attendee_path(a) %>
                   </td>
                 </tr>
+              <% end %>
               <% end %>
         </table>
       </div>
