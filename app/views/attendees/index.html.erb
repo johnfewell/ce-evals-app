@@ -3,21 +3,20 @@
   <% end %>
 
   <div class="columns">
-    <% @attendees.each_slice(10) do |attendees| %>
+
+    <% authorized_attendees.each_slice(10) do |attendees| %>
         <div class="one-fifth column">
           <table class="data-table">
             <tr>
               <th>Name</th>
             </tr>
               <% attendees.each do |a| %>
-              <% if is_authorized?(a) %>
                 <tr>
                   <td>
-                      <%= link_to a.fullname, attendee_path(a) %>
+                    <%= link_to a.fullname, attendee_path(a) %>
                   </td>
                 </tr>
-              <% end %>
-              <% end %>
+            <% end %>
         </table>
       </div>
     <% end %>
