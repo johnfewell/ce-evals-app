@@ -29,4 +29,6 @@
 
 tr:nth-child(even) {background-color: #f2f2f2;}
 
-th {font-weight: bold;}
+.data-table tbody th { width: auto }
+
+.data-table th {font-weight: bold;}
