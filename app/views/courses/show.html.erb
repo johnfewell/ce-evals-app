@@ -1,6 +1,8 @@
+<% if is_authorized?(@course) && @course.complete? %>
+  <%= link_to 'View Report', report_course_path(@course), class: "btn btn-primary" %>
+<% end %>
 <h2><%= @course.title %></h2>
 <div class="mx-5">
-
   <ul>
     <li>Instructor: <%= link_to @course.instructor.fullname, @course.instructor %></a></li>
     <li>Location: <%= @course.location %></li>
@@ -12,10 +14,15 @@
     <li>Learning Objective 3: <%= @course.learning_objective_3 %></li>
   </ul>
 </div>
+</br>
 
-<% # !!! Replace with is_authorized? %>
+<%# !!! ayo, finish dis %>
 
-<% if current_user.superadmin_role? || current_user.instructor_role? %>
+<% if is_attendee? %>
+  button_to "Register for this course" class="btn btn-primary", controller => attendees, action => update
+<% end %>
+
+<% if is_authorized?(@course) %>
 
   <h3>Attendees</h3>
     <div class="mx-5">
@@ -24,49 +31,41 @@
           <li>
             <%= link_to s.fullname, attendee_path(s), itemprop: "name codeRepository" %>
           </li>
-          <% end %>
+          <% end %>  link_to report_course_path(@course) class="btn btn-primary"
       </ul>
     </div>
   <br />
 
-  <h3>Evaluation</h3>
-  <div class="mx-5">
+  <h3>Evaluation Name:
+
       <% if !@course.evaluation.nil?  %>
-        <h4><%= @course.evaluation.name %></h4>
+        <%= @course.evaluation.name %></h3>
       <% else %>
-        <%= link_to "Not assigned - Create one", evaluations_url%>
+        <%= link_to "Not assigned - Create one", new_evaluation_path%></h3>
       <% end %>
-    </div>
 
   <% if @course.complete? %>
-    <h3>Finished Evaluations</h3>
-    <div class="mx-5">
+    <br />
+    <h3>Finished Evaluations:
         <% if !@course.finished_evaluations.nil?  %>
-          <h4><%= @course.finished_evaluations.count %></h4>
+          <%= @course.finished_evaluations.count %></h3>
         <% else %>
-          <h4>None completed</h4>
+          None completed</h3>
         <% end %>
-      </div>
 
   <% end %>
-  <h2>Import Attendees</h2>
+  <br />
+  <h3>Import Attendees</h3>
+  <br>
   <%= form_tag import_courses_path, id: params[:id], multipart: true do %>
   <%= hidden_field_tag :id , params[:id] %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import CSV" %>
   <% end %>
 
-<% end %>
+  <br />
+  <br />
 
-<%# !!! ayo, finish dis %>
-<% if is_attendee? %>
-  button_to "Register for this course" class="btn btn-primary", controller => attendees, action => update
-<% end %>
-
-<br />
-<br />
-
-<% if is_superadmin? %>
   <%= link_to 'Edit', edit_course_path(@course), class: "btn" %> |
   <%= link_to 'Destroy', @course, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

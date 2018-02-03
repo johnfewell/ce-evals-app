@@ -108,8 +108,12 @@ end
   end
 
   def destroy
-    @course.destroy
-    redirect_to courses_url, notice: 'Course was successfully deleted.'
+    if @course.finished_evaluations.any? && current_user.instructor_role
+      redirect_to @course, alert: "You can't delete this course, it has finished evalutions. Contact the admin if you think it should be deleted."
+    else
+      #@course.destroy
+      redirect_to courses_url, notice: 'Course was successfully deleted.'
+    end
   end
 
 private
