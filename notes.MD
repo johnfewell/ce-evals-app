@@ -5,20 +5,21 @@
 
 - [x] Add the assigned evaluation to the course show page
 - [x] fix profile page for Instructors
-- [ ] questions have many issues. 
-- [ ] make dashboard page for superadmin
-- [ ] Instructors should be able to edit courses that are unpublished but with dates that are passed.
+- [x] Instructors should be able to edit courses that are unpublished but with dates that are passed.
 - [x] Evaluations show page needs work: http://localhost:3000/evaluations/1
+- [x] Scope the Evaluations page so that you aren't taken to all evals when you are in assign mode.
+- [ ] Evaluations' questions: should not be able to edit questions that are assigned to an eval. You should only be able to see questions that you have created.  
+- [ ] make dashboard page for superadmin
+- [ ] The evaluation answer page looks terrible
+- [ ] fix the course show page for attendees so that they can see all of the courses that are published and can sign up for them
+- [ ] give attendees and instructors some way to edit their names and titles
 - [ ] Add some page for new users who aren't assigned yet, make it so they can't take many actions on the site
+- [ ] enable attendees to register for courses on a course show page
 - [ ] Make it so that you can't reassign evaluations once there are associated finished_evaluations
-- [ ] Scope the Evaluations page so that you aren't taken to all evals when you are in assign mode.
 - [ ] make it so you can't fill out an evaluation for the same course twice as the same user
 - [ ] Finish auth stuff
 - [ ] Improve report view
 - [ ] Eliminate unneeded routes
-- [ ] DRY it
-- [ ] Partial it
-- [ ] Style
 
 ## define what I want all of the routes to do
 

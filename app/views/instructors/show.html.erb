@@ -26,7 +26,7 @@
           <% if is_authorized?(@instructor) %>
             <td>
             <% if c.evaluation.nil? %>
-                <%= link_to "Assign Eval", evaluations_path %>
+                <%= link_to "Assign Eval", unassigned_evaluations_path %>
             <% else %>
               <% if c.complete? %>
                 <%= link_to "Report", report_course_path(c) %>
