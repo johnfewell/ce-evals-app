@@ -5,9 +5,11 @@
 
      <%= image_tag "ce-cert-logo.png" %>
      <%= link_to "Home", home(current_user), :class => home_page?(home(current_user)) %>
+     <% if is_superadmin? %>
+      <%= link_to "Instructors", instructors_path, :class => current_class?(instructors_path)  %>
+     <% end %>
      <% unless is_attendee? %>
       <%= link_to "Courses", courses_path, :class => current_class?(courses_path) %>
-      <%= link_to "Instructors", instructors_path, :class => current_class?(instructors_path)  %>
       <%= link_to "Attendees", attendees_path, :class => current_class?(attendees_path)  %>
       <%= link_to "Evaluations", evaluations_path, :class => current_class?(evaluations_path)  %>
      <% end %>

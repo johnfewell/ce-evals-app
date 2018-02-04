@@ -6,3 +6,7 @@ Suffix: <%= @instructor.suffix %></br>
 </h3>
 </br>
 <%= link_to 'Edit Profile', edit_instructor_path(@instructor), class: 'btn'%>
+</br></br>
+<h3>Email: <%= current_user.email %></h3>
+</br>
+<%= link_to 'Update Login Email or Password', edit_user_registration_path, class: 'btn'%>
