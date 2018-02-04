@@ -18,13 +18,6 @@
 </div>
 </br>
 
-<%# !!! ayo, finish dis %>
-
-<% if is_attendee? %>
-
-  button_to "Register for this course" class="btn btn-primary", controller => attendees, action => update
-<% end %>
-
 <% if is_authorized?(@course) %>
 
   <h3>Attendees</h3>

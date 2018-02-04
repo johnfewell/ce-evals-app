@@ -31,11 +31,13 @@ class FinishedEvaluationsController < ApplicationController
   def create
     @finished_evaluation = FinishedEvaluation.new(finished_evaluation_params)
     if @finished_evaluation.save
-      redirect_to @finished_evaluation, notice: 'Evaluation was successfully created.'
+      redirect_to attendee_path(current_user.attendee.id), notice: 'Evaluation was successfully created.'
     else
       render action: 'new'
     end
   end
+
+# !!! there should not be an update path
 
   def update
     if @finished_evaluation.update(evaluation_params)
