@@ -1,0 +1,8 @@
+<h3>You are an attendee. </br></br>
+Title: <%= @attendee.title %></br>
+First name: <%= @attendee.first_name %></br>
+Last name: <%= @attendee.last_name %></br>
+Suffix: <%= @attendee.suffix %></br>
+</h3>
+</br>
+<%= link_to 'Edit Profile', edit_attendee_path(@attendee), class: 'btn'%>

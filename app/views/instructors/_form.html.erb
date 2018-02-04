@@ -15,14 +15,14 @@
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %><br>
     <%= f.label :last_name %><br>
-    <%= f.text_area :last_name %><br>
+    <%= f.text_field :last_name %><br>
     <%= f.label :title %><br>
-    <%= f.text_area :title %><br>
+    <%= f.text_field :title %><br>
     <%= f.label :suffix %><br>
-    <%= f.text_area :suffix %><br>
+    <%= f.text_field :suffix %><br>
   </div>
-
+</br>
   <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
+    <%= f.submit 'Update Profile', :class => 'btn btn-primary' %>
   </div>
 <% end %>

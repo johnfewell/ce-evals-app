@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-  before_action :set_attendee, only: [:show, :edit, :update, :destroy, :certificate]
+  before_action :set_attendee, only: [:show, :profile, :edit, :update, :destroy, :certificate]
   before_action :set_courses, only: [:new, :edit]
   before_action :set_course, only: [:certificate]
   before_action :is_authorized?
@@ -9,6 +9,9 @@ class AttendeesController < ApplicationController
   end
 
   def show
+  end
+
+  def profile
   end
 
   def certificate
@@ -32,7 +35,7 @@ class AttendeesController < ApplicationController
 
   def update
     if @attendee.update(attendee_params)
-      redirect_to @attendee, notice: 'Attendee was successfully updated.'
+      redirect_to profile_instructor_path(@attendee), notice: 'Attendee was successfully updated.'
     else
       render action: 'edit'
     end

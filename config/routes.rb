@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
    resources :attendees do
      collection {post :import}
+     get 'profile', on: :member
      resources :evaluations do
        get 'answers', on: :member
      end
@@ -30,7 +31,10 @@ Rails.application.routes.draw do
      end
    end
 
-   resources :instructors
+   resources :instructors do
+     get 'profile', on: :member
+   end
+
    resources :questions
 
    resources :evaluations do

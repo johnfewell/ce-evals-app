@@ -1,11 +1,14 @@
 class InstructorsController < ApplicationController
-  before_action :set_instructor, only: [:show, :edit, :update, :destroy]
+  before_action :set_instructor, only: [:show, :profile, :edit, :update, :destroy]
 
   def index
     @instructors = Instructor.all
   end
 
   def show
+  end
+
+  def profile
   end
 
   def new
@@ -26,7 +29,7 @@ class InstructorsController < ApplicationController
 
   def update
     if @instructor.update(instructor_params)
-      redirect_to @instructor, notice: 'Instructor was successfully updated.'
+      redirect_to profile_instructor_path(@instructor), notice: 'Instructor was successfully updated.'
     else
       render action: 'edit'
     end

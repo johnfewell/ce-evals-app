@@ -4,6 +4,21 @@ class ApplicationController < ActionController::Base
   skip_before_action :authenticate_user!, :only => [:index]
 
   def index
+    unless current_user.nil?
+      redirect_to home(current_user)
+    end
+  end
+
+  private
+
+  def home(user)
+    if current_user.attendee_role
+      attendee_url(user.attendee)
+    elsif current_user.instructor_role
+      instructor_url(user.instructor)
+    else current_user.superadmin_role
+      admin_path
+    end
   end
 
   protected

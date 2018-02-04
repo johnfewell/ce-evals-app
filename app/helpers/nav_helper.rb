@@ -8,4 +8,8 @@ module NavHelper
     request.path == test_path ? 'tabnav-tab selected' : 'tabnav-tab'
   end
 
+  def home_page?(test_path)
+    request.path == test_path ? 'UnderlineNav-item selected' : 'UnderlineNav-item'
+  end
+
 end

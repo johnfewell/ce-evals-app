@@ -1,0 +1,8 @@
+<h3>You are an instructor. </br></br>
+Title: <%= @instructor.title %></br>
+First name: <%= @instructor.first_name %></br>
+Last name: <%= @instructor.last_name %></br>
+Suffix: <%= @instructor.suffix %></br>
+</h3>
+</br>
+<%= link_to 'Edit Profile', edit_instructor_path(@instructor), class: 'btn'%>
