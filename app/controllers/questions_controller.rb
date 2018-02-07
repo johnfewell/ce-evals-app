@@ -24,6 +24,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @question.instructor_id = current_user.instructor.id
     if @question.save
       redirect_to questions_path, notice: 'Question was successfully created.'
     else
@@ -32,8 +33,8 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @question.instructor_id = current_user.instructor.id
     if @question.update(question_params)
-      binding.pry
       redirect_to edit_evaluation_path(@evaluation), notice: 'Question was successfully updated.'
     else
       render :edit

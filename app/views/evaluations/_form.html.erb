@@ -16,11 +16,10 @@
     <%= f.text_field :name %><br>
   </div>
 
-
 <h3>Questions:</h3>
   <div class="field mx-5">
 
-    <%= f.collection_check_boxes(:question_ids, Question.all, :id, :content) do |q| %>
+    <%= f.collection_check_boxes(:question_ids, questions_by_instructor, :id, :content) do |q| %>
       <%= q.label class:"form-checkbox" do%>
         <%=q.check_box + q.text%>
       <% end %>
@@ -46,7 +45,6 @@
     <% end %>
   </div>
   <br>
-
 
     <div class="actions">
       <%= f.submit :class => 'btn btn-primary' %>
