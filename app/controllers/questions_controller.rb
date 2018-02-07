@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :set_evaluation, only: [:update]
 
   def index
@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(course_params)
+    @question = Question.new(question_params)
     if @question.save
       redirect_to questions_path, notice: 'Question was successfully created.'
     else
@@ -32,7 +32,8 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if @question.update(course_params)
+    if @question.update(question_params)
+      binding.pry
       redirect_to edit_evaluation_path(@evaluation), notice: 'Question was successfully updated.'
     else
       render :edit
@@ -45,12 +46,12 @@ class QuestionsController < ApplicationController
   end
 
 private
-  def set_course
+  def set_question
     @question = Question.find(params[:id])
   end
 
-  def course_params
-    params.require(:question).permit(:content, :evaluation_id, :refer_id, :text)
+  def question_params
+    params.require(:question).permit(:content, :ref_id, :text)
   end
 
   def set_evaluation
