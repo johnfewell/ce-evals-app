@@ -1,5 +1,7 @@
 class EvaluationsController < ApplicationController
    before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :answers]
+   #before_action :is_authorized?
+
 
   def index
     @evaluations = Evaluation.all
@@ -18,20 +20,26 @@ class EvaluationsController < ApplicationController
   end
 
   def answers
-    @attendee = Attendee.find(params[:attendee_id])
-    evaluation = Evaluation.find(params[:id])
-    @course = Course.find(evaluation.course.id)
+    if current_user.instructor_role?
+      redirect_to profile_instructor_path, alert: "You can't complete evaluation forms."
+    elsif params[:attendee_id] == current_user.attendee.id || current_user.superadmin_role?
+      @attendee = Attendee.find(params[:attendee_id])
+      evaluation = Evaluation.find(params[:id])
+      @course = Course.find(evaluation.course.id)
 
-    if !@attendee.courses.include?(@course)
-      redirect_to @attendee, notice: "#{@attendee.fullname} was not registered for this course."
+      if !@attendee.courses.include?(@course)
+        redirect_to @attendee, alert: "#{@attendee.fullname} was not registered for this course."
+      end
+
+      if !@course.complete?
+        redirect_to @attendee, alert: "#{@course.title} is not over yet."
+      end
+
+      @finished_evaluation = FinishedEvaluation.new
+      @questions = @evaluation.questions
+    else
+      redirect_to root_path, alert: "Something weird happened"
     end
-
-    if !@course.complete?
-      redirect_to @attendee, notice: "#{@course.title} is not over yet."
-    end
-
-    @finished_evaluation = FinishedEvaluation.new
-    @questions = @evaluation.questions
   end
 
   def new
@@ -71,6 +79,22 @@ class EvaluationsController < ApplicationController
 
   def evaluation_params
     params.require(:evaluation).permit(:name, :course_id, :question_ids => [], :questions_attributes => [:content])
+  end
+
+  def is_authorized?
+    if current_user.superadmin_role
+      true
+    elsif current_user.instructor_role
+      true
+    elsif @attendee
+      if current_user.id == @attendee.user_id
+        true
+      else
+        redirect_to profile_url, alert: "You aren't authorized to see that page."
+      end
+    else
+      redirect_to root_url, alert: "Something weird happened."
+    end
   end
 
 end
