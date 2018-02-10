@@ -23,7 +23,7 @@
       <%= q.label class:"form-checkbox" do%>
         <%=q.check_box + q.text%>
       <% end %>
-      | <%=  link_to 'Edit Question', edit_question_path(q.object.id, :ref_id => params[:id]) %></br>
+      | <%= link_to 'Edit Question', edit_question_path(q.object.id, :ref_id => params[:id]) %></br>
     <% end %>
     <br>
   </div>

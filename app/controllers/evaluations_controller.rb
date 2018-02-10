@@ -1,7 +1,6 @@
 class EvaluationsController < ApplicationController
    before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :answers]
-   #before_action :is_authorized?
-
+   before_action :is_authorized?, only: [:index, :new, :show, :edit, :update, :destroy]
 
   def index
     @evaluations = Evaluation.all
@@ -20,9 +19,12 @@ class EvaluationsController < ApplicationController
   end
 
   def answers
+    #prevent instructors from completing evaluations
     if current_user.instructor_role?
       redirect_to profile_instructor_path, alert: "You can't complete evaluation forms."
-    elsif params[:attendee_id] == current_user.attendee.id || current_user.superadmin_role?
+
+    #checks to see if the current_user is acess
+    elsif params[:attendee_id] == current_user.attendee.id.to_s || current_user.superadmin_role?
       @attendee = Attendee.find(params[:attendee_id])
       evaluation = Evaluation.find(params[:id])
       @course = Course.find(evaluation.course.id)
@@ -38,7 +40,7 @@ class EvaluationsController < ApplicationController
       @finished_evaluation = FinishedEvaluation.new
       @questions = @evaluation.questions
     else
-      redirect_to root_path, alert: "Something weird happened"
+      redirect_to root_path, alert: "Don't try to URL hack me."
     end
   end
 
@@ -86,12 +88,8 @@ class EvaluationsController < ApplicationController
       true
     elsif current_user.instructor_role
       true
-    elsif @attendee
-      if current_user.id == @attendee.user_id
-        true
-      else
-        redirect_to profile_url, alert: "You aren't authorized to see that page."
-      end
+    elsif current_user.attendee_role
+      redirect_to profile_attendee_path(current_user.attendee.id), alert: "You aren't authorized to see that page."
     else
       redirect_to root_url, alert: "Something weird happened."
     end

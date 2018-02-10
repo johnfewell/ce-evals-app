@@ -31,6 +31,7 @@ class AttendeesController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -78,7 +79,7 @@ private
       if current_user.id == @attendee.user_id
         true
       else
-        redirect_to profile_url, alert: "You aren't authorized to see that page."
+        redirect_to profile_attendee_path(current_user.attendee.id), alert: "You aren't authorized to see that page."
       end
     else
       redirect_to root_url, alert: "Something weird happened."
