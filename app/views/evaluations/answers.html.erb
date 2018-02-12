@@ -1,4 +1,5 @@
-<h1>Evaluation for <%= @course.title %></h1>
+<h2>Evaluation for <%= @course.title %></h2>
+<br />
 <%= form_for(@finished_evaluation, url: {controller: "finished_evaluations", action: "create"}, method: :post) do |f| %>
   <h5>The learning objectives for this course were:</h5>
   <div class="mx-5"
@@ -15,11 +16,11 @@
   </ul>
 </div>
 <br />
-  <table>
+  <table class="data-table">
     <thead>
       <tr>
-        <td>Questions</td>
-        <td>Answer</td>
+        <th>Question</th>
+        <th>Answer</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +28,6 @@
       <tr>
         <td><%= question.content %></td>
         <td>
-
             <%= f.fields_for :answers, question.answers.create(attendee: @attendee) do |a| %>
               <% if question.text? %>
                 <%= a.text_area :content %>
@@ -44,15 +44,14 @@
         </td>
       </tr>
 
-
-
       <% end %>
         <%= f.hidden_field :evaluation_id, :value => params[:id] %>
         <%= f.hidden_field :course_id, :value => @evaluation.course.id %>
         <%= f.hidden_field :attendee_id, :value => @attendee.id %>
       </tbody>
     </table>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <br />
+    <div class="actions">
+      <%= f.submit :class => 'btn btn-primary' %>
+    </div>
 <% end -%>

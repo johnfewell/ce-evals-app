@@ -27,7 +27,11 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     # sets the owner of the question to the current user's instructor id
-    @question.instructor_id = current_user.instructor.id
+    if current_user.instructor_role?
+      @question.instructor_id = current_user.instructor.id
+    elsif current_user.superadmin_role?
+      @question.instructor_id = 1
+    end
 
     if @question.save
       redirect_to questions_path, notice: 'Question was successfully created.'
