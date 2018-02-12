@@ -2,7 +2,7 @@ require 'pry'
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy, :report]
   before_action :is_authorized?, only: [:edit, :update, :destroy, :draft]
-  before_action :is_authorized_index_new, only: [:new, :index, :report]
+  before_action :is_authorized_index_new, only: [:new, :report]
 
   def index
     @courses = Course.all
@@ -137,6 +137,8 @@ private
       if current_user.instructor.courses.find(params[:id]).nil?
         redirect_to root_path, alert: "You can't do that"
       end
+    elsif current_user.superadmin_role?
+      true
     else
       redirect_to root_path, alert: "Something bizzare happened"
     end

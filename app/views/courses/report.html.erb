@@ -1,21 +1,44 @@
 <h2><%= @course.title %> - Report</h2>
+<br />
+Number of attendees: <%= @course.attendees.count  %></br>
+Percent with complete evaluations: <%= @evaluation_completed_percent %>%
+<br /><br />
+<h4>Quantitative Questions</h4>
+<table class="data-table">
+  <tr>
+    <th>Question</th>
+    <th>Average Rating</th>
+  </tr>
 
-<h4># of attendees: <%= @course.attendees.count  %></h4>
-<h4>% with complete evaluations: <%= @evaluation_completed_percent %>%</h4>
-<br />
-<h4>Quantitative Qs:</h4>
-<br />
-<% @course.finished_evaluations.last.questions_ratings_hash.each do | q, r |%>
-  <%= q %>: <%= r %><br />
-<% end %>
+  <% @course.finished_evaluations.last.questions_ratings_hash.each do | question, rating |%>
+  <tr>
+    <td>
+      <%= question %>
+    </td>
+
+    <td>
+      <%= rating %>
+    </td>
+  </tr>
+
+  <% end %>
+</table>
+
 <br />
 
-<h4>Qualitative Qs:</h4>
-<br />
+<h4>Qualitative Questions</h4>
 
 <% @questions_answers_hash.each do |k, v|%>
-  <%= k %><br /><br />
+<table class="data-table">
+  <tr>
+    <th>Question: <%= k %></th>
+  </tr>
   <% v.each do |v| %>
-    <%= v %><br />
+    <tr>
+      <td>
+        <%= v %>
+      </td>
+    </tr>
   <% end %>
+</table>
 <% end %>
