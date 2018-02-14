@@ -6,9 +6,18 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'admin#index'
 
+
+  # resources :users, :only => [:index, :update] do
+  #   get :me, on: :collection
+  # end
+
+
    resources :users do
      patch 'update_role', on: :member
      get 'assign_role', on: :member
+      collection do
+        get 'unassigned'
+      end
    end
 
    resources :attendees do

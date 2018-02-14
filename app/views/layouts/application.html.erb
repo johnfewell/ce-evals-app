@@ -10,7 +10,11 @@
 
   <body>
 
-    <% if user_signed_in? %>
+    <% if current_user.nil? %>
+      <%= render "logged_out_header" %>
+    <% elsif current_user.instructor.nil? && current_user.attendee.nil? %>
+      <%= render "unassigned_user_nav" %>
+    <% elsif !current_user.nil? %>
       <%= render "nav" %>
     <% else %>
       <%= render "logged_out_header" %>

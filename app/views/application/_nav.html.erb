@@ -2,7 +2,6 @@
 
  <div class="container-lg UnderlineNav-container">
    <div class="UnderlineNav-body">
-
      <%= image_tag "ce-cert-logo.png" %>
      <%= link_to "Home", home(current_user), :class => home_page?(home(current_user)) %>
      <% if is_superadmin? %>

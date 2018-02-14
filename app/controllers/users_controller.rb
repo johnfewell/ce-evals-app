@@ -27,6 +27,9 @@ class UsersController < ApplicationController
   def assign_role
   end
 
+  def unassigned
+  end
+
   def update_role
     if !user_params[:attendee_id].empty? && !user_params[:instructor_id].empty?
       redirect_to update_role_user_path, notice: 'You must choose either a instructor or attendee role, not both.'
