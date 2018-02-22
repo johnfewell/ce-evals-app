@@ -11,12 +11,13 @@ Attendees can log in and evaluate courses they have been registered for. After t
 ## Installation
 
 Clone this repository and run
-''' bundle install
+
+```bundle install
 rails db:migrate
 npm install --save primer
 npm install --save primer-forms
 npm install --save primer-navigation
-npm install --save octicons'''
+npm install --save octicons```
 
 ## License
 
