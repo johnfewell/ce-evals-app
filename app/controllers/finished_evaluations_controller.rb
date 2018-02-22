@@ -1,5 +1,4 @@
 class FinishedEvaluationsController < ApplicationController
-   #before_action :set_evaluation, only: [:answers]
    before_action :set_finished_evaluation, only: [:show, :edit, :update, :destroy]
    before_action :set_attendee, only: [:show]
    before_action :is_authorized, only: [:index, :show, :edit, :update, :destroy]
@@ -37,15 +36,13 @@ class FinishedEvaluationsController < ApplicationController
     end
   end
 
-# !!! there should not be an update path
-
-  def update
-    if @finished_evaluation.update(evaluation_params)
-      redirect_to @finished_evaluation, notice: 'Evaluation was successfully updated.'
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @finished_evaluation.update(evaluation_params)
+  #     redirect_to @finished_evaluation, notice: 'Evaluation was successfully updated.'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     @finished_evaluation.destroy

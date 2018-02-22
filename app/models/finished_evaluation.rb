@@ -36,9 +36,6 @@ class FinishedEvaluation < ApplicationRecord
     end
     pairs = keys.zip(values)
     pairs
-    # h = pairs.group_by(&:first)
-    # h.keys.each { |k| h[k] = h[k].map(&:last) }
-    # h
   end
 
 end

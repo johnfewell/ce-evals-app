@@ -36,7 +36,7 @@ class AttendeesController < ApplicationController
 
   def update
     if @attendee.update(attendee_params)
-      redirect_to profile_instructor_path(@attendee), notice: 'Attendee was successfully updated.'
+      redirect_to profile_attendee_path(@attendee), notice: 'Attendee was successfully updated.'
     else
       render action: 'edit'
     end

@@ -1,4 +1,4 @@
-module FuntimesHelper
+module AuthorizationHelper
 
   def is_superadmin?
     current_user.superadmin_role
