@@ -17,7 +17,8 @@ rails db:migrate
 npm install --save primer
 npm install --save primer-forms
 npm install --save primer-navigation
-npm install --save octicons```
+npm install --save octicons
+```
 
 ## License
 
