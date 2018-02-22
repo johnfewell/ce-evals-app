@@ -13,7 +13,10 @@ Attendees can log in and evaluate courses they have been registered for. After t
 Clone this repository and run
 ''' bundle install
 rails db:migrate
-rails db:seed '''
+npm install --save primer
+npm install --save primer-forms
+npm install --save primer-navigation
+npm install --save octicons'''
 
 ## License
 
@@ -33,7 +36,7 @@ Instructors can edit their class details if it hasn't ended yet. They can also c
 
 ## Attendees
 
-Attendees simply log in, their courses, and if a course is complete, they can complete the evaluation and download a pdf of their certificate. 
+Attendees simply log in, their courses, and if a course is complete, they can complete the evaluation and download a pdf of their certificate.
 
 ## Admin User
 
