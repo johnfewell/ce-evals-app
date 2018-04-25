@@ -1,6 +1,11 @@
 <h2>Admin Dashboard</h2>
 
-
-
-
-Completed courses_url
+<% User.all.each do |u| %>
+  <ul>
+   <% if !user_assigned?(u) %>
+     <li>
+       <%= u.first_name %> <%= u.last_name %> | <%= link_to "Edit Role", assign_role_user_url(u) %>
+     </li>
+  <% end %>
+  </ul>
+<% end %>
