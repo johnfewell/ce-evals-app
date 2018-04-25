@@ -4,6 +4,10 @@ class EvaluationsController < ApplicationController
 
   def index
     @evaluations = Evaluation.all
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @evaluations, status: 200 }
+    end
   end
 
   def show
@@ -12,10 +16,18 @@ class EvaluationsController < ApplicationController
 
   def assigned
     @evaluations = Evaluation.assigned
+    respond_to do |f|
+      f.html { render :assigned }
+      f.json { render json: @evaluations, status: 200 }
+    end
   end
 
   def unassigned
     @evaluations = Evaluation.unassigned
+    respond_to do |f|
+      f.html { render :unassigned }
+      f.json { render json: @evaluations, status: 200 }
+    end
   end
 
   def answers
