@@ -1,21 +1,56 @@
 <%= render 'evaluations_subnav' %>
 
  <ul>
-    <% @evaluations.each do |e| %>
-    <% if is_authorized?(e) %>
-      <li class="col-12 d-block width-full py-4 border-bottom public source">
+    <div id="evaluations-main">
+
+    </div>
+  </ul>
+
+<script type="text/javascript" charset="utf-8">
+
+  $(function() {
+      fetch(`/evaluations.json`, {
+          headers : {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           }
+        })
+      .then(res => res.json())
+      .then(data => addEvalsToDom(data))
+
+    function addEvalsToDom(evalsArray) {
+    	evalsArray.forEach(function(eval) {
+        const newEval = new Evaluation(eval.name, eval.course.title, eval.course.start_date)
+        $('#evaluations-main').append(newEval.renderEval())
+    	})
+    }
+
+    function Evaluation(name, course, start_date){
+      this.name = name
+      this.course = course
+      this.start_date = start_date
+    }
+
+    //formatter
+
+    Evaluation.prototype.renderEval = function() {
+      return `
+        <li class="col-12 d-block width-full py-4 border-bottom public source">
           <div class="d-inline-block mb-1">
             <h3>
-              <%= link_to e.name, evaluation_path(e), itemprop: "name codeRepository" %>
+              ${this.name} itemprop: "name codeRepository"
             </h3>
           </div>
           <div class="f6 text-gray mt-2">
                 <span class="mr-3" itemprop="programmingLanguage">
-                  Class: <%= e.course.title unless e.course.nil? %>
+                  Class: ${this.course}
                 </span>
-              Date: <%= e.course.start_date unless e.course.nil? %>
+              Date: ${this.start_date}
           </div>
         </li>
-      <% end %>
-    <% end %>
-  </ul>
+      `
+    }
+
+})
+
+</script>
