@@ -12,6 +12,10 @@ class EvaluationsController < ApplicationController
 
   def show
     @questions = @evaluation.questions
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @evaluation, status: 200 }
+    end
   end
 
   def assigned
