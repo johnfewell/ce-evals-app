@@ -45,6 +45,9 @@ gem 'octicons_helper'
 
 gem 'pdfkit'
 
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+
 gem 'render_anywhere', :require => false
 
 # Use Capistrano for deployment
