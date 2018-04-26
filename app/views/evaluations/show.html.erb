@@ -38,12 +38,13 @@ $(function() {
 
 function nextEvaluation() {
   $(".js-next").on("click", function(event){
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    console.log("/evaluations/" + nextId + ".json", function(evaluation) {
-      
+    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+      $.get("/evaluations/" + nextId + ".json", function(evaluation){
+        console.log(evaluation)
+      })
     });
-    event.preventDefault();
-  });
-}
+    // event.preventDefault()
+  }
+
 
 </script>
