@@ -1,6 +1,7 @@
 class EvaluationSerializer < ActiveModel::Serializer
   attributes :id, :name
   belongs_to :course, optional: true
+  has_many :questions
 end
 
 # create_table "evaluations", force: :cascade do |t|
