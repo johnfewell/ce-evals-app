@@ -1,8 +1,8 @@
 
-<h2>Evaluation: <%= @evaluation.name %></h2>
+<h2 id="eval-name">Evaluation: <%= @evaluation.name %></h2>
 <br />
 <h4>Questions</h4>
-<div class="mx-5">
+<div class="mx-5" id="questions">
   <ul>
       <% @questions.each do |q| %>
       <li>
@@ -36,15 +36,37 @@ $(function() {
   nextEvaluation();
 });
 
+
+
+
 function nextEvaluation() {
   $(".js-next").on("click", function(event){
     let nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/evaluations/" + nextId + ".json", function(evaluation){
-        console.log(evaluation)
+        addEvalToDom(evaluation)
       })
+      event.preventDefault()
     });
-    // event.preventDefault()
   }
 
+  function addEvalToDom(eval) {
+      const newEval = new EvaluationShow(eval.id, eval.name, eval.course.title, eval.course.start_date, eval.questions)
+      $('#eval-name').replaceWith(newEval.renderEvalShow())
+
+    }
+
+  function EvaluationShow(id, name, course, start_date, questions){
+    this.id = id
+    this.name = name
+    this.course = course
+    this.start_date = start_date
+    this.questions = questions
+  }
+
+  EvaluationShow.prototype.renderEvalShow = function() {
+    return `
+    <h1>${this.name}</h1>
+      `
+  }
 
 </script>
