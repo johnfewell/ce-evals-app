@@ -1,5 +1,5 @@
 <ul>
-   <div id="evaluation-main">
+   <div id="evaluation-main" data-id="<%= params[:id] %>">
 
    </div>
  </ul>
@@ -7,7 +7,8 @@
 <script type="text/javascript" charset="utf-8">
 
  $(function() {
-   $.get("/evaluations/" + 5 + ".json", function(evaluation){
+   const evalId = parseInt($("#evaluation-main").attr("data-id"))
+   $.get("/evaluations/" + evalId + ".json", function(evaluation){
       addEvalToDom(evaluation)
     })
 })
