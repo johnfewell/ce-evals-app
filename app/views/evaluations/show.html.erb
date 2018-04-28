@@ -1,5 +1,55 @@
+<ul>
+   <div id="evaluation-main">
 
-<h2 id="eval-name">Evaluation: <%= @evaluation.name %></h2>
+   </div>
+ </ul>
+
+<script type="text/javascript" charset="utf-8">
+
+ $(function() {
+   $.get("/evaluations/" + 5 + ".json", function(evaluation){
+      addEvalToDom(evaluation)
+    })
+})
+
+   function addEvalToDom(eval) {
+        const newEval = new Evaluation(eval.id, eval.name, eval.course.title, eval.course.start_date, eval.questions)
+       $('#evaluation-main').append(newEval.renderEval())
+   }
+
+   function Evaluation(id, name, course, start_date, questions){
+     this.id = id
+     this.name = name
+     this.course = course
+     this.start_date = start_date
+     this.questions = questions
+   }
+
+   Evaluation.prototype.renderEval = function() {
+     return `
+       <li class="col-12 d-block width-full py-4 border-bottom public source">
+         <div class="d-inline-block mb-1">
+           <h3>
+              ${this.name}
+           </h3>
+         </div>
+         <div class="f6 text-gray mt-2">
+               <span class="mr-3" itemprop="programmingLanguage">
+                 Class: ${this.course}
+               </span>
+             Date: ${this.start_date}
+         </div>
+         <div id="questions">
+         ${this.questions}
+         </div>
+       </li>
+     `
+   }
+
+
+</script>
+
+<!-- <h2 id="eval-name">Evaluation: <%= @evaluation.name %></h2>
 <br />
 <h4>Questions</h4>
 <div class="mx-5" id="questions">
@@ -28,7 +78,7 @@
   <%= link_to 'Destroy', @evaluation, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
-<a href="#" class="js-next" data-id="<%=@evaluation.id%>">Next Evaluation</a>
+<a href="#" class="js-next" data-id="<%=@evaluation.id%>">Next Evaluation</a> -->
 
 <!-- <script type="text/javascript" charset="utf-8">
 // does not work, but with with prototype
@@ -67,7 +117,7 @@ $(function () {
 
 
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
 // Works without prototype
 $(function () {
   $(".js-next").on("click", function(event) {
@@ -79,4 +129,4 @@ $(function () {
     event.preventDefault()
   });
 });
-</script>
+</script> -->
