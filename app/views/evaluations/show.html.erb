@@ -31,13 +31,25 @@
 <a href="#" class="js-next" data-id="<%=@evaluation.id%>">Next Evaluation</a>
 
 <script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function(event) {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+  $.get("/evaluations/" + nextId + ".json", function(evaluation){
+        $("#eval-name").text(evaluation.name);
+
+      $(".js-next").attr("data-id", evaluation.id);
+    });
+    event.preventDefault()
+  });
+});
+</script>
+
+
+<!-- <script type="text/javascript" charset="utf-8">
 
 $(function() {
   nextEvaluation();
 });
-
-
-
 
 function nextEvaluation() {
   $(".js-next").on("click", function(event){
@@ -45,6 +57,7 @@ function nextEvaluation() {
       $.get("/evaluations/" + nextId + ".json", function(evaluation){
         addEvalToDom(evaluation)
       })
+      $(".js-next").attr("data-id", nextId);
       event.preventDefault()
     });
   }
@@ -52,7 +65,6 @@ function nextEvaluation() {
   function addEvalToDom(eval) {
       const newEval = new EvaluationShow(eval.id, eval.name, eval.course.title, eval.course.start_date, eval.questions)
       $('#eval-name').replaceWith(newEval.renderEvalShow())
-
     }
 
   function EvaluationShow(id, name, course, start_date, questions){
@@ -69,4 +81,4 @@ function nextEvaluation() {
       `
   }
 
-</script>
+</script> -->
