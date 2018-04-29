@@ -1,22 +1,32 @@
-<ul>
    <div id="evaluation-main" data-id="<%= params[:id] %>">
 
    </div>
- </ul>
+<a href="#" class="js-next" data-id="<%=@evaluation.id%>">Next Evaluation</a>
 
 <script type="text/javascript" charset="utf-8">
 
- $(function() {
-   const evalId = parseInt($("#evaluation-main").attr("data-id"))
-   $.get("/evaluations/" + evalId + ".json", function(evaluation){
-      addEvalToDom(evaluation)
+   $(function() {
+     const evalId = parseInt($("#evaluation-main").attr("data-id"))
+     $.get("/evaluations/" + evalId + ".json", function(evaluation){
+        addEvalToDom(evaluation)
+      })
+      addEventHanlder()
+  })
 
+  function addEventHanlder(){
+    $(".js-next").on("click", function(event) {
+      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/evaluations/" + nextId + ".json", function(evaluation){
+          addEvalToDom(evaluation)
+          $(".js-next").attr("data-id", evaluation.id)
+      });
+      event.preventDefault()
     })
-})
+  }
 
    function addEvalToDom(eval) {
-        const newEval = new Evaluation(eval.id, eval.name, eval.course.title, eval.course.start_date, eval.questions)
-       $('#evaluation-main').append(newEval.renderEval())
+        let newEval = new Evaluation(eval.id, eval.name, eval.course.title, eval.course.start_date, eval.questions)
+       $('#evaluation-main').html(newEval.renderEval())
    }
 
    function Evaluation(id, name, course, start_date, questions){
@@ -55,85 +65,3 @@
    }
 
 </script>
-
-<!-- <h2 id="eval-name">Evaluation: <%= @evaluation.name %></h2>
-<br />
-<h4>Questions</h4>
-<div class="mx-5" id="questions">
-  <ul>
-      <% @questions.each do |q| %>
-      <li>
-        <%= q.content %>
-      </li>
-      <% end %>
-  </ul>
-</div>
-<br />
-
-<h4>Assigned to Course</h4>
-  <div class="mx-5">
-      <% if !@evaluation.course.nil? %>
-        <%= link_to @evaluation.course.title, @evaluation %>
-      <% else %>
-        Not assigned
-      <% end %>
-    </div>
-<br />
-
-<% if is_authorized?(@evaluation) && !@evaluation.finished_evaluations.any? %>
-  <%= link_to 'Edit', edit_evaluation_path(@evaluation) , class: "btn" %> |
-  <%= link_to 'Destroy', @evaluation, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
-<a href="#" class="js-next" data-id="<%=@evaluation.id%>">Next Evaluation</a> -->
-
-<!-- <script type="text/javascript" charset="utf-8">
-// does not work, but with with prototype
-$(function () {
-  $(".js-next").on("click", function(event) {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-  $.get("/evaluations/" + nextId + ".json", function(evaluation){
-        addEvalToDom(evaluation)
-    });
-    event.preventDefault()
-  });
-});
-
-  function addEvalToDom(eval) {
-      const newEval = new EvaluationShow(eval.id, eval.name, eval.course.title, eval.course.start_date, eval.questions)
-      $('#eval-name').replaceWith(newEval.renderEvalShow())
-      $(".js-next").attr("data-id", eval.id);
-    }
-
-  function EvaluationShow(id, name, course, start_date, questions){
-    this.id = id
-    this.name = name
-    this.course = course
-    this.start_date = start_date
-    this.questions = questions
-  }
-
-  EvaluationShow.prototype.renderEvalShow = function() {
-    return `
-    <h1>${this.name}</h1>
-      `
-  }
-
-</script> -->
-
-
-
-
-<!-- <script type="text/javascript" charset="utf-8">
-// Works without prototype
-$(function () {
-  $(".js-next").on("click", function(event) {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-  $.get("/evaluations/" + nextId + ".json", function(evaluation){
-        $("#eval-name").text(evaluation.name);
-      $(".js-next").attr("data-id", evaluation.id);
-    });
-    event.preventDefault()
-  });
-});
-</script> -->
