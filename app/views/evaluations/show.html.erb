@@ -10,6 +10,7 @@
    const evalId = parseInt($("#evaluation-main").attr("data-id"))
    $.get("/evaluations/" + evalId + ".json", function(evaluation){
       addEvalToDom(evaluation)
+
     })
 })
 
@@ -40,12 +41,26 @@
                </span>
              Date: ${this.start_date}
          </div>
-         <div id="questions">
-         ${this.questions}
+         <div>
+          <ul id="questions">
+          ${this.questions.map(question => `
+            <li>
+              ${$('#questions').append(JSON.stringify(question.content))}
+            </il>
+          `)}
+          </ul>
          </div>
        </li>
      `
    }
+
+
+   function addQuestionsToDom(questionsArray) {
+     	questionsArray.map((question, i) =>
+         $('#questions').append(question.content)
+     	)
+   }
+
 
 
 </script>
