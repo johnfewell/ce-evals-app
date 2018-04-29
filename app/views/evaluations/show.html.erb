@@ -1,7 +1,10 @@
-   <div id="evaluation-main" data-id="<%= params[:id] %>">
+<div id="evaluation-main" data-id="<%= params[:id] %>">
 
-   </div>
-<a href="#" class="js-next" data-id="<%=@evaluation.id%>">Next Evaluation</a>
+</div>
+<div class="mt-3">
+
+</div>
+<a href="#" class="js-next btn" data-id="<%=@evaluation.id%>">Next Evaluation</a>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -32,8 +35,8 @@
    function Evaluation(id, name, course, start_date, questions){
      this.id = id
      this.name = name
-     this.course = course
-     this.start_date = start_date
+     this.course ? this.course = course : this.course = ""
+     this.start_date ? this.start_date = start_date : this.start_date = ""
      this.questions = questions
    }
 

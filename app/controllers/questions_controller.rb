@@ -34,7 +34,8 @@ class QuestionsController < ApplicationController
     end
 
     if @question.save
-      redirect_to questions_path, notice: 'Question was successfully created.'
+      render json: @question, status: 201
+    #  redirect_to questions_path, notice: 'Question was successfully created.'
     else
       render action: 'new'
     end

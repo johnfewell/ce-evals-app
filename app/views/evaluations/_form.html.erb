@@ -32,7 +32,11 @@
     <span>Add question:</span>
     <%= f.fields_for :questions, Question.new do |question_form| %>
       <%= question_form.text_field :content %>
-      <% end %>
+        <div class="field">
+      <%= question_form.label "Check if this is a text question, leave it blank for a 1-5 rating scale" %>:
+      <%=  question_form.check_box :text %><br>
+      </div>
+    <% end %>
   </div>
 <br />
 
@@ -50,3 +54,40 @@
       <%= f.submit :class => 'btn btn-primary' %>
     </div>
   <% end %>
+
+
+
+
+  <div id="postResult">
+  <h2 id="postTitle"></h2>
+  <p id="postBody"></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+
+      let values = $(this).serialize();
+
+      let posting = $.post('/evaluations', values);
+
+      posting.done(function(evaluation) {
+         $("#postTitle").append(evaluation["name"]);
+      });
+    });
+  });
+</script>
+
+
+
+<!-- <script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      alert("we r hack3rz");
+    });
+  });
+</script> -->

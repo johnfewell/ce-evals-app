@@ -62,6 +62,7 @@ class EvaluationsController < ApplicationController
 
   def new
     @evaluation = Evaluation.new
+    @question = Question.new
   end
 
   def edit
@@ -70,7 +71,8 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
     if @evaluation.save
-      redirect_to @evaluation, notice: 'Evaluation was successfully created.'
+      render json: @evaluation, status: 201
+      #redirect_to @evaluation, notice: 'Evaluation was successfully created.'
     else
       render action: 'new'
     end
@@ -96,7 +98,7 @@ class EvaluationsController < ApplicationController
   end
 
   def evaluation_params
-    params.require(:evaluation).permit(:name, :course_id, :question_ids => [], :questions_attributes => [:content])
+    params.require(:evaluation).permit(:name, :course_id, :question_ids => [], :questions_attributes => [:content], :questions_attributes => [:text])
   end
 
   def is_authorized?
