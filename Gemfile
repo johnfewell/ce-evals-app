@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'active_model_serializers'
 
+gem 'lodash-rails'
+
 gem 'rating'
 
 gem 'omniauth-facebook'
