@@ -20,6 +20,8 @@
 
     function addEvalsToDom(evalsArray) {
     	evalsArray.forEach(function(eval) {
+        //javascript optional parameters
+        eval.course = eval.course || {}
         const newEval = new Evaluation(eval.id, eval.name, eval.course.title, eval.course.start_date)
         $('#evaluations-main').append(newEval.renderEval())
     	})
@@ -42,9 +44,9 @@
           </div>
           <div class="f6 text-gray mt-2">
                 <span class="mr-3" itemprop="programmingLanguage">
-                  Class: ${this.course}
+                  Class: ${this.course || "No idea"}
                 </span>
-              Date: ${this.start_date}
+              Date: ${this.start_date || "No idea"}
           </div>
         </li>
       `

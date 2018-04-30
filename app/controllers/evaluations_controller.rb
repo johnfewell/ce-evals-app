@@ -102,15 +102,15 @@ class EvaluationsController < ApplicationController
   end
 
   def is_authorized?
-    if current_user.superadmin_role
-      true
-    elsif current_user.instructor_role
-      true
-    elsif current_user.attendee_role
-      redirect_to profile_attendee_path(current_user.attendee.id), alert: "You aren't authorized to see that page."
-    else
-      redirect_to root_url, alert: "Something weird happened."
-    end
+    # if current_user.superadmin_role
+    #   true
+    # elsif current_user.instructor_role
+    #   true
+    # elsif current_user.attendee_role
+    #   redirect_to profile_attendee_path(current_user.attendee.id), alert: "You aren't authorized to see that page."
+    # else
+    #   redirect_to root_url, alert: "Something weird happened."
+    # end
   end
 
 end
