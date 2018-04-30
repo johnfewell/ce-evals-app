@@ -11,6 +11,8 @@ class EvaluationsController < ApplicationController
   end
 
   def show
+    @previous_evaluation = @evaluation.next&.id
+    @next_evaluation = @evaluation.previous&.id
     @questions = @evaluation.questions
     respond_to do |f|
       f.html { render :show }

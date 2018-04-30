@@ -4,8 +4,7 @@
 <div class="mt-3">
 
 </div>
-
-<a href="#" class="js-next btn" data-id="<%=@evaluation.id%>">Next Evaluation</a>
+<a href="#" class="js-next btn" data-id="<%=@next_evaluation%>">Next Evaluation</a>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -19,27 +18,27 @@
 
   function addEventHanlder(){
     $(".js-next").on("click", function(event) {
-      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-      $.ajax({
-        method : "GET",
-        url : "/evaluations/" + nextId + ".json",
-        dataType : "json",
-        timeout : 100000,
-        success : function(evaluation) {
-          addEvalToDom(evaluation)
-          $(".js-next").attr("data-id", evaluation.id)
-        },
-        error : function(e) {
-            console.info("Error, this isn't working");
-        },
-        done : function(e) {
-            console.info("DONE");
-        }
-    });
-    // $.get("/evaluations/" + nextId + ".json", function(evaluation){
+      var nextId = parseInt($(".js-next").attr("data-id"));
+    //   $.ajax({
+    //     method : "GET",
+    //     url : "/evaluations/" + nextId + ".json",
+    //     dataType : "json",
+    //     timeout : 100000,
+    //     success : function(evaluation) {
     //       addEvalToDom(evaluation)
     //       $(".js-next").attr("data-id", evaluation.id)
-    //   });
+    //     },
+    //     error : function(e) {
+    //         console.info("Error, this isn't working");
+    //     },
+    //     done : function(e) {
+    //         console.info("DONE");
+    //     }
+    // });
+    $.get("/evaluations/" + nextId + ".json", function(evaluation){
+          addEvalToDom(evaluation)
+          $(".js-next").attr("data-id", evaluation.next.id)
+      });
       event.preventDefault()
     })
   }
