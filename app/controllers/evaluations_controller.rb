@@ -36,6 +36,11 @@ class EvaluationsController < ApplicationController
     end
   end
 
+  def new_question_form
+    @question = Question.new
+    render :layout => false
+  end
+
   def answers
     #prevent instructors from completing evaluations
     if current_user.instructor_role?
