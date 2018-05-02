@@ -20,24 +20,22 @@
       <%= render "logged_out_header" %>
     <% end %>
 
-    <div class="container pt-3">
 
+    <div class="container pt-3">
+      <div class="flash-messages">
       <% if !alert.nil? %>
-        <div class="flash-messages">
           <div class="flash flash-warn">
+            <button class="flash-close js-flash-close" type="button"><%= octicon "x", :"aria-label" => "Close" %></button>
             <p id="alert"><%= octicon "alert" %> <%= alert %></p>
           </div>
-        </div>
       <% end %>
-
       <% if !notice.nil? %>
-      <div class="flash-messages">
-        <div class="flash flash-success">
-          <p id="notice"><%= octicon "check" %> <%= notice %></p>
-        </div>
-      </div>
-    <% end %>
-
+          <div class="flash flash-success">
+            <button class="flash-close js-flash-close" type="button"><%= octicon "x", :"aria-label" => "Close" %></button>
+            <p id="notice"><%= octicon "check" %> <%= notice %></p>
+          </div>
+      <% end %>
+    </div>
 
       <%= yield %>
 
