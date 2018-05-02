@@ -14,5 +14,5 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-//= require evaluations
+//= require evaluation
 //= require lodash
