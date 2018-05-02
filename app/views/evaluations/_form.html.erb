@@ -1,6 +1,5 @@
 <div id="evaluation-main">
 
-
 <%= form_for @evaluation, builder: PrimerFormBuilder do |f| %>
   <% if @evaluation.errors.any? %>
     <div id="error_explanation">
@@ -19,7 +18,7 @@
     <%= f.text_field :name %><br>
   </div>
 
-<h4>Questions:</h4>
+<!-- <h4>Questions:</h4> -->
   <!-- <div class="field mx-5">
 
     <%= f.collection_check_boxes(:question_ids, questions_by_instructor, :id, :content) do |q| %>

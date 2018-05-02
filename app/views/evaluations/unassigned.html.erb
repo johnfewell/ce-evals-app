@@ -1,1 +1,53 @@
-<%= render 'evaluations_status' %>
+<%= render 'evaluations_subnav' %>
+
+ <ul>
+    <div id="evaluations-main" data-path="<%= request.path %>">
+
+    </div>
+  </ul>
+
+<script type="text/javascript" charset="utf-8">
+
+  $(function() {
+    $.get("/evaluations/unassigned.json", function(evaluation){
+        $('.flash-messages').empty()
+        addEvalsToDom(evaluation)
+        addEventHandler()
+    })
+
+    function addEvalsToDom(evalsArray) {
+    	evalsArray.forEach(function(eval) {
+        //javascript optional parameters
+        eval.course = eval.course || {}
+        const newEval = new EvaluationIndex(eval.id, eval.name, eval.course.title, eval.course.start_date)
+        $('#evaluations-main').append(newEval.renderEvalIndex())
+    	})
+    }
+
+    function EvaluationIndex(id, name, course, start_date){
+      this.id = id
+      this.name = name
+      this.course = course
+      this.start_date = start_date
+    }
+
+    EvaluationIndex.prototype.renderEvalIndex = function() {
+      return `
+        <li class="col-12 d-block width-full py-4 border-bottom public source">
+          <div class="d-inline-block mb-1">
+            <h3>
+              <a href="/evaluations/${this.id}" itemprop="name codeRepository"> ${this.name}</a>
+            </h3>
+          </div>
+          <div class="f6 text-gray mt-2">
+                <span class="mr-3" itemprop="programmingLanguage">
+                  Class: ${this.course || ""}
+                </span>
+              Date: ${this.start_date || "No idea"}
+          </div>
+        </li>
+      `
+    }
+})
+
+</script>

@@ -1,18 +1,35 @@
 function addEventHandler(){
   $(".js-next").on("click", function(event) {
     let nextId = parseInt($(".js-next").attr("data-id"));
-    $.get("/evaluations/" + nextId + ".json", function(evaluation){
-        addEvalToDom(evaluation)
-        addEventHandler()
-    });
-    event.preventDefault()
+    if (isNaN(nextId)){
+      $('.flash-messages').html(`
+        <div class="flash flash-warn">
+          <p id="alert">End of Records</p>
+        </div>
+        `)
+    } else {
+      $.get("/evaluations/" + nextId + ".json", function(evaluation){
+          $('.flash-messages').empty()
+          addEvalToDom(evaluation)
+          addEventHandler()
+      });
+      event.preventDefault()
+    }
   })
   $(".js-prev").on("click", function(event) {
     let prevId = parseInt($(".js-prev").attr("data-id"));
-    $.get("/evaluations/" + prevId + ".json", function(evaluation){
+    if (isNaN(prevId)){
+      $('.flash-messages').html(`
+        <div class="flash flash-warn">
+          <p id="alert">No Previous Record</p>
+        </div>
+        `)
+    } else {
+      $.get("/evaluations/" + prevId + ".json", function(evaluation){                   $('.flash-messages').empty()
         addEvalToDom(evaluation)
         addEventHandler()
-    });
+      });
+    }
     event.preventDefault()
   })
 }

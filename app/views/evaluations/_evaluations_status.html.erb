@@ -1,7 +1,7 @@
 <%= render 'evaluations_subnav' %>
 
  <ul>
-    <div id="evaluations-main">
+    <div id="evaluations-main" data-path="<%= request.path %>">
 
     </div>
   </ul>
@@ -9,14 +9,14 @@
 <script type="text/javascript" charset="utf-8">
 
   $(function() {
-      fetch(`/evaluations.json`, {
-          headers : {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-           }
-        })
-      .then(res => res.json())
-      .then(data => addEvalsToDom(data))
+    fetch('/evaluations.json', {
+        headers : {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+      })
+    .then(res => res.json())
+    .then(data => addEvalsToDom(data))
 
     function addEvalsToDom(evalsArray) {
     	evalsArray.forEach(function(eval) {
