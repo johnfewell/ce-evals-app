@@ -16,3 +16,4 @@
 //= require_tree .
 //= require evaluation
 //= require lodash
+//= require cocoon

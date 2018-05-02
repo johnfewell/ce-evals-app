@@ -1,4 +1,4 @@
-<%= form_for @question, remote: true, html: { class: 'multiForm' }  do |f| %>
+<div class='nested-fields'>
   <div class="field">
     <%= f.label "Question:" %>:
     <%= f.text_field :content %><br>
@@ -7,4 +7,5 @@
     <%= f.label "Check if this is a text question, leave it blank for a 1-5 rating scale" %>:
     <%= f.check_box :text %><br>
   </div>
-  <% end %>
+  <%= link_to_remove_association "remove question", f %>
+</div>

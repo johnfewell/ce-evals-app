@@ -32,17 +32,14 @@
   </div> -->
 
   <div id="question-forms" class="field mx-5 mt-2">
-    <!-- <span>Add question:</span>
-    <%= f.fields_for :questions, Question.new do |question_form| %>
-      <%= question_form.text_field :content %>
-        <div class="field">
-      <%= question_form.label "Check if this is a text question, leave it blank for a 1-5 rating scale" %>:
-      <%=  question_form.check_box :text %><br>
-      </div>
-    <% end %> -->
-  </div>
-  <div class="mx-5 mt-2">
-      <input id="add" class="btn" value="Add a question"/>
+    <span>Add question:</span>
+    <%= f.fields_for :questions, Question.new do |question| %>
+      <%= render 'question_fields', :f => question %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add question', f, :questions %>
+    </div>
+
   </div>
 <br />
 
@@ -56,30 +53,29 @@
   </div>
   <br>
 
-    <div class="actions">
-      <%= f.submit :class => 'btn btn-primary', :id => "test" %>
-    </div>
-  <% end %>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary', :id => "test" %>
+  </div>
+<% end %>
 
 </div>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $("#add").click(function() {
-      $.ajax({
-        url: "evaluations/new_question_form",
-        success: function (html) {
-        $("#question-forms").append(html);
-        }
-      });
-    });
+    // $("#add").click(function() {
+    //   $.ajax({
+    //     url: "evaluations/new_question_form",
+    //     success: function (html) {
+    //     $("#question-forms").append(html);
+    //     }
+    //   });
+    // });
 
     $('form').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
-      $('.multiform').each(function() {
-        $(this).submit();
-      });
+      // $('.multiform').each(function() {
+      //   $(this).submit();
+      // });
 
       let values = $(this).serialize();
       let posting = $.post('/evaluations', values);

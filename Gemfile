@@ -33,6 +33,8 @@ gem 'lodash-rails'
 
 gem 'rating'
 
+gem "cocoon"
+
 gem 'omniauth-facebook'
 
 gem 'cancancan'

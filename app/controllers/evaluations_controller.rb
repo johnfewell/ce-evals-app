@@ -13,7 +13,6 @@ class EvaluationsController < ApplicationController
   def show
     @previous_evaluation = @evaluation.next&.id
     @next_evaluation = @evaluation.previous&.id
-    @questions = @evaluation.questions
     respond_to do |f|
       f.html { render :show }
       f.json { render json: @evaluation, status: 200 }
@@ -77,7 +76,9 @@ class EvaluationsController < ApplicationController
 
   def create
     @evaluation = Evaluation.new(evaluation_params)
+      binding.pry
     if @evaluation.save
+
       render json: @evaluation, status: 201
       #redirect_to @evaluation, notice: 'Evaluation was successfully created.'
     else
@@ -105,8 +106,9 @@ class EvaluationsController < ApplicationController
   end
 
   def evaluation_params
-    params.require(:evaluation).permit(:name, :course_id, :question_ids => [], :questions_attributes => [:content], :questions_attributes => [:text])
+    params.require(:evaluation).permit(:name, :course_id, :questions_attributes => [:id, :content, :text, :_destroy])
   end
+
 
   def is_authorized?
     # if current_user.superadmin_role
