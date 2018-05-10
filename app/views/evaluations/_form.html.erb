@@ -31,10 +31,10 @@
   </div> -->
 
   <div id="question-forms" class="field mx-5 mt-2">
-    <span>Add question:</span>
+    <!-- <span>Add question:</span>
     <%= f.fields_for :questions, Question.new do |question| %>
       <%= render 'question_fields', :f => question %>
-    <% end %>
+    <% end %> -->
     <div class='links'>
       <%= link_to_add_association 'add question', f, :questions %>
     </div>
@@ -81,6 +81,7 @@
 
       posting.done(function(evaluation) {
         addEvalToDom(evaluation)
+        history.pushState(null, null, "/hello")
         addEventHandler()
       });
     });
