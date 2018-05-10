@@ -59,7 +59,7 @@ function addEventHandler(){
    return `
        <div class="d-inline-block mb-1">
          <h2>
-            ${this.name} - ${this.id}
+            ${this.name}
          </h2>
        </div>
        <div class="f4 text-gray mt-2">
