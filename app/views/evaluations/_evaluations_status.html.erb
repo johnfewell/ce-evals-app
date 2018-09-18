@@ -16,7 +16,25 @@
          }
       })
     .then(res => res.json())
+    .then(data => sortJSON(data))
     .then(data => addEvalsToDom(data))
+
+    function sortJSON(data){
+      // Sort the JSON collection of objects by name
+      return data.sort(function(a, b) {
+                var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+                // names must be equal
+                return 0;
+            });
+    }
+
 
     function addEvalsToDom(evalsArray) {
     	evalsArray.forEach(function(eval) {
@@ -27,11 +45,11 @@
     	})
     }
 
-    function Evaluation(id, name, course, start_date){
+    function Evaluation(id, name, course, startDate){
       this.id = id
       this.name = name
       this.course = course
-      this.start_date = start_date
+      this.startDate = startDate
     }
 
     Evaluation.prototype.renderEval = function() {
@@ -43,10 +61,10 @@
             </h3>
           </div>
           <div class="f6 text-gray mt-2">
-                <span class="mr-3" itemprop="programmingLanguage">
-                  Class: ${this.course || "Not assigned"}
-                </span>
-              Date: ${this.start_date || "Not assigned"}
+            <span class="mr-3" itemprop="programmingLanguage">
+              Class: ${this.course || "Not assigned"}
+            </span>
+            Date: ${this.startDate || "Not assigned"}
           </div>
         </li>
       `

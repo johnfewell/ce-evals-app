@@ -47,11 +47,11 @@
       $('form').submit(function(event) {
       event.preventDefault();
 
-      let values = $(this).serialize();
-      let posting = $.post('/evaluations', values);
+      const values = $(this).serialize();
+      const posting = $.post('/evaluations', values);
 
       posting.done(function(evaluation) {
-        let evalUrl = evaluation.id
+        const evalUrl = evaluation.id
         addEvalToDom(evaluation)
         history.pushState(null, null, evalUrl)
         addEventHandler()

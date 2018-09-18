@@ -42,11 +42,11 @@ function addEventHandler(){
      $('#evaluation-main').html(newEval.renderEval())
  }
 
- function Evaluation(id, name, course, start_date, questions, next, previous){
+ function Evaluation(id, name, course, startDate, questions, next, previous){
    this.id = id
    this.name = name
    this.course = course
-   this.start_date = start_date
+   this.startDate = startDate
    this.questions = questions
    this.next = next
    this.previous = previous
@@ -66,7 +66,7 @@ function addEventHandler(){
              <span class="mr-3" itemprop="programmingLanguage">
                Class: ${this.course || "Not assigned"}
              </span>
-           Date: ${this.start_date || "Not assigned"}
+           Date: ${this.startDate || "Not assigned"}
        </div>
        <div class="mt-3"></div>
        <div>
