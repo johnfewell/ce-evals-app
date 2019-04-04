@@ -2,15 +2,15 @@
   "name": "ce-evals-app",
   "private": true,
   "dependencies": {
-    "octicons": "^7.1.0",
-    "primer": "^10.3.0",
-    "primer-css": "^9.6.0",
-    "primer-forms": "^2.1.0",
-    "primer-navigation": "^1.5.3"
+    "octicons": "7.4.0",
+    "primer": "10.10.5",
+    "primer-css": "9.6.0",
+    "primer-forms": "2.1.8",
+    "primer-navigation": "1.5.11"
   },
   "devDependencies": {
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
-    "webpack": "^3.11.0"
+    "node-sass": "4.11.0",
+    "sass-loader": "6.0.7",
+    "webpack": "3.12.0"
   }
 }
