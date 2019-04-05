@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "octicons": "8.5.0",
-    "primer": "10.10.5",
+    "primer": "11.0.0",
     "primer-css": "9.6.0",
     "primer-forms": "2.1.8",
     "primer-navigation": "1.5.11"
