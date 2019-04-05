@@ -5,7 +5,7 @@
     "octicons": "8.5.0",
     "primer": "11.0.0",
     "primer-css": "9.6.0",
-    "primer-forms": "2.1.8",
+    "primer-forms": "3.0.0",
     "primer-navigation": "1.5.11"
   },
   "devDependencies": {
