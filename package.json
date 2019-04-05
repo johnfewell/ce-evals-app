@@ -2,7 +2,7 @@
   "name": "ce-evals-app",
   "private": true,
   "dependencies": {
-    "octicons": "7.4.0",
+    "octicons": "8.5.0",
     "primer": "10.10.5",
     "primer-css": "9.6.0",
     "primer-forms": "2.1.8",
